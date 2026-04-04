@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}{{ service.title }} - AI Developer{% endblock %}
+
+{% block content %}
+<section class="py-5" style="background-color: var(--bg-dark);">
+    <div class="container py-4">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'services_list' %}">Services</a></li>
+                <li class="breadcrumb-item active text-muted" aria-current="page">{{ service.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5">
+            <!-- Left Column: Service Details & Tiers -->
+            <div class="col-lg-8">
+                <div class="mb-5">
+                    <h1 class="display-4 fw-bold mb-3" style="color: var(--text-light);">{{ service.title }}</h1>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        {% for tech in service.tech_list %}
+                        <span class="tech-badge px-3 py-2"
+                            style="background: rgba(0, 245, 255, 0.05); color: var(--primary-color); border: 1px solid rgba(0, 245, 255, 0.2);">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="service-description fs-5 text-muted lh-lg">
+                        {{ service.description|linebreaks }}
+                    </div>
+                </div>
+
+                <h3 class="fw-bold mb-4" style="color: var(--text-light);">Service Tiers</h3>
+                <div class="row g-4 mb-5">
+                    <!-- Basic Tier -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 hover-scale position-relative overflow-hidden"
+                            style="background-color: var(--bg-card); border-top: 4px solid #94A3B8 !important; border: 1px solid var(--accent-color);">
+                            <h4 class="h5 fw-bold mb-3 text-light">Basic</h4>
+                            <p class="text-muted small lh-base mb-0">
+                                {{ service.basic_description|default:"Essential features for basic entry-level needs." }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Standard Tier -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 hover-scale position-relative overflow-hidden"
+                            style="background-color: var(--bg-card); border-top: 4px solid var(--primary-color) !important; border: 1px solid var(--accent-color);">
+                            <div class="position-absolute top-0 end-0 p-2">
+                                <span class="badge rounded-pill"
+                                    style="background: var(--primary-color); color: var(--bg-dark); font-size: 0.7rem;">MOST POPULAR</span>
+                            </div>
+                            <h4 class="h5 fw-bold mb-3 text-light">Standard</h4>
+                            <p class="text-muted small lh-base mb-0">
+                                {{ service.standard_description|default:"Most popular, balanced features for growth." }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Premium Tier -->
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4 border-0 hover-scale position-relative overflow-hidden"
+                            style="background-color: var(--bg-card); border-top: 4px solid var(--secondary-color) !important; border: 1px solid var(--accent-color);">
+                            <h4 class="h5 fw-bold mb-3 text-light">Premium</h4>
+                            <p class="text-muted small lh-base mb-0">
+                                {{ service.premium_description|default:"Full-scale enterprise solution for max performance." }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                <div
+                    class="d-flex gap-3 p-4 rounded-4 border border-warning border-opacity-25 bg-warning bg-opacity-10 mt-5">
+                    <div class="text-warning fs-3 px-2">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="fw-bold text-warning mb-1">Administrative Controls</h5>
+                        <p class="text-muted small mb-3">You are viewing this as a staff member. You can modify or remove this offering.</p>
+                        <div class="d-flex gap-2">
+                            <a href="{% url 'edit_service' service.pk %}"
+                                class="btn btn-warning btn-sm px-4 fw-bold text-dark rounded-pill">
+                                <i class="fas fa-edit me-2"></i>Edit Service
+                            </a>
+                            <form method="post" action="{% url 'delete_service' service.pk %}"
+                                onsubmit="return confirm('Confirm deletion?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm px-4 fw-bold rounded-pill">
+                                    <i class="fas fa-trash me-2"></i>Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Column: Request Form Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="card p-4 p-md-5 shadow-2xl border-0 position-relative overflow-hidden"
+                        style="background-color: var(--bg-card); border-top: 4px solid var(--primary-color) !important; border: 1px solid var(--accent-color); border-radius: 24px;">
+
+                        <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                            <i class="fas fa-paper-plane" style="font-size: 5rem; color: var(--primary-color);"></i>
+                        </div>
+
+                        <h3 class="h4 fw-bold mb-2" style="color: var(--text-light); position: relative; z-index: 2;">Request Service</h3>
+                        <p class="text-muted small mb-4" style="position: relative; z-index: 2;">Fill out the form below to get a custom quote and timeline.</p>
+
+                        <form method="post" class="position-relative" style="z-index: 2;">
+                            {% csrf_token %}
+                            <div class="service-form-dark">
+                                {% bootstrap_form form %}
+                            </div>
+
+                            <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted small">Estimated Delivery</span>
+                                    <span class="badge border border-primary border-opacity-25 text-primary">{{ service.delivery_time }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <span class="text-muted small">Starting From</span>
+                                    <span class="fs-4 fw-bold" style="color: var(--primary-color);">${{ service.starting_price }}</span>
+                                </div>
+                                <button type="submit"
+                                    class="btn btn-primary w-100 py-3 fw-bold rounded-pill hover-scale shadow-sm"> Submit Request <i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mt-4 p-4 text-center">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-lock me-2 text-primary"></i> 100% Secure & Confidential
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-form-dark label {
+        color: var(--text-light) !important;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        margin-top: 0.8rem;
+    }
+
+    .service-form-dark .form-control,
+    .service-form-dark .form-select {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid var(--accent-color) !important;
+        color: var(--text-light) !important;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s;
+    }
+
+    .service-form-dark .form-control:focus,
+    .service-form-dark .form-select:focus {
+        background-color: rgba(0, 245, 255, 0.05) !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 15px rgba(0, 245, 255, 0.15) !important;
+    }
+
+    .hover-scale {
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+</style>
+{% endblock %}

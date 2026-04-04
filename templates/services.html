@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Services - AI Developer{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="section-title">Freelance AI Services</h1>
+        <p class="text-center text-muted mb-5">We offer specialized AI solutions tailored to your needs.</p>
+
+        <div class="row">
+            {% for service in services %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h2 class="card-title h4">{{ service.title }}</h2>
+                            <span class="badge bg-primary fs-6">${{ service.starting_price }}+</span>
+                        </div>
+                        <p class="text-muted mb-4">{{ service.description }}</p>
+
+                        <h5 class="h6 fw-bold text-light mb-3">Technologies:</h5>
+                        <div class="mb-4">
+                            {% for tech in service.tech_list %}
+                            <span class="tech-badge">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-grid">
+                            <a href="{% url 'service_detail' service.pk %}" class="btn btn-primary">View Details &
+                                Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted">Stay tuned! Our services are coming soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} - AI Developer{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'portfolio_list' %}">Portfolio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row mt-4">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-3">{{ project.title }}</h1>
+                <div class="mb-4">
+                    {% for tech in project.tech_list %}
+                    <span class="tech-badge px-3 py-2">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+
+                <!-- Unified Project Gallery Carousel -->
+                {% if project.image or project.media.all %}
+                <div class="mb-5">
+                    <div id="projectGalleryCarousel"
+                        class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel"
+                        style="border: 1px solid var(--accent-color);">
+                        <div class="carousel-inner"
+                            style="background-color: var(--bg-dark); min-height: 300px; display: flex; align-items: center;">
+
+                            {% if project.image %}
+                            <div class="carousel-item active">
+                                <a href="{{ project.image.url }}" target="_blank"
+                                    class="d-block position-relative gallery-img-container">
+                                    <img src="{{ project.image.url }}" class="d-block w-100" alt="{{ project.title }}"
+                                        style="object-fit: contain; max-height: 500px; border-radius: 0.5rem;">
+                                    <div class="gallery-overlay position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle"
+                                        style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); border: 1px solid var(--primary-color); opacity: 0; transition: all 0.3s ease;">
+                                        <i class="fas fa-expand fs-4" style="color: var(--primary-color);"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            {% for media in project.media.all %}
+                            <div class="carousel-item {% if not project.image and forloop.first %}active{% endif %}">
+                                <a href="{{ media.file.url }}" target="_blank"
+                                    class="d-block position-relative gallery-img-container">
+                                    <img src="{{ media.file.url }}" class="d-block w-100" alt="Gallery Image"
+                                        style="object-fit: contain; max-height: 500px; border-radius: 0.5rem;">
+                                    <div class="gallery-overlay position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle"
+                                        style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); border: 1px solid var(--primary-color); opacity: 0; transition: all 0.3s ease;">
+                                        <i class="fas fa-expand fs-4" style="color: var(--primary-color);"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if project.image and project.media.all or project.media.count > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectGalleryCarousel"
+                            data-bs-slide="prev" style="width: 10%;">
+                            <span class="carousel-control-prev-icon rounded-circle" aria-hidden="true"
+                                style="background-color: rgba(0, 0, 0, 0.5); padding: 1.5rem; background-size: 50%;"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectGalleryCarousel"
+                            data-bs-slide="next" style="width: 10%;">
+                            <span class="carousel-control-next-icon rounded-circle" aria-hidden="true"
+                                style="background-color: rgba(0, 0, 0, 0.5); padding: 1.5rem; background-size: 50%;"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+
+                        <div class="carousel-indicators" style="margin-bottom: -0.5rem;">
+                            <!-- Primary Image Indicator -->
+                            {% if project.image %}
+                            <button type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide-to="0"
+                                class="active custom-indicator" aria-current="true"></button>
+                            {% endif %}
+
+                            <!-- Media Images Indicators -->
+                            {% for media in project.media.all %}
+                            <button type="button" data-bs-target="#projectGalleryCarousel"
+                                data-bs-slide-to="{% if project.image %}{{ forloop.counter }}{% else %}{{ forloop.counter0 }}{% endif %}"
+                                class="{% if not project.image and forloop.first %}active{% endif %} custom-indicator"
+                                aria-label="Slide"></button>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <textarea id="raw-markdown" style="display:none;">{{ project.description }}</textarea>
+                <div id="rendered-content" class="project-content fs-5 text-muted mb-5 markdown-body">
+                    <!-- Markdown will be rendered dynamically here -->
+                </div>
+
+            </div>
+
+            <!-- Right Sidebar Panel -->
+            <div class="col-lg-4">
+                <div class="p-4 rounded-4 shadow-lg position-relative overflow-hidden mb-4"
+                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color); border-top: 4px solid var(--primary-color) !important;">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                        <i class="fas fa-rocket pe-2"
+                            style="font-size: 6rem; color: var(--primary-color); transform: rotate(15deg);"></i>
+                    </div>
+
+                    <h4 class="h5 fw-bold mb-4" style="color: var(--text-light); position: relative; z-index: 2;">
+                        Project Overview</h4>
+
+                    <div class="mb-4 position-relative" style="z-index: 2;">
+                        <p class="mb-1 text-muted small text-uppercase fw-bold letter-spacing-1">Completion Date</p>
+                        <p class="fs-5 text-light fw-bold"><i class="far fa-calendar-alt me-2"
+                                style="color: var(--primary-color);"></i>{{ project.created_at|date:"F Y" }}</p>
+                    </div>
+
+                    <div class="mb-4 position-relative" style="z-index: 2;">
+                        <p class="mb-1 text-muted small text-uppercase fw-bold letter-spacing-1">Category</p>
+                        <p class="fs-5 text-light fw-bold"><i class="fas fa-laptop-code me-2"
+                                style="color: var(--primary-color);"></i>AI Development</p>
+                    </div>
+
+                    <hr style="border-color: rgba(255,255,255,0.1); position: relative; z-index: 2;">
+
+                    <div class="d-grid gap-3 mt-4 position-relative" style="z-index: 2;">
+                        {% if project.demo_link %}
+                        <a href="{{ project.demo_link }}" class="btn btn-primary fw-bold rounded-pill" target="_blank">
+                            Live Demo <i class="bi bi-box-arrow-up-right ms-2"></i>
+                        </a>
+                        {% endif %}
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" class="btn btn-outline-light fw-bold rounded-pill"
+                            target="_blank">
+                            GitHub Repository <i class="bi bi-github ms-2"></i>
+                        </a>
+                        {% endif %}
+                        {% if request.user.is_authenticated and request.user.is_staff %}
+                        <a href="{% url 'edit_project' project.pk %}"
+                            class="btn btn-warning fw-bold text-dark rounded-pill mt-2">
+                            <i class="fas fa-edit me-2"></i> Edit Project
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Overlay pop effect */
+    .gallery-img-container:hover .gallery-overlay {
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1.1) !important;
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+    }
+
+    /* AI Theme Carousel Indicators */
+    .custom-indicator {
+        width: 8px !important;
+        height: 8px !important;
+        border-radius: 50% !important;
+        background-color: var(--text-muted) !important;
+        border: none !important;
+        opacity: 0.4 !important;
+        margin: 0 4px !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .carousel-indicators .active.custom-indicator {
+        opacity: 1 !important;
+        background-color: var(--primary-color) !important;
+        width: 24px !important;
+        border-radius: 4px !important;
+        box-shadow: 0 0 8px var(--primary-color);
+    }
+
+    .letter-spacing-1 {
+        letter-spacing: 1px;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    // Initialize mermaid with dark theme to natively blend with our AI Theme
+    mermaid.initialize({ startOnLoad: false, theme: 'dark', backgroundColor: 'transparent' });
+
+    document.addEventListener("DOMContentLoaded", async function () {
+        const rawContent = document.getElementById('raw-markdown').value;
+        const html = marked.parse(rawContent);
+
+        document.getElementById('rendered-content').innerHTML = html;
+
+        // Convert markdown code blocks that are specified as mermaid into target divs for mermaid script
+        const mermaidBlocks = document.querySelectorAll('#rendered-content pre code.language-mermaid');
+        mermaidBlocks.forEach((block) => {
+            const pre = block.parentElement;
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = block.textContent;
+            pre.parentNode.replaceChild(mermaidDiv, pre);
+        });
+
+        // Render all mermaid diagrams
+        await mermaid.run({
+            nodes: document.querySelectorAll('.mermaid'),
+        });
+    });
+</script>
+<style>
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3 {
+        color: var(--primary-color);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6 {
+        color: var(--text-light);
+        margin-top: 1.2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .markdown-body pre {
+        background-color: var(--bg-card);
+        border: 1px solid var(--accent-color);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+
+    .markdown-body pre code {
+        color: var(--text-light);
+        background: transparent;
+        padding: 0;
+    }
+
+    .markdown-body code {
+        color: var(--secondary-color);
+        background-color: var(--bg-card);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+    }
+
+    .markdown-body a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .markdown-body a:hover {
+        text-decoration: underline;
+        color: var(--secondary-color);
+    }
+
+    .markdown-body img {
+        max-width: 100%;
+        border-radius: 0.5rem;
+    }
+
+    .markdown-body ul,
+    .markdown-body ol {
+        padding-left: 2rem;
+    }
+</style>
+{% endblock %}

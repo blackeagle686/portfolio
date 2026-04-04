@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}Contact Me - AI Developer{% endblock %}
+
+{% block content %}
+<section class="py-5 d-flex align-items-center" style="background-color: var(--bg-dark); min-height: 80vh;">
+    <div class="container py-4">
+        <div class="text-center mb-5 pb-3">
+            <h1 class="fw-bold display-5 mb-3" style="color: var(--text-light);"><span
+                    style="color: var(--primary-color);">Get In</span> Touch</h1>
+            <p class="text-muted fs-5 mx-auto" style="max-width: 600px;">Have a project in mind or looking for an AI
+                architect? Let's engineer something incredible together.</p>
+        </div>
+
+        <div class="row g-5 align-items-center">
+            <!-- Contact Information Side -->
+            <div class="col-lg-5">
+                <div class="card p-5 h-100 hover-scale shadow-lg position-relative overflow-hidden"
+                    style="background-color: var(--bg-card); border-top: 4px solid var(--secondary-color) !important; border: 1px solid var(--accent-color);">
+                    <h2 class="h3 fw-bold mb-5" style="color: var(--text-light); position: relative; z-index: 2;">Let's
+                        Connect</h2>
+
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3 hover-scale"
+                        style="background: rgba(0,245,255,0.05); border: 1px solid rgba(0, 245, 255, 0.2); position: relative; z-index: 2;">
+                        <div class="rounded-circle me-4 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);">
+                            <i class="fas fa-envelope fs-4 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1" style="color: var(--primary-color);">Email</h4>
+                            <p class="mb-0"><a href="mailto:mathematecs1@gmail.com"
+                                    class="text-muted text-decoration-none hover-primary">mathematecs1@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3 hover-scale"
+                        style="background: rgba(0,245,255,0.05); border: 1px solid rgba(0, 245, 255, 0.2); position: relative; z-index: 2;">
+                        <div class="rounded-circle me-4 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);">
+                            <i class="fab fa-linkedin-in fs-4 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1" style="color: var(--primary-color);">LinkedIn</h4>
+                            <p class="mb-0"><a href="https://linkedin.com/in/mohammed-alaa-670867254" target="_blank"
+                                    class="text-muted text-decoration-none hover-primary">Mohamed Alaa</a></p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3 hover-scale"
+                        style="background: rgba(0,245,255,0.05); border: 1px solid rgba(0, 245, 255, 0.2); position: relative; z-index: 2;">
+                        <div class="rounded-circle me-4 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px; background: linear-gradient(135deg, #1877F2, #00C6FF); box-shadow: 0 0 15px rgba(24, 119, 242, 0.4);">
+                            <i class="fab fa-facebook-f fs-4 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1" style="color: #1877F2;">Facebook</h4>
+                            <p class="mb-0"><a href="https://facebook.com" target="_blank"
+                                    class="text-muted text-decoration-none hover-primary">Mohamed Alaa</a></p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3 hover-scale"
+                        style="background: rgba(0,245,255,0.05); border: 1px solid rgba(0, 245, 255, 0.2); position: relative; z-index: 2;">
+                        <div class="rounded-circle me-4 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px; background: linear-gradient(135deg, #E4405F, #F77737); box-shadow: 0 0 15px rgba(228, 64, 95, 0.4);">
+                            <i class="fab fa-instagram fs-4 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1" style="color: #E4405F;">Instagram</h4>
+                            <p class="mb-0"><a href="https://instagram.com" target="_blank"
+                                    class="text-muted text-decoration-none hover-primary">@mohamed_alaa</a></p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3 hover-scale"
+                        style="background: rgba(0,245,255,0.05); border: 1px solid rgba(0, 245, 255, 0.2); position: relative; z-index: 2;">
+                        <div class="rounded-circle me-4 d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px; background: linear-gradient(135deg, #25D366, #128C7E); box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);">
+                            <i class="fab fa-whatsapp fs-4 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1" style="color: #25D366;">WhatsApp</h4>
+                            <p class="mb-0"><a href="https://wa.me/201012345678" target="_blank"
+                                    class="text-muted text-decoration-none hover-primary">Drop a Wave</a></p>
+                        </div>
+                    </div>
+
+                    <!-- decorative tech background -->
+                    <div class="position-absolute bottom-0 end-0 p-4 opacity-25" style="z-index: 1;">
+                        <i class="fas fa-network-wired pe-2"
+                            style="font-size: 10rem; color: var(--secondary-color); transform: rotate(-15deg);"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="col-lg-7">
+                <div class="card p-4 p-md-5 shadow-lg position-relative overflow-hidden"
+                    style="background-color: var(--bg-card); border-top: 4px solid var(--primary-color) !important; border: 1px solid var(--accent-color);">
+                    <h2 class="h3 fw-bold mb-4" style="color: var(--text-light);">Send a Message</h2>
+
+                    <form method="post" class="position-relative text-start" style="z-index: 2;">
+                        {% csrf_token %}
+                        <!-- Custom styled bootstrap form -->
+                        <div class="contact-form-wrapper text-muted">
+                            {% bootstrap_form form %}
+                        </div>
+
+                        <div class="mt-5 text-center text-md-end">
+                            <button type="submit"
+                                class="btn btn-primary btn-lg px-5 rounded-pill shadow-sm hover-scale w-100"
+                                style="transition: all 0.3s; max-width: 300px;">
+                                Send Transmission <i class="fas fa-paper-plane ms-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hover-scale {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: translateY(-5px);
+    }
+
+    .hover-primary {
+        transition: color 0.3s;
+    }
+
+    .hover-primary:hover {
+        color: var(--primary-color) !important;
+    }
+
+    /* Override Bootstrap form styles for Dark AI Theme */
+    .contact-form-wrapper .form-control,
+    .contact-form-wrapper .form-select {
+        background-color: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid var(--accent-color) !important;
+        color: var(--text-light) !important;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+    .contact-form-wrapper .form-control:focus,
+    .contact-form-wrapper .form-select:focus {
+        background-color: rgba(0, 245, 255, 0.05) !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 10px rgba(0, 245, 255, 0.2) !important;
+        color: white !important;
+    }
+
+    .contact-form-wrapper label {
+        color: var(--text-light) !important;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        margin-top: 0.8rem;
+    }
+
+    /* Make form placeholder text slightly muted */
+    ::placeholder {
+        color: #6c757d !important;
+        opacity: 0.7 !important;
+    }
+</style>
+{% endblock %}
