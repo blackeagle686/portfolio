@@ -3,66 +3,75 @@
 
 {% block content %}
 
-<!-- 1. HERO & ABOUT SECTION MELDED -->
+<!-- ===========================
+     1. HERO & ABOUT SECTION
+     =========================== -->
 <section class="py-5" style="background-color: var(--bg-dark); min-height: 80vh;">
     <div class="container py-5">
-        <div class="row align-items-center">
+        <div class="row align-items-center g-5">
 
-            <!-- Left Side: Profile Image & Links -->
-            <div class="col-lg-4 mb-5 mb-lg-0 text-center">
+            <!-- Left: Profile Image & Links -->
+            <div class="col-lg-4 text-center">
                 <div class="position-relative d-inline-block hover-scale mb-4">
                     <img src="https://avatars.githubusercontent.com/u/125202959?v=4" alt="Mohamed Alaa Profile"
-                        class="img-fluid rounded-circle shadow-lg p-1"
-                        style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); max-width: 250px; height: 250px; object-fit: cover; border: 4px solid var(--bg-card);">
+                        class="img-fluid rounded-circle shadow-lg" style="max-width: 220px; width: 100%; height: 220px; object-fit: cover;
+                                border: 3px solid var(--border-subtle);
+                                box-shadow: var(--shadow-card-hover);">
                 </div>
-                <!-- Social Links moved under the avatar -->
-                <div class="d-flex justify-content-center gap-3">
+                <div class="d-flex justify-content-center gap-2 flex-wrap">
                     <a href="https://linkedin.com/in/mohammed-alaa-670867254" target="_blank" class="hover-scale">
                         <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
-                            alt="LinkedIn" style="height: 35px;">
+                            alt="LinkedIn" style="height: 32px; border-radius: 6px;">
                     </a>
                     <a href="mailto:mathematecs1@gmail.com" target="_blank" class="hover-scale">
                         <img src="https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white"
-                            alt="Email" style="height: 35px;">
+                            alt="Email" style="height: 32px; border-radius: 6px;">
                     </a>
                 </div>
             </div>
 
-            <!-- Right Side: Hero Title & Bio -->
+            <!-- Right: Hero Title & Bio -->
             <div class="col-lg-8 text-center text-lg-start">
-                <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=4000&pause=1000&center=false&vCenter=true&multiline=true&width=600&height=100&color=00F5FF&lines=Hi+I'm+Mohamed+Alaa;AI+Engineer+%26+Backend+Developer"
-                    alt="Typing SVG" class="img-fluid mb-2" />
+                <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&duration=4000&pause=1000&center=false&vCenter=true&multiline=true&width=600&height=90&color=CF0A0A&lines=Hi+I'm+Mohamed+Alaa;AI+Engineer+%26+Backend+Developer"
+                    alt="Typing SVG" class="img-fluid mb-3" />
 
-                <h3 class="fs-4 text-muted mx-auto mx-lg-0 mb-4"
-                    style="max-width: 600px; font-style: italic; font-weight: 400; line-height: 1.5;"> Building scalable systems and production-ready <span
-                        style="color: var(--primary-color); font-weight: bold;">AI solutions</span> that make a difference
+                <h3 class="fs-5 text-muted mx-auto mx-lg-0 mb-4"
+                    style="max-width:600px; font-style:italic; font-weight:400; line-height:1.6;">
+                    Building scalable systems and production-ready
+                    <span style="color: var(--primary-color); font-weight:700;">AI solutions</span>
+                    that make a difference
                 </h3>
 
-                <div class="p-4 p-md-5 rounded-4 shadow-lg position-relative overflow-hidden"
-                    style="background-color: var(--bg-card); border: 1px solid rgba(0, 245, 255, 0.2);">
+                <!-- About card -->
+                <div class="position-relative overflow-hidden rounded-4 p-4 p-md-5" style="background: var(--bg-card-gradient);
+                            border: 1px solid var(--border-subtle);
+                            box-shadow: var(--shadow-card);">
 
-                    <div class="position-absolute top-0 end-0 p-4 opacity-25">
-                        <i class="fas fa-robot pe-2"
-                            style="font-size: 8rem; color: var(--primary-color); transform: rotate(15deg);"></i>
+                    <!-- Decorative robot icon -->
+                    <div class="position-absolute top-0 end-0 p-4" style="opacity:0.07; pointer-events:none;">
+                        <i class="fas fa-robot"
+                            style="font-size:7rem; color:var(--primary-color); transform:rotate(15deg);"></i>
                     </div>
 
-                    <p class="fs-4 fw-bold mb-4 position-relative" style="color: var(--primary-color);">Passionate about
-                        building intelligent systems that scale</p>
-                    <p class="text-light fs-5 lh-lg mb-4 position-relative" style="opacity: 0.9;">
-                        I am an <strong>AI Engineer and Backend Developer</strong> focused on bridging the gap between
-                        <strong>cutting-edge AI research</strong> and <strong>production-grade systems</strong>. I
-                        specialize in deploying intelligent applications at scale, designing robust APIs, and building
-                        backend architectures capable of handling real-world challenges.
+                    <p class="fs-5 fw-bold mb-3" style="color:var(--primary-color);">
+                        Passionate about building intelligent systems that scale
                     </p>
-                    <hr style="border-color: rgba(255,255,255,0.1);" class="position-relative">
-                    <div
-                        class="d-flex flex-wrap gap-4 text-light justify-content-center justify-content-lg-start mt-4 position-relative">
-                        <div class="d-flex align-items-center"><i class="fas fa-map-marker-alt fs-4 me-3"
-                                style="color: var(--secondary-color);"></i> <span class="fs-5 fw-bold">Egypt</span>
+                    <p class="text-light mb-4" style="opacity:0.88; line-height:1.75; font-size:0.97rem;">
+                        I am an <strong>AI Engineer and Backend Developer</strong> focused on bridging the gap between
+                        <strong>cutting-edge AI research</strong> and <strong>production-grade systems</strong>.
+                        I specialize in deploying intelligent applications at scale, designing robust APIs,
+                        and building backend architectures capable of handling real-world challenges.
+                    </p>
+                    <hr style="border-color:var(--border-subtle);">
+                    <div class="d-flex flex-wrap gap-4 text-light justify-content-center justify-content-lg-start mt-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-map-marker-alt fs-5" style="color:var(--secondary-color);"></i>
+                            <span class="fw-600">Egypt</span>
                         </div>
-                        <div class="d-flex align-items-center"><i class="fas fa-bullseye fs-4 me-3"
-                                style="color: var(--secondary-color);"></i> <span class="fs-5 fw-bold">Scalable Systems
-                                & High-Performance APIs</span></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-bullseye fs-5" style="color:var(--secondary-color);"></i>
+                            <span class="fw-600">Scalable Systems &amp; High-Performance APIs</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,112 +80,106 @@
     </div>
 </section>
 
-<!-- 3. TECH ARSENAL -->
-<section class="py-5 border-top"
-    style="background-color: var(--bg-dark); border-color: rgba(255,255,255,0.05) !important;">
+<!-- ===========================
+     2. TECH STACK
+     =========================== -->
+<section class="py-5" style="background-color:var(--bg-dark); border-top:1px solid var(--border-subtle);">
     <div class="container py-4">
 
-        <h2 class="fw-bold mb-5 text-center text-lg-start"
-            style="color: var(--text-light); border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">
+        <h2 class="section-title mb-5">
             <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png"
-                alt="Tools" width="35" height="35" class="me-2" />
+                alt="Tools" width="30" height="30" class="me-2" />
             Tech Stack
         </h2>
 
-        <div class="row text-center">
-            <div class="col-md-4 mb-4">
-                <div class="p-4 rounded h-100"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-                    <h5 class="fw-bold mb-4" style="color: var(--primary-color);">Languages</h5>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
-                            alt="Python">
-                        <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white"
-                            alt="C++">
-                        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"
-                            alt="JavaScript">
-                        <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"
-                            alt="SQL">
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-4">
+                <div class="tech-stack-card">
+                    <div class="tech-stack-card__title"><i class="fas fa-code me-1"></i> Languages</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <img src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=DC5F00"
+                            alt="Python" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/C++-000000?style=for-the-badge&logo=cplusplus&logoColor=DC5F00"
+                            alt="C++" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=DC5F00"
+                            alt="JavaScript" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/SQL-000000?style=for-the-badge&logo=mysql&logoColor=DC5F00"
+                            alt="SQL" style="height:28px;border-radius:5px;">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 mb-4">
-                <div class="p-4 rounded h-100"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-                    <h5 class="fw-bold mb-4" style="color: var(--primary-color);">AI & ML</h5>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"
-                            alt="TensorFlow">
-                        <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"
-                            alt="PyTorch">
-                        <img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white"
-                            alt="Keras">
-                        <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white"
-                            alt="scikit-learn">
-                        <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white"
-                            alt="OpenCV">
+            <div class="col-sm-6 col-lg-4">
+                <div class="tech-stack-card">
+                    <div class="tech-stack-card__title"><i class="fas fa-brain me-1"></i> AI &amp; ML</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <img src="https://img.shields.io/badge/TensorFlow-000000?style=for-the-badge&logo=tensorflow&logoColor=DC5F00"
+                            alt="TensorFlow" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/PyTorch-000000?style=for-the-badge&logo=pytorch&logoColor=DC5F00"
+                            alt="PyTorch" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Keras-000000?style=for-the-badge&logo=keras&logoColor=DC5F00"
+                            alt="Keras" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/scikit--learn-000000?style=for-the-badge&logo=scikitlearn&logoColor=DC5F00"
+                            alt="scikit-learn" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/OpenCV-000000?style=for-the-badge&logo=opencv&logoColor=DC5F00"
+                            alt="OpenCV" style="height:28px;border-radius:5px;">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 mb-4">
-                <div class="p-4 rounded h-100"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-                    <h5 class="fw-bold mb-4" style="color: var(--primary-color);">Backend & APIs</h5>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"
-                            alt="Django">
-                        <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"
-                            alt="FastAPI">
-                        <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"
-                            alt="Flask">
-                        <img src="https://img.shields.io/badge/REST_API-FF6C37?style=for-the-badge&logo=postman&logoColor=white"
-                            alt="REST API">
-                        <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white"
-                            alt="GraphQL">
+            <div class="col-sm-6 col-lg-4">
+                <div class="tech-stack-card">
+                    <div class="tech-stack-card__title"><i class="fas fa-server me-1"></i> Backend &amp; APIs</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <img src="https://img.shields.io/badge/Django-000000?style=for-the-badge&logo=django&logoColor=DC5F00"
+                            alt="Django" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/FastAPI-000000?style=for-the-badge&logo=fastapi&logoColor=DC5F00"
+                            alt="FastAPI" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=DC5F00"
+                            alt="Flask" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/REST_API-000000?style=for-the-badge&logo=postman&logoColor=DC5F00"
+                            alt="REST API" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/GraphQL-000000?style=for-the-badge&logo=graphql&logoColor=DC5F00"
+                            alt="GraphQL" style="height:28px;border-radius:5px;">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 mb-4 mb-md-0">
-                <div class="p-4 rounded h-100"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-                    <h5 class="fw-bold mb-4" style="color: var(--primary-color);">Databases & Vector DBs</h5>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"
-                            alt="PostgreSQL">
-                        <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"
-                            alt="MySQL">
-                        <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white"
-                            alt="SQLite">
-                        <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white"
-                            alt="SQL Server">
-                        <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"
-                            alt="Redis">
-                        <img src="https://img.shields.io/badge/Chroma-FF6F61?style=for-the-badge&logo=database&logoColor=white"
-                            alt="Chroma">
-                        <img src="https://img.shields.io/badge/FAISS-009688?style=for-the-badge&logo=database&logoColor=white"
-                            alt="FAISS">
+            <div class="col-sm-6 col-lg-6">
+                <div class="tech-stack-card">
+                    <div class="tech-stack-card__title"><i class="fas fa-database me-1"></i> Databases &amp; Vector DBs
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <img src="https://img.shields.io/badge/PostgreSQL-000000?style=for-the-badge&logo=postgresql&logoColor=DC5F00"
+                            alt="PostgreSQL" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/MySQL-000000?style=for-the-badge&logo=mysql&logoColor=DC5F00"
+                            alt="MySQL" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/SQLite-000000?style=for-the-badge&logo=sqlite&logoColor=DC5F00"
+                            alt="SQLite" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Redis-000000?style=for-the-badge&logo=redis&logoColor=DC5F00"
+                            alt="Redis" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Chroma-000000?style=for-the-badge&logo=database&logoColor=DC5F00"
+                            alt="Chroma" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/FAISS-000000?style=for-the-badge&logo=database&logoColor=DC5F00"
+                            alt="FAISS" style="height:28px;border-radius:5px;">
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="p-4 rounded h-100"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-                    <h5 class="fw-bold mb-4" style="color: var(--primary-color);">Data Science & DevOps</h5>
-                    <div class="d-flex flex-wrap justify-content-center gap-2">
-                        <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"
-                            alt="NumPy">
-                        <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"
-                            alt="Pandas">
-                        <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"
-                            alt="Docker">
-                        <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"
-                            alt="Linux">
-                        <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"
-                            alt="Git">
+            <div class="col-sm-12 col-lg-6">
+                <div class="tech-stack-card">
+                    <div class="tech-stack-card__title"><i class="fas fa-cogs me-1"></i> Data Science &amp; DevOps</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <img src="https://img.shields.io/badge/NumPy-000000?style=for-the-badge&logo=numpy&logoColor=DC5F00"
+                            alt="NumPy" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Pandas-000000?style=for-the-badge&logo=pandas&logoColor=DC5F00"
+                            alt="Pandas" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Docker-000000?style=for-the-badge&logo=docker&logoColor=DC5F00"
+                            alt="Docker" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=DC5F00"
+                            alt="Linux" style="height:28px;border-radius:5px;">
+                        <img src="https://img.shields.io/badge/Git-000000?style=for-the-badge&logo=git&logoColor=DC5F00"
+                            alt="Git" style="height:28px;border-radius:5px;">
                     </div>
                 </div>
             </div>
@@ -184,180 +187,179 @@
     </div>
 </section>
 
-<!-- 4. WHAT I BRING TO THE TABLE -->
-<section class="py-5 border-top"
-    style="background-color: var(--bg-card); border-color: rgba(255,255,255,0.05) !important;">
+<!-- ===========================
+     3. WHAT I BRING
+     =========================== -->
+<section class="py-5" style="background-color:var(--bg-card); border-top:1px solid var(--border-subtle);">
     <div class="container py-4">
-        <h2 class="fw-bold mb-5 text-center text-lg-start"
-            style="color: var(--text-light); border-bottom: 2px solid var(--secondary-color); display: inline-block; padding-bottom: 5px;">
-            What I Bring to the Table
-        </h2>
-        <div class="row">
+        <h2 class="section-title mb-5">What I Bring to the Table</h2>
+        <div class="row g-4">
+
             <!-- Backend Excellence -->
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 p-4 border-0 shadow-sm hover-scale"
-                    style="background-color: var(--bg-dark); border-top: 4px solid var(--primary-color) !important; transition: transform 0.3s;">
-                    <div class="card-body p-0">
-                        <h4 class="fw-bold mb-4" style="color: var(--primary-color);"><i
-                                class="fas fa-server fs-3 mb-3 d-block"></i> Backend Excellence</h4>
-                        <ul class="text-muted lh-lg fs-6" style="padding-left: 1.2rem;">
-                            <li><strong>API Development:</strong> RESTful & GraphQL APIs</li>
-                            <li><strong>Architecture:</strong> Microservices & Monoliths</li>
-                            <li><strong>Performance:</strong> Query optimization & caching</li>
-                            <li><strong>Security:</strong> Authentication & authorization</li>
-                            <li><strong>Testing:</strong> Unit & integration tests</li>
-                        </ul>
-                    </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="skill-card skill-card--primary">
+                    <i class="fas fa-server skill-card__icon" style="color:var(--primary-color);"></i>
+                    <h4 class="skill-card__title" style="color:var(--primary-color);">Backend Excellence</h4>
+                    <ul>
+                        <li><strong>API Development:</strong> RESTful &amp; GraphQL APIs</li>
+                        <li><strong>Architecture:</strong> Microservices &amp; Monoliths</li>
+                        <li><strong>Performance:</strong> Query optimization &amp; caching</li>
+                        <li><strong>Security:</strong> Authentication &amp; authorization</li>
+                        <li><strong>Testing:</strong> Unit &amp; integration tests</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- AI Engineering -->
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 p-4 border-0 shadow-sm hover-scale"
-                    style="background-color: var(--bg-dark); border-top: 4px solid var(--secondary-color) !important; transition: transform 0.3s;">
-                    <div class="card-body p-0">
-                        <h4 class="fw-bold mb-4" style="color: var(--secondary-color);"><i
-                                class="fas fa-brain fs-3 mb-3 d-block"></i> AI Engineering</h4>
-                        <ul class="text-muted lh-lg fs-6" style="padding-left: 1.2rem;">
-                            <li><strong>Model Development:</strong> Training & fine-tuning</li>
-                            <li><strong>Deployment:</strong> Production-ready ML systems</li>
-                            <li><strong>MLOps:</strong> CI/CD pipelines for ML</li>
-                            <li><strong>Specialties:</strong> NLP & Computer Vision</li>
-                            <li><strong>Tools:</strong> TensorFlow, PyTorch</li>
-                        </ul>
-                    </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="skill-card skill-card--secondary">
+                    <i class="fas fa-brain skill-card__icon" style="color:var(--secondary-color);"></i>
+                    <h4 class="skill-card__title" style="color:var(--secondary-color);">AI Engineering</h4>
+                    <ul>
+                        <li><strong>Model Development:</strong> Training &amp; fine-tuning</li>
+                        <li><strong>Deployment:</strong> Production-ready ML systems</li>
+                        <li><strong>MLOps:</strong> CI/CD pipelines for ML</li>
+                        <li><strong>Specialties:</strong> NLP &amp; Computer Vision</li>
+                        <li><strong>Tools:</strong> TensorFlow, PyTorch</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Database Mastery -->
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 p-4 border-0 shadow-sm hover-scale"
-                    style="background-color: var(--bg-dark); border-top: 4px solid #00F5FF !important; transition: transform 0.3s;">
-                    <div class="card-body p-0">
-                        <h4 class="fw-bold mb-4" style="color: #00F5FF;"><i
-                                class="fas fa-database fs-3 mb-3 d-block"></i> Database Mastery</h4>
-                        <ul class="text-muted lh-lg fs-6" style="padding-left: 1.2rem;">
-                            <li><strong>Design:</strong> Schema design & normalization</li>
-                            <li><strong>Optimization:</strong> Query performance tuning</li>
-                            <li><strong>Scaling:</strong> Replication & sharding strategies</li>
-                            <li><strong>Technologies:</strong> PostgreSQL, Redis, Vector Databases</li>
-                            <li><strong>ORMs:</strong> Django ORM, SQLAlchemy</li>
-                        </ul>
-                    </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="skill-card skill-card--accent">
+                    <i class="fas fa-database skill-card__icon" style="color:#00c9e0;"></i>
+                    <h4 class="skill-card__title" style="color:#00c9e0;">Database Mastery</h4>
+                    <ul>
+                        <li><strong>Design:</strong> Schema design &amp; normalization</li>
+                        <li><strong>Optimization:</strong> Query performance tuning</li>
+                        <li><strong>Scaling:</strong> Replication &amp; sharding</li>
+                        <li><strong>Technologies:</strong> PostgreSQL, Redis, Vector DBs</li>
+                        <li><strong>ORMs:</strong> Django ORM, SQLAlchemy</li>
+                    </ul>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- 5. LATEST PROJECTS (SHOWCASE) -->
-<section class="py-5 border-top"
-    style="background-color: var(--bg-dark); border-color: rgba(255,255,255,0.05) !important;">
+<!-- ===========================
+     4. LATEST PROJECTS
+     =========================== -->
+<section class="py-5" style="background-color:var(--bg-dark); border-top:1px solid var(--border-subtle);">
     <div class="container py-4">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5">
-            <h2 class="section-title mb-0"
-                style="border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">
-                Latest Projects</h2>
-            <a href="{% url 'portfolio_list' %}" class="btn btn-outline-primary mt-3 mt-md-0 rounded-pill px-4">View All
-                Projects &rarr;</a>
+        <div
+            class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-5 gap-3">
+            <h2 class="section-title mb-0">Latest Projects</h2>
+            <a href="{% url 'portfolio_list' %}" class="btn btn-outline-primary rounded-pill px-4">
+                View All Projects &rarr;
+            </a>
         </div>
 
-        <div class="row">
+        <div class="row g-4">
             {% for project in projects %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 overflow-hidden hover-scale"
-                    style="transition: transform 0.3s; border-color: var(--accent-color);">
+            <div class="col-sm-6 col-lg-4">
+                <div class="project-card">
                     {% if project.image %}
-                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}"
-                        style="height: 220px; object-fit: cover; border-bottom: 1px solid var(--accent-color);">
+                    <div class="project-card__img-wrap">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    </div>
+                    {% else %}
+                    <div class="project-card__img-placeholder">
+                        <i class="fas fa-code" style="font-size:3rem; color:var(--primary-color); opacity:0.35;"></i>
+                    </div>
                     {% endif %}
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h3 class="card-title h5 text-light fw-bold mb-3">{{ project.title }}</h3>
-                        <p class="text-muted small mb-4 flex-grow-1">{{ project.description|truncatewords:25|truncatechars:100 }}</p>
-                        <div class="mb-4 d-flex flex-wrap gap-1">
+
+                    <div class="project-card__body">
+                        <span class="project-card__badge">{{ project.get_project_type_display }}</span>
+                        <h3 class="project-card__title">{{ project.title }}</h3>
+                        <p class="project-card__desc">{{ project.description|truncatewords:22 }}</p>
+                        <div class="project-card__techs">
                             {% for tech in project.tech_list %}
-                            <span class="tech-badge"
-                                style="background: rgba(0, 245, 255, 0.1); color: var(--primary-color);">{{ tech }}</span>
+                            <span class="tech-badge">{{ tech }}</span>
                             {% endfor %}
                         </div>
                         <a href="{% url 'project_detail' project.pk %}"
-                            class="btn btn-primary w-100 fw-bold rounded-pill">Explore Detail <i
-                                class="fas fa-arrow-right ms-2"></i></a>
+                            class="btn btn-primary w-100 fw-bold rounded-pill mt-auto">
+                            Explore Details <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center p-5 rounded" style="border: 2px dashed var(--accent-color);">
-                <p class="text-muted fs-5 mb-0">No projects showcased yet.</p>
+            <div class="col-12">
+                <div class="text-center p-5 rounded-4"
+                    style="border: 2px dashed var(--border-subtle); background:var(--bg-card);">
+                    <i class="fas fa-folder-open fs-1 mb-3 d-block"
+                        style="color:var(--primary-color); opacity:0.4;"></i>
+                    <p class="text-muted fs-5 mb-0">No projects showcased yet.</p>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- 6. CORE SERVICES -->
-<section class="py-5 border-top"
-    style="background-color: var(--bg-card); border-color: rgba(255,255,255,0.05) !important;">
+<!-- ===========================
+     5. CORE SERVICES
+     =========================== -->
+<section class="py-5" style="background-color:var(--bg-card); border-top:1px solid var(--border-subtle);">
     <div class="container py-4">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5">
-            <h2 class="section-title mb-0"
-                style="border-bottom: 2px solid var(--secondary-color); display: inline-block; padding-bottom: 5px;"> What I Offer</h2>
-            <a href="{% url 'services_list' %}" class="btn btn-outline-primary mt-3 mt-md-0 rounded-pill px-4">View Full Services &rarr;</a>
+        <div
+            class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-5 gap-3">
+            <h2 class="section-title mb-0">What I Offer</h2>
+            <a href="{% url 'services_list' %}" class="btn btn-outline-primary rounded-pill px-4">
+                View All Services &rarr;
+            </a>
         </div>
 
-        <div class="row">
+        <div class="row g-4">
             {% for service in services %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 p-4 border hover-scale"
-                    style="border-radius: 1rem; border-color: rgba(124, 58, 237, 0.3) !important;">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-start">
-                            <h3 class="card-title h4 fw-bold text-light">{{ service.title }}</h3>
-                            <i class="fas fa-concierge-bell fs-3" style="color: var(--secondary-color);"></i>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-card__icon-wrap">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3 class="service-card__title">{{ service.title }}</h3>
+                    <p class="service-card__desc">{{ service.description|truncatewords:20 }}</p>
+                    <div class="service-card__footer">
+                        <div>
+                            <span class="service-card__price-label">Starting at</span>
+                            <span class="service-card__price">${{ service.starting_price }}</span>
                         </div>
-                        <p class="text-muted mb-4 flex-grow-1">{{ service.description|truncatewords:20 }}</p>
-
-                        <div class="d-flex justify-content-between align-items-center mt-auto border-top pt-3"
-                            style="border-color: rgba(255,255,255,0.1) !important;">
-                            <div>
-                                <span class="d-block text-muted small">Starting at</span>
-                                <span class="fw-bold fs-5" style="color: var(--primary-color);">${{ service.starting_price }}</span>
-                            </div>
-                            <a href="{% url 'service_detail' service.pk %}"
-                                class="btn btn-sm btn-outline-primary rounded-pill px-3">Learn More</a>
-                        </div>
+                        <a href="{% url 'service_detail' service.pk %}"
+                            class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                            Learn More
+                        </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center p-5 rounded" style="border: 2px dashed var(--accent-color);">
-                <p class="text-muted fs-5 mb-0">No services listed yet.</p>
+            <div class="col-12">
+                <div class="text-center p-5 rounded-4"
+                    style="border: 2px dashed var(--border-subtle); background:var(--bg-dark);">
+                    <p class="text-muted fs-5 mb-0">No services listed yet.</p>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- 7. CALL TO ACTION -->
-<section class="py-5 border-top"
-    style="background-color: var(--bg-dark); border-color: rgba(255,255,255,0.05) !important;">
+<!-- ===========================
+     6. CALL TO ACTION
+     =========================== -->
+<section class="py-5" style="background-color:var(--bg-dark); border-top:1px solid var(--border-subtle);">
     <div class="container text-center py-5">
-        <h2 class="display-5 fw-bold mb-4 text-light">Ready to engineer something incredible?</h2>
-        <p class="fs-4 text-muted mb-5 mx-auto" style="max-width: 700px;">Let's build a highly scalable, robust system
-            together and turn complex ideas into production-ready reality.</p>
-        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold shadow-lg"
-            style="transition: all 0.3s; transform: scale(1.05);">Get in Touch <i
-                class="fas fa-paper-plane ms-2"></i></a>
+        <h2 class="display-6 fw-bold mb-3 text-light">Ready to engineer something incredible?</h2>
+        <p class="fs-5 text-muted mb-5 mx-auto" style="max-width:650px;">
+            Let's build a highly scalable, robust system together and turn complex ideas into production-ready reality.
+        </p>
+        <a href="{% url 'contact' %}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold shadow-lg">
+            Get in Touch <i class="fas fa-paper-plane ms-2"></i>
+        </a>
     </div>
 </section>
 
-<style>
-    .hover-scale {
-        transition: transform 0.3s ease;
-    }
-
-    .hover-scale:hover {
-        transform: translateY(-5px);
-    }
-</style>
 {% endblock %}

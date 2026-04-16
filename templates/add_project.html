@@ -14,16 +14,16 @@
                         <h2 class="mb-0 fw-bold" style="color: var(--primary-color);">
                             <i class="fas fa-{% if is_edit %}edit{% else %}cloud-upload-alt{% endif %} me-2"></i>
                             {% if is_edit %}
-                                Edit {{ project.title }}
+                            Edit {{ project.title }}
                             {% else %}
-                                Upload to Portfolio
+                            Upload to Portfolio
                             {% endif %}
                         </h2>
                         <p class="mb-0 mt-2" style="color: var(--text-muted);">
                             {% if is_edit %}
-                                Update project details and add more media.
+                            Update project details and add more media.
                             {% else %}
-                                Publish a new project beautifully and easily.
+                            Publish a new project beautifully and easily.
                             {% endif %}
                         </p>
                     </div>
@@ -32,7 +32,7 @@
                             {% csrf_token %}
 
                             <div class="row mb-4">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label for="{{ form.title.id_for_label }}" class="form-label fw-bold"
                                         style="color: var(--text-light);">Project Title</label>
                                     <div class="input-group dark-input-group">
@@ -42,6 +42,18 @@
                                     </div>
                                     {% if form.title.errors %}
                                     <div class="text-danger small mt-1">{{ form.title.errors|join:", " }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6 mt-4 mt-md-0">
+                                    <label for="{{ form.project_type.id_for_label }}" class="form-label fw-bold"
+                                        style="color: var(--text-light);">Project Domain Type</label>
+                                    <div class="input-group dark-input-group">
+                                        <span class="input-group-text border-end-0 ai-icon-span"><i
+                                                class="fas fa-microchip"></i></span>
+                                        {{ form.project_type }}
+                                    </div>
+                                    {% if form.project_type.errors %}
+                                    <div class="text-danger small mt-1">{{ form.project_type.errors|join:", " }}</div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -66,8 +78,7 @@
                                                 class="fas fa-code"></i></span>
                                         {{ form.technologies }}
                                     </div>
-                                    <div class="form-text" style="color: var(--text-muted);">Comma separated (e.g.,
-                                        Python, React, AWS)</div>
+                                    <div class="form-text" style="color: var(--text-muted);">Comma separated (e.g., Python, React, AWS)</div>
                                     {% if form.technologies.errors %}
                                     <div class="text-danger small mt-1">{{ form.technologies.errors|join:", " }}</div>
                                     {% endif %}
@@ -139,7 +150,8 @@
                                     Project{% endif %}
                                 </button>
                                 <a href="{% if is_edit %}{% url 'project_detail' project.pk %}{% else %}{% url 'portfolio_list' %}{% endif %}"
-                                    class="btn btn-outline-secondary rounded-pill mt-3 form-cancel-btn"> Cancel and Return
+                                    class="btn btn-outline-secondary rounded-pill mt-3 form-cancel-btn"> Cancel and
+                                    Return
                                 </a>
                             </div>
                         </form>

@@ -22,7 +22,16 @@ class Service(models.Model):
         return self.title
 
 class Project(models.Model):
+    PROJECT_TYPES = [
+        ('agents', 'Agents'),
+        ('rag', 'RAG'),
+        ('chatbot', 'Chatbot'),
+        ('backend', 'Backend'),
+        ('fullstack', 'FullStack'),
+    ]
+    
     title = models.CharField(max_length=200)
+    project_type = models.CharField(max_length=20, choices=PROJECT_TYPES, default='backend')
     description = models.TextField()
     technologies = models.CharField(max_length=500)
     image = models.ImageField(upload_to='projects/')

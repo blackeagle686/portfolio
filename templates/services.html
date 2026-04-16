@@ -1,44 +1,62 @@
 {% extends 'base.html' %}
 
-{% block title %}Our Services - AI Developer{% endblock %}
+{% block title %}Services - AI Developer{% endblock %}
 
 {% block content %}
-<section class="py-5">
-    <div class="container">
-        <h1 class="section-title">Freelance AI Services</h1>
-        <p class="text-center text-muted mb-5">We offer specialized AI solutions tailored to your needs.</p>
+<section class="py-5" style="background-color: var(--bg-dark); min-height: 80vh;">
+    <div class="container py-4">
 
-        <div class="row">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold mb-3" style="font-size: clamp(1.8rem,5vw,2.8rem); color: var(--text-light);">
+                Freelance <span style="color: var(--secondary-color);">AI Services</span>
+            </h1>
+            <p class="text-muted fs-5 mx-auto" style="max-width: 580px; line-height: 1.75;">
+                Specialized AI &amp; backend solutions tailored precisely to your needs.
+            </p>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="row g-4">
             {% for service in services %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 p-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <h2 class="card-title h4">{{ service.title }}</h2>
-                            <span class="badge bg-primary fs-6">${{ service.starting_price }}+</span>
-                        </div>
-                        <p class="text-muted mb-4">{{ service.description }}</p>
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-card__icon-wrap">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h2 class="service-card__title">{{ service.title }}</h2>
+                    <p class="service-card__desc">{{ service.description }}</p>
 
-                        <h5 class="h6 fw-bold text-light mb-3">Technologies:</h5>
-                        <div class="mb-4">
-                            {% for tech in service.tech_list %}
-                            <span class="tech-badge">{{ tech }}</span>
-                            {% endfor %}
-                        </div>
+                    <!-- Tech badges -->
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        {% for tech in service.tech_list %}
+                        <span class="tech-badge">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
 
-                        <div class="d-grid">
-                            <a href="{% url 'service_detail' service.pk %}" class="btn btn-primary">View Details &
-                                Order</a>
+                    <div class="service-card__footer">
+                        <div>
+                            <span class="service-card__price-label">Starting at</span>
+                            <span class="service-card__price">${{ service.starting_price }}</span>
                         </div>
+                        <a href="{% url 'service_detail' service.pk %}"
+                            class="btn btn-primary btn-sm rounded-pill px-4">
+                            View &amp; Order
+                        </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">Stay tuned! Our services are coming soon.</p>
+            <div class="col-12">
+                <div class="text-center p-5 rounded-4"
+                    style="border: 2px dashed var(--border-subtle); background: var(--bg-card);">
+                    <i class="fas fa-tools fs-1 mb-3 d-block" style="color:var(--secondary-color); opacity:0.45;"></i>
+                    <p class="text-muted fs-5 mb-0">Stay tuned! Our services are coming soon.</p>
+                </div>
             </div>
             {% endfor %}
         </div>
+
     </div>
 </section>
 {% endblock %}

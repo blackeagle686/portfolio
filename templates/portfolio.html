@@ -1,74 +1,82 @@
 {% extends 'base.html' %}
 
-{% block title %}Our Portfolio - AI Developer{% endblock %}
+{% block title %}Portfolio Projects - AI Developer{% endblock %}
 
 {% block content %}
 <section class="py-5" style="background-color: var(--bg-dark); min-height: 80vh;">
     <div class="container py-4">
 
-        <div class="text-center mb-5 pb-3">
-            <h1 class="fw-bold display-5 mb-3" style="color: var(--text-light);"><span
-                    style="color: var(--primary-color);">Portfolio</span> Projects</h1>
-            <p class="text-muted fs-5 mx-auto" style="max-width: 600px;">A showcase of our latest innovations,
-                intelligent architectures, and successful deployments.</p>
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold mb-3" style="font-size: clamp(1.8rem,5vw,2.8rem); color: var(--text-light);">
+                <span style="color: var(--primary-color);">Portfolio</span> Projects
+            </h1>
+            <p class="text-muted fs-5 mx-auto" style="max-width: 580px; line-height: 1.75;">
+                A showcase of my latest innovations, intelligent architectures, and successful deployments.
+            </p>
+
+            <!-- Filter Pills -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+                <a href="{% url 'portfolio_list' %}"
+                    class="btn btn-sm rounded-pill px-4 py-2 {% if not active_type %}btn-primary shadow-lg{% else %}btn-outline-secondary{% endif %}"
+                    style="transition: all 0.3s;">
+                    All Projects
+                </a>
+                {% for type_code, type_name in project_types %}
+                <a href="{% url 'portfolio_list' %}?type={{ type_code }}"
+                    class="btn btn-sm rounded-pill px-4 py-2 {% if active_type == type_code %}btn-primary shadow-lg{% else %}btn-outline-secondary{% endif %}"
+                    style="transition: all 0.3s;">
+                    {{ type_name }}
+                </a>
+                {% endfor %}
+            </div>
         </div>
 
-        <div class="row">
+        <!-- Project Cards Grid -->
+        <div class="row g-4">
             {% for project in projects %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 overflow-hidden hover-scale"
-                    style="transition: transform 0.3s; background-color: var(--bg-card); border: 1px solid var(--accent-color);">
-
+            <div class="col-sm-6 col-lg-4">
+                <div class="project-card">
                     {% if project.image %}
-                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}"
-                        style="height: 220px; object-fit: cover; border-bottom: 1px solid var(--accent-color);">
+                    <div class="project-card__img-wrap">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    </div>
                     {% else %}
-                    <!-- Fallback placeholder if no image -->
-                    <div class="card-img-top d-flex align-items-center justify-content-center"
-                        style="height: 220px; background: rgba(0,245,255,0.05); border-bottom: 1px solid var(--accent-color);">
-                        <i class="fas fa-code fs-1" style="color: var(--primary-color); opacity: 0.5;"></i>
+                    <div class="project-card__img-placeholder">
+                        <i class="fas fa-code" style="font-size:3rem; color:var(--primary-color); opacity:0.35;"></i>
                     </div>
                     {% endif %}
 
-                    <div class="card-body p-4 d-flex flex-column">
-                        <h3 class="card-title h4 text-light fw-bold mb-3">{{ project.title }}</h3>
-                        <p class="text-muted small mb-4 flex-grow-1" style="line-height: 1.6;">{{ project.description|truncatewords:25|truncatechars:100 }}</p>
+                    <div class="project-card__body">
+                        <span class="project-card__badge">{{ project.get_project_type_display }}</span>
+                        <h3 class="project-card__title">{{ project.title }}</h3>
+                        <p class="project-card__desc">{{ project.description|truncatewords:25|truncatechars:105 }}</p>
 
-                        <div class="mb-4 d-flex flex-wrap gap-2">
+                        <div class="project-card__techs">
                             {% for tech in project.tech_list %}
-                            <span class="tech-badge"
-                                style="background: rgba(0, 245, 255, 0.1); color: var(--primary-color); font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px;">{{ tech }}</span>
+                            <span class="tech-badge">{{ tech }}</span>
                             {% endfor %}
                         </div>
 
-                        <div class="mt-auto">
-                            <a href="{% url 'project_detail' project.pk %}"
-                                class="btn btn-primary w-100 fw-bold rounded-pill shadow-sm"
-                                style="transition: all 0.2s;"> View Project Details <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
+                        <a href="{% url 'project_detail' project.pk %}"
+                            class="btn btn-primary w-100 fw-bold rounded-pill mt-auto">
+                            View Project Details <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center p-5 rounded"
-                style="border: 2px dashed var(--accent-color); background-color: var(--bg-card);">
-                <i class="fas fa-folder-open fs-1 mb-3" style="color: var(--primary-color); opacity: 0.5;"></i>
-                <p class="text-muted fs-5 mb-0">Building interesting projects... Check back soon!</p>
+            <div class="col-12">
+                <div class="text-center p-5 rounded-4"
+                    style="border: 2px dashed var(--border-subtle); background: var(--bg-card);">
+                    <i class="fas fa-folder-open fs-1 mb-3 d-block"
+                        style="color:var(--primary-color); opacity:0.4;"></i>
+                    <p class="text-muted fs-5 mb-0">Building interesting projects… Check back soon!</p>
+                </div>
             </div>
             {% endfor %}
         </div>
+
     </div>
 </section>
-
-<style>
-    .hover-scale {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .hover-scale:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 20px rgba(0, 245, 255, 0.15) !important;
-    }
-</style>
 {% endblock %}

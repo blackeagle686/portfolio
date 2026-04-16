@@ -30,8 +30,17 @@ def service_detail(request, pk):
     return render(request, 'service_detail.html', {'service': service, 'form': form})
 
 def portfolio_list(request):
-    projects = Project.objects.all()
-    return render(request, 'portfolio.html', {'projects': projects})
+    project_type = request.GET.get('type')
+    if project_type:
+        projects = Project.objects.filter(project_type=project_type)
+    else:
+        projects = Project.objects.all()
+    
+    return render(request, 'portfolio.html', {
+        'projects': projects,
+        'active_type': project_type,
+        'project_types': Project.PROJECT_TYPES
+    })
 
 def project_detail(request, pk):
     project = get_object_or_404(Project, pk=pk)

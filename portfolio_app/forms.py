@@ -49,9 +49,10 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = ['title', 'description', 'technologies', 'image', 'demo_link', 'github_link']
+        fields = ['title', 'project_type', 'description', 'technologies', 'image', 'demo_link', 'github_link']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Project Title'}),
+            'project_type': forms.Select(attrs={'class': 'form-select'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Project Bio / Description'}),
             'technologies': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'React, Django, AI, etc.'}),
             'image': forms.FileInput(attrs={'class': 'form-control'}),
