@@ -73,9 +73,11 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 
 
 import dj_database_url
+import os
 
 DATABASES = {
     'default': dj_database_url.config(
+        env='DATABASE_URL' if os.environ.get('DATABASE_URL') else 'POSTGRES_URL',
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
         conn_health_checks=True,
