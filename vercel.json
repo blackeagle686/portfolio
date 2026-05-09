@@ -10,10 +10,6 @@
   "installCommand": "bash build.sh",
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "portfolio_project/wsgi.py"
     }
