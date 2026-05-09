@@ -3,26 +3,36 @@
 {% block title %}Services - AI Developer{% endblock %}
 
 {% block content %}
-<section class="py-5" style="background-color: var(--bg-dark); min-height: 80vh;">
+<!-- Page Hero Banner -->
+<section class="position-relative py-5" style="background: var(--gradient-hero); overflow:hidden;">
+    <div style="position:absolute; inset:0;
+        background: radial-gradient(ellipse at 50% 70%, var(--purple-glow), transparent 55%),
+                    radial-gradient(ellipse at 20% 30%, rgba(220,95,0,0.12), transparent 50%);
+        pointer-events:none;"></div>
+    <div class="container position-relative text-center py-4" style="z-index:2;">
+        <p class="hero-greeting mb-2" style="animation-delay:0s;">What I Offer</p>
+        <h1 class="hero-name mb-3" style="font-size: clamp(2rem,5vw,3.2rem);">
+            AI Services
+        </h1>
+        <p class="text-muted fs-5 mx-auto mb-0" style="max-width: 580px; line-height: 1.75;">
+            Specialized AI &amp; backend solutions tailored precisely to your needs.
+        </p>
+    </div>
+    <div style="position:absolute; bottom:0; left:0; right:0; height:80px;
+        background:linear-gradient(to top, var(--bg-dark), transparent); pointer-events:none;"></div>
+</section>
+
+<hr class="section-divider">
+
+<!-- Service Cards Grid -->
+<section class="py-5" style="background-color: var(--bg-dark);">
     <div class="container py-4">
-
-        <!-- Header -->
-        <div class="text-center mb-5">
-            <h1 class="fw-bold mb-3" style="font-size: clamp(1.8rem,5vw,2.8rem); color: var(--text-light);">
-                Freelance <span style="color: var(--secondary-color);">AI Services</span>
-            </h1>
-            <p class="text-muted fs-5 mx-auto" style="max-width: 580px; line-height: 1.75;">
-                Specialized AI &amp; backend solutions tailored precisely to your needs.
-            </p>
-        </div>
-
-        <!-- Service Cards Grid -->
         <div class="row g-4">
             {% for service in services %}
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-4 reveal reveal-delay-{{ forloop.counter }}">
                 <div class="service-card">
-                    <div class="service-card__icon-wrap">
-                        <i class="fas fa-concierge-bell"></i>
+                    <div class="service-card__icon-wrap" style="background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(207,10,10,0.08)); border-color: rgba(168,85,247,0.2);">
+                        <i class="fas fa-concierge-bell" style="color:var(--purple-light);"></i>
                     </div>
                     <h2 class="service-card__title">{{ service.title }}</h2>
                     <p class="service-card__desc">{{ service.description }}</p>
@@ -40,23 +50,34 @@
                             <span class="service-card__price">${{ service.starting_price }}</span>
                         </div>
                         <a href="{% url 'service_detail' service.pk %}"
-                            class="btn btn-primary btn-sm rounded-pill px-4">
+                            class="hero-btn-primary" style="padding:0.5rem 1.5rem; font-size:0.85rem;">
                             View &amp; Order
                         </a>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12">
+            <div class="col-12 reveal">
                 <div class="text-center p-5 rounded-4"
-                    style="border: 2px dashed var(--border-subtle); background: var(--bg-card);">
-                    <i class="fas fa-tools fs-1 mb-3 d-block" style="color:var(--secondary-color); opacity:0.45;"></i>
+                    style="border: 2px dashed rgba(168,85,247,0.2); background: var(--bg-card);">
+                    <i class="fas fa-tools fs-1 mb-3 d-block" style="color:var(--purple-primary); opacity:0.5;"></i>
                     <p class="text-muted fs-5 mb-0">Stay tuned! Our services are coming soon.</p>
                 </div>
             </div>
             {% endfor %}
         </div>
-
     </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+})();
+</script>
 {% endblock %}

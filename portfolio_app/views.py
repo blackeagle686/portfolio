@@ -6,8 +6,8 @@ from .forms import ServiceRequestForm, ContactForm, ProjectForm, ServiceForm
 from django.contrib.admin.views.decorators import staff_member_required
 
 def home(request):
-    services = Service.objects.all()[:3]
-    projects = Project.objects.all()[:3]
+    services = Service.objects.all().order_by('-pk')[:3]
+    projects = Project.objects.all().order_by('-created_at')[:3]
     return render(request, 'home.html', {'services': services, 'projects': projects})
 
 def services_list(request):

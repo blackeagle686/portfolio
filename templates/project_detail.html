@@ -1,151 +1,161 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ project.title }} - AI Developer{% endblock %}
 
 {% block content %}
-<section class="py-5">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'portfolio_list' %}">Portfolio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+<!-- ═══════════════════════════════════════════
+     CINEMATIC PROJECT HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero-cinematic" id="hero" style="min-height: 100vh;">
+    <!-- Background Image with dynamic project image -->
+    <div class="hero-bg-image" style="background-image: url('{% if project.image %}{{ project.image.url }}{% else %}https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920{% endif %}'); opacity: 0.8; filter: brightness(0.5) blur(2px);"></div>
+    
+    <canvas id="network-canvas"></canvas>
+
+    <div class="container position-relative py-5" style="z-index:5;">
+        <nav aria-label="breadcrumb" class="mb-4 reveal">
+            <ol class="breadcrumb" style="font-size:0.9rem; background:transparent; padding:0;">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color:var(--purple-light);">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'portfolio_list' %}" style="color:var(--purple-light);">Portfolio</a></li>
+                <li class="breadcrumb-item active text-white-50" aria-current="page">{{ project.title }}</li>
             </ol>
         </nav>
-
-        <div class="row mt-4">
+        
+        <div class="row align-items-center">
             <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-3">{{ project.title }}</h1>
-                <div class="mb-4">
+                <p class="hero-greeting mb-2 reveal" style="animation-delay: 0.1s;">{{ project.get_project_type_display }}</p>
+                <h1 class="hero-name mb-4 reveal" style="font-size: clamp(2.5rem, 6vw, 4.5rem); animation-delay: 0.2s;">{{ project.title }}</h1>
+                <div class="d-flex flex-wrap gap-2 reveal" style="animation-delay: 0.3s;">
                     {% for tech in project.tech_list %}
-                    <span class="tech-badge px-3 py-2">{{ tech }}</span>
+                    <span class="carousel-slide__tech" style="background: rgba(168, 85, 247, 0.15); border-color: var(--purple-primary);">{{ tech }}</span>
                     {% endfor %}
                 </div>
-
-                <!-- Unified Project Gallery Carousel -->
-                {% if project.image or project.media.all %}
-                <div class="mb-5">
-                    <div id="projectGalleryCarousel"
-                        class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel"
-                        style="border: 1px solid var(--accent-color);">
-                        <div class="carousel-inner"
-                            style="background-color: var(--bg-dark); min-height: 300px; display: flex; align-items: center;">
-
-                            {% if project.image %}
-                            <div class="carousel-item active">
-                                <a href="{{ project.image.url }}" target="_blank"
-                                    class="d-block position-relative gallery-img-container">
-                                    <img src="{{ project.image.url }}" class="d-block w-100" alt="{{ project.title }}"
-                                        style="object-fit: contain; max-height: 500px; border-radius: 0.5rem;">
-                                    <div class="gallery-overlay position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle"
-                                        style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); border: 1px solid var(--primary-color); opacity: 0; transition: all 0.3s ease;">
-                                        <i class="fas fa-expand fs-4" style="color: var(--primary-color);"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            {% endif %}
-
-                            {% for media in project.media.all %}
-                            <div class="carousel-item {% if not project.image and forloop.first %}active{% endif %}">
-                                <a href="{{ media.file.url }}" target="_blank"
-                                    class="d-block position-relative gallery-img-container">
-                                    <img src="{{ media.file.url }}" class="d-block w-100" alt="Gallery Image"
-                                        style="object-fit: contain; max-height: 500px; border-radius: 0.5rem;">
-                                    <div class="gallery-overlay position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center rounded-circle"
-                                        style="width: 60px; height: 60px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); border: 1px solid var(--primary-color); opacity: 0; transition: all 0.3s ease;">
-                                        <i class="fas fa-expand fs-4" style="color: var(--primary-color);"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            {% endfor %}
-                        </div>
-
-                        {% if project.image and project.media.all or project.media.count > 1 %}
-                        <button class="carousel-control-prev" type="button" data-bs-target="#projectGalleryCarousel"
-                            data-bs-slide="prev" style="width: 10%;">
-                            <span class="carousel-control-prev-icon rounded-circle" aria-hidden="true"
-                                style="background-color: rgba(0, 0, 0, 0.5); padding: 1.5rem; background-size: 50%;"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#projectGalleryCarousel"
-                            data-bs-slide="next" style="width: 10%;">
-                            <span class="carousel-control-next-icon rounded-circle" aria-hidden="true"
-                                style="background-color: rgba(0, 0, 0, 0.5); padding: 1.5rem; background-size: 50%;"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-
-                        <div class="carousel-indicators" style="margin-bottom: -0.5rem;">
-                            <!-- Primary Image Indicator -->
-                            {% if project.image %}
-                            <button type="button" data-bs-target="#projectGalleryCarousel" data-bs-slide-to="0"
-                                class="active custom-indicator" aria-current="true"></button>
-                            {% endif %}
-
-                            <!-- Media Images Indicators -->
-                            {% for media in project.media.all %}
-                            <button type="button" data-bs-target="#projectGalleryCarousel"
-                                data-bs-slide-to="{% if project.image %}{{ forloop.counter }}{% else %}{{ forloop.counter0 }}{% endif %}"
-                                class="{% if not project.image and forloop.first %}active{% endif %} custom-indicator"
-                                aria-label="Slide"></button>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                    </div>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0 reveal" style="animation-delay: 0.4s;">
+                <div class="d-flex flex-column gap-3">
+                    {% if project.demo_link %}
+                    <a href="{{ project.demo_link }}" class="hero-btn-primary justify-content-center" target="_blank">
+                        Launch Live Demo <i class="fas fa-external-link-alt ms-2"></i>
+                    </a>
+                    {% endif %}
+                    {% if project.github_link %}
+                    <a href="{{ project.github_link }}" class="hero-btn-outline justify-content-center" target="_blank">
+                        View Source Code <i class="fab fa-github ms-2"></i>
+                    </a>
+                    {% endif %}
                 </div>
-                {% endif %}
+            </div>
+        </div>
+    </div>
 
+    <!-- Scroll Indicator -->
+    <div class="hero-scroll-indicator">
+        <a href="#content-section"><div class="scroll-line"></div></a>
+    </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════
+     FULL SCREEN PROJECT GALLERY
+     ═══════════════════════════════════════════ -->
+{% if project.image or project.media.all %}
+<section class="py-0" style="background-color: #000; overflow:hidden; min-height: 100vh; display: flex; align-items: center;" id="gallery">
+    <div id="projectFullCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% if project.image %}
+            <button type="button" data-bs-target="#projectFullCarousel" data-bs-slide-to="0" class="active custom-indicator"></button>
+            {% endif %}
+            {% for media in project.media.all %}
+            <button type="button" data-bs-target="#projectFullCarousel" data-bs-slide-to="{% if project.image %}{{ forloop.counter }}{% else %}{{ forloop.counter0 }}{% endif %}" class="custom-indicator"></button>
+            {% endfor %}
+        </div>
+        
+        <div class="carousel-inner">
+            {% if project.image %}
+            <div class="carousel-item active">
+                <div class="gallery-fullscreen-wrap">
+                    <img src="{{ project.image.url }}" class="gallery-fullscreen-img" alt="{{ project.title }}">
+                    <div class="gallery-fullscreen-overlay"></div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% for media in project.media.all %}
+            <div class="carousel-item {% if not project.image and forloop.first %}active{% endif %}">
+                <div class="gallery-fullscreen-wrap">
+                    <img src="{{ media.file.url }}" class="gallery-fullscreen-img" alt="Gallery Image">
+                    <div class="gallery-fullscreen-overlay"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if project.image and project.media.all or project.media.count > 1 %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#projectFullCarousel" data-bs-slide="prev" style="width: 8%;">
+            <i class="fas fa-chevron-left fs-2" style="color: var(--purple-light);"></i>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#projectFullCarousel" data-bs-slide="next" style="width: 8%;">
+            <i class="fas fa-chevron-right fs-2" style="color: var(--purple-light);"></i>
+        </button>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<hr class="section-divider">
+
+<!-- ═══════════════════════════════════════════
+     PROJECT DETAILS & CONTENT
+     ═══════════════════════════════════════════ -->
+<section class="py-5 d-flex align-items-center" style="background-color: var(--bg-dark); min-height: 100vh;" id="content-section">
+    <div class="container py-4">
+        <div class="row g-5">
+            <div class="col-lg-8 reveal">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="section-line"></div>
+                    <h2 class="h3 fw-bold mb-0 text-light">Project Documentation</h2>
+                </div>
+                
                 <textarea id="raw-markdown" style="display:none;">{{ project.description }}</textarea>
-                <div id="rendered-content" class="project-content fs-5 text-muted mb-5 markdown-body">
+                <div id="rendered-content" class="project-content fs-5 text-muted mb-5 markdown-body reveal reveal-delay-1">
                     <!-- Markdown will be rendered dynamically here -->
                 </div>
-
             </div>
 
-            <!-- Right Sidebar Panel -->
+            <!-- Sidebar -->
             <div class="col-lg-4">
-                <div class="p-4 rounded-4 shadow-lg position-relative overflow-hidden mb-4"
-                    style="background-color: var(--bg-card); border: 1px solid var(--accent-color); border-top: 4px solid var(--primary-color) !important;">
-                    <div class="position-absolute top-0 end-0 p-3 opacity-25">
-                        <i class="fas fa-rocket pe-2"
-                            style="font-size: 6rem; color: var(--primary-color); transform: rotate(15deg);"></i>
+                <div class="hero-about-card p-4 reveal reveal-delay-2" style="position: sticky; top: 100px;">
+                    <div class="position-absolute top-0 end-0 p-3" style="opacity:0.05;">
+                        <i class="fas fa-info-circle" style="font-size: 4rem; color: var(--purple-primary); transform: rotate(15deg);"></i>
                     </div>
 
                     <h4 class="h5 fw-bold mb-4" style="color: var(--text-light); position: relative; z-index: 2;">
-                        Project Overview</h4>
+                        Specifications</h4>
 
                     <div class="mb-4 position-relative" style="z-index: 2;">
-                        <p class="mb-1 text-muted small text-uppercase fw-bold letter-spacing-1">Completion Date</p>
-                        <p class="fs-5 text-light fw-bold"><i class="far fa-calendar-alt me-2"
-                                style="color: var(--primary-color);"></i>{{ project.created_at|date:"F Y" }}</p>
+                        <p class="mb-1 text-muted small text-uppercase fw-bold" style="letter-spacing:1px;">Released</p>
+                        <p class="fs-5 text-light fw-bold"><i class="far fa-calendar-alt me-2" style="color: var(--purple-primary);"></i>{{ project.created_at|date:"F Y" }}</p>
                     </div>
 
                     <div class="mb-4 position-relative" style="z-index: 2;">
-                        <p class="mb-1 text-muted small text-uppercase fw-bold letter-spacing-1">Category</p>
-                        <p class="fs-5 text-light fw-bold"><i class="fas fa-laptop-code me-2"
-                                style="color: var(--primary-color);"></i>AI Development</p>
+                        <p class="mb-1 text-muted small text-uppercase fw-bold" style="letter-spacing:1px;">Category</p>
+                        <p class="fs-5 text-light fw-bold"><i class="fas fa-tags me-2" style="color: var(--purple-primary);"></i>{{ project.get_project_type_display }}</p>
                     </div>
 
-                    <hr style="border-color: rgba(255,255,255,0.1); position: relative; z-index: 2;">
-
-                    <div class="d-grid gap-3 mt-4 position-relative" style="z-index: 2;">
-                        {% if project.demo_link %}
-                        <a href="{{ project.demo_link }}" class="btn btn-primary fw-bold rounded-pill" target="_blank">
-                            Live Demo <i class="bi bi-box-arrow-up-right ms-2"></i>
-                        </a>
-                        {% endif %}
-                        {% if project.github_link %}
-                        <a href="{{ project.github_link }}" class="btn btn-outline-light fw-bold rounded-pill"
-                            target="_blank">
-                            GitHub Repository <i class="bi bi-github ms-2"></i>
-                        </a>
-                        {% endif %}
-                        {% if request.user.is_authenticated and request.user.is_staff %}
-                        <a href="{% url 'edit_project' project.pk %}"
-                            class="btn btn-warning fw-bold text-dark rounded-pill mt-2">
-                            <i class="fas fa-edit me-2"></i> Edit Project
-                        </a>
-                        {% endif %}
+                    <div class="mb-4 position-relative" style="z-index: 2;">
+                        <p class="mb-1 text-muted small text-uppercase fw-bold" style="letter-spacing:1px;">Client/Role</p>
+                        <p class="fs-5 text-light fw-bold"><i class="fas fa-user-tie me-2" style="color: var(--purple-primary);"></i>Lead Developer</p>
                     </div>
+
+                    {% if request.user.is_authenticated and request.user.is_staff %}
+                    <div class="d-grid mt-4 position-relative" style="z-index: 2;">
+                        <a href="{% url 'edit_project' project.pk %}" class="btn btn-warning fw-bold text-dark rounded-pill">
+                            <i class="fas fa-edit me-2"></i> Admin Edit
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -153,45 +163,79 @@
 </section>
 
 <style>
-    /* Overlay pop effect */
-    .gallery-img-container:hover .gallery-overlay {
-        opacity: 1 !important;
-        transform: translate(-50%, -50%) scale(1.1) !important;
-        box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+    /* Fullscreen Gallery Styles */
+    .gallery-fullscreen-wrap {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+    }
+    .gallery-fullscreen-img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        position: relative;
+        z-index: 2;
+    }
+    .gallery-fullscreen-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.8) 100%);
+        z-index: 1;
     }
 
-    /* AI Theme Carousel Indicators */
-    .custom-indicator {
-        width: 8px !important;
-        height: 8px !important;
-        border-radius: 50% !important;
-        background-color: var(--text-muted) !important;
-        border: none !important;
-        opacity: 0.4 !important;
-        margin: 0 4px !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    /* Markdown & Content Adjustments */
+    .section-line {
+        height: 30px;
+        width: 4px;
+        background: var(--gradient-purple-orange);
+        border-radius: 2px;
     }
 
-    .carousel-indicators .active.custom-indicator {
-        opacity: 1 !important;
-        background-color: var(--primary-color) !important;
-        width: 24px !important;
-        border-radius: 4px !important;
-        box-shadow: 0 0 8px var(--primary-color);
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+        color: var(--purple-light);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
     }
-
-    .letter-spacing-1 {
-        letter-spacing: 1px;
+    .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+        color: var(--text-light);
+        margin-top: 1.2rem;
+        margin-bottom: 0.8rem;
     }
+    .markdown-body pre {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+        overflow-x: auto;
+    }
+    .markdown-body code {
+        color: var(--purple-light);
+        background-color: rgba(168, 85, 247, 0.1);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+    }
+    .markdown-body a { color: var(--purple-primary); text-decoration: none; }
+    .markdown-body a:hover { color: var(--secondary-color); text-decoration: underline; }
+    .markdown-body img { max-width: 100%; border-radius: 0.75rem; }
+    .markdown-body ul, .markdown-body ol { padding-left: 2rem; color: var(--text-muted); }
+    .markdown-body li { margin-bottom: 0.5rem; }
 </style>
+
 {% endblock %}
 
 {% block extra_js %}
+<!-- Reuse the network logic and markdown renderer -->
+<script src="{% static 'js/network.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
-    // Initialize mermaid with dark theme to natively blend with our AI Theme
     mermaid.initialize({ startOnLoad: false, theme: 'dark', backgroundColor: 'transparent' });
 
     document.addEventListener("DOMContentLoaded", async function () {
@@ -200,7 +244,6 @@
 
         document.getElementById('rendered-content').innerHTML = html;
 
-        // Convert markdown code blocks that are specified as mermaid into target divs for mermaid script
         const mermaidBlocks = document.querySelectorAll('#rendered-content pre code.language-mermaid');
         mermaidBlocks.forEach((block) => {
             const pre = block.parentElement;
@@ -210,70 +253,16 @@
             pre.parentNode.replaceChild(mermaidDiv, pre);
         });
 
-        // Render all mermaid diagrams
         await mermaid.run({
             nodes: document.querySelectorAll('.mermaid'),
         });
+
+        // Intersection Observer for animations
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
     });
 </script>
-<style>
-    .markdown-body h1,
-    .markdown-body h2,
-    .markdown-body h3 {
-        color: var(--primary-color);
-        margin-top: 1.5rem;
-        margin-bottom: 1rem;
-        font-weight: bold;
-    }
-
-    .markdown-body h4,
-    .markdown-body h5,
-    .markdown-body h6 {
-        color: var(--text-light);
-        margin-top: 1.2rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .markdown-body pre {
-        background-color: var(--bg-card);
-        border: 1px solid var(--accent-color);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        overflow-x: auto;
-    }
-
-    .markdown-body pre code {
-        color: var(--text-light);
-        background: transparent;
-        padding: 0;
-    }
-
-    .markdown-body code {
-        color: var(--secondary-color);
-        background-color: var(--bg-card);
-        padding: 0.2rem 0.4rem;
-        border-radius: 0.25rem;
-        font-size: 0.9em;
-    }
-
-    .markdown-body a {
-        color: var(--primary-color);
-        text-decoration: none;
-    }
-
-    .markdown-body a:hover {
-        text-decoration: underline;
-        color: var(--secondary-color);
-    }
-
-    .markdown-body img {
-        max-width: 100%;
-        border-radius: 0.5rem;
-    }
-
-    .markdown-body ul,
-    .markdown-body ol {
-        padding-left: 2rem;
-    }
-</style>
 {% endblock %}

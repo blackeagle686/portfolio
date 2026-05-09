@@ -3,39 +3,49 @@
 {% block title %}Portfolio Projects - AI Developer{% endblock %}
 
 {% block content %}
-<section class="py-5" style="background-color: var(--bg-dark); min-height: 80vh;">
-    <div class="container py-4">
+<!-- Page Hero Banner -->
+<section class="position-relative py-5" style="background: var(--gradient-hero); overflow:hidden;">
+    <div style="position:absolute; inset:0;
+        background: radial-gradient(ellipse at 40% 60%, var(--purple-glow), transparent 55%),
+                    radial-gradient(ellipse at 70% 30%, rgba(207,10,10,0.12), transparent 55%);
+        pointer-events:none;"></div>
+    <div class="container position-relative text-center py-4" style="z-index:2;">
+        <p class="hero-greeting mb-2" style="animation-delay:0s;">My Work</p>
+        <h1 class="hero-name mb-3" style="font-size: clamp(2rem,5vw,3.2rem);">
+            Portfolio Projects
+        </h1>
+        <p class="text-muted fs-5 mx-auto mb-4" style="max-width: 580px; line-height: 1.75;">
+            A showcase of my latest innovations, intelligent architectures, and successful deployments.
+        </p>
 
-        <!-- Header -->
-        <div class="text-center mb-5">
-            <h1 class="fw-bold mb-3" style="font-size: clamp(1.8rem,5vw,2.8rem); color: var(--text-light);">
-                <span style="color: var(--primary-color);">Portfolio</span> Projects
-            </h1>
-            <p class="text-muted fs-5 mx-auto" style="max-width: 580px; line-height: 1.75;">
-                A showcase of my latest innovations, intelligent architectures, and successful deployments.
-            </p>
-
-            <!-- Filter Pills -->
-            <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
-                <a href="{% url 'portfolio_list' %}"
-                    class="btn btn-sm rounded-pill px-4 py-2 {% if not active_type %}btn-primary shadow-lg{% else %}btn-outline-secondary{% endif %}"
-                    style="transition: all 0.3s;">
-                    All Projects
-                </a>
-                {% for type_code, type_name in project_types %}
-                <a href="{% url 'portfolio_list' %}?type={{ type_code }}"
-                    class="btn btn-sm rounded-pill px-4 py-2 {% if active_type == type_code %}btn-primary shadow-lg{% else %}btn-outline-secondary{% endif %}"
-                    style="transition: all 0.3s;">
-                    {{ type_name }}
-                </a>
-                {% endfor %}
-            </div>
+        <!-- Filter Pills -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+            <a href="{% url 'portfolio_list' %}"
+                class="btn btn-sm rounded-pill px-4 py-2 {% if not active_type %}hero-btn-primary{% else %}hero-btn-outline{% endif %}"
+                style="font-size:0.85rem; padding:0.5rem 1.5rem !important;">
+                All Projects
+            </a>
+            {% for type_code, type_name in project_types %}
+            <a href="{% url 'portfolio_list' %}?type={{ type_code }}"
+                class="btn btn-sm rounded-pill px-4 py-2 {% if active_type == type_code %}hero-btn-primary{% else %}hero-btn-outline{% endif %}"
+                style="font-size:0.85rem; padding:0.5rem 1.5rem !important;">
+                {{ type_name }}
+            </a>
+            {% endfor %}
         </div>
+    </div>
+    <div style="position:absolute; bottom:0; left:0; right:0; height:80px;
+        background:linear-gradient(to top, var(--bg-dark), transparent); pointer-events:none;"></div>
+</section>
 
-        <!-- Project Cards Grid -->
+<hr class="section-divider">
+
+<!-- Project Cards Grid -->
+<section class="py-5" style="background-color: var(--bg-dark);">
+    <div class="container py-4">
         <div class="row g-4">
             {% for project in projects %}
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-4 reveal reveal-delay-{{ forloop.counter }}">
                 <div class="project-card">
                     {% if project.image %}
                     <div class="project-card__img-wrap">
@@ -43,7 +53,7 @@
                     </div>
                     {% else %}
                     <div class="project-card__img-placeholder">
-                        <i class="fas fa-code" style="font-size:3rem; color:var(--primary-color); opacity:0.35;"></i>
+                        <i class="fas fa-code" style="font-size:3rem; color:var(--purple-primary); opacity:0.35;"></i>
                     </div>
                     {% endif %}
 
@@ -66,17 +76,28 @@
                 </div>
             </div>
             {% empty %}
-            <div class="col-12">
+            <div class="col-12 reveal">
                 <div class="text-center p-5 rounded-4"
-                    style="border: 2px dashed var(--border-subtle); background: var(--bg-card);">
+                    style="border: 2px dashed rgba(168,85,247,0.2); background: var(--bg-card);">
                     <i class="fas fa-folder-open fs-1 mb-3 d-block"
-                        style="color:var(--primary-color); opacity:0.4;"></i>
+                        style="color:var(--purple-primary); opacity:0.5;"></i>
                     <p class="text-muted fs-5 mb-0">Building interesting projects… Check back soon!</p>
                 </div>
             </div>
             {% endfor %}
         </div>
-
     </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+})();
+</script>
 {% endblock %}
