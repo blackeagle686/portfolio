@@ -3,7 +3,6 @@ WSGI config for portfolio_project project.
 """
 
 import os
-import sys
 from django.core.wsgi import get_wsgi_application
 
 # Set settings module
@@ -12,12 +11,18 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings')
 # Initialize application
 application = get_wsgi_application()
 
-# Auto-run migrations on startup for Serverless environments (Vercel)
+# Auto-run migrations and collectstatic on Vercel startup
 if os.environ.get('VERCEL'):
     from django.core.management import call_command
-    print("Running migrations on Vercel startup...")
+    
+    print("Vercel Startup: Preparing Database and Static Files...")
     try:
+        # Run Migrations
         call_command('migrate', '--noinput')
-        print("Migrations completed successfully.")
+        
+        # Run Collectstatic
+        call_command('collectstatic', '--noinput', '--clear')
+        
+        print("Vercel Startup: Success.")
     except Exception as e:
-        print(f"Migration error: {e}")
+        print(f"Vercel Startup Error: {e}")
