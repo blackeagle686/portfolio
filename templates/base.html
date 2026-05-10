@@ -29,57 +29,74 @@
 
 <body data-bs-theme="dark">
 
-    <nav class="navbar navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-4 position-relative logo-ai" href="{% url 'home' %}">
+    <!-- Floating Toggle Button -->
+    <button class="menu-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="menu-toggle-icon">
+            <i class="fas fa-bars"></i>
+        </span>
+    </button>
+
+    <!-- Offcanvas Sidebar -->
+    <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header border-bottom border-light border-opacity-10">
+            <a class="navbar-brand fw-bold fs-4 logo-ai" href="{% url 'home' %}">
                 <span class="logo-first">Mohamed</span>
                 <span class="logo-last">Alaa</span>
                 <span class="logo-ext">.AI</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="{% url 'services_list' %}">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="{% url 'portfolio_list' %}">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    {% if request.user.is_authenticated and request.user.is_staff %}
-                    <li class="nav-item dropdown px-2 text-center">
-                        <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="adminDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-shield-alt me-1"></i> Admin
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="adminDropdown">
-                            <li><a class="dropdown-item" href="{% url 'add_project' %}"><i
-                                        class="fas fa-cloud-upload-alt me-2 text-primary"></i> Upload Project</a></li>
-                            <li><a class="dropdown-item" href="{% url 'add_service' %}"><i
-                                        class="fas fa-concierge-bell me-2 text-secondary"></i> Add Service</a></li>
-                        </ul>
-                    </li>
-                    {% endif %}
-
-                    <li class="nav-item ms-lg-3 d-flex align-items-center">
-                        <button id="theme-toggle" class="btn btn-link nav-link px-2 mt-1" title="Toggle Theme">
-                            <i class="fas fa-moon" id="theme-icon"></i>
-                        </button>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="hero-btn-primary" style="padding:0.55rem 1.5rem; font-size:0.9rem;" href="{% url 'contact' %}">Hire Me</a>
-                    </li>
-                </ul>
-            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-    </nav>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
+                <li class="nav-item">
+                    <a class="nav-link side-nav-link" href="{% url 'home' %}">
+                        <i class="fas fa-home me-2"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link side-nav-link" href="{% url 'services_list' %}">
+                        <i class="fas fa-concierge-bell me-2"></i> Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link side-nav-link" href="{% url 'portfolio_list' %}">
+                        <i class="fas fa-briefcase me-2"></i> Portfolio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link side-nav-link" href="{% url 'contact' %}">
+                        <i class="fas fa-envelope me-2"></i> Contact
+                    </a>
+                </li>
+
+                {% if request.user.is_authenticated and request.user.is_staff %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="offcanvasAdminDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shield-alt me-1"></i> Admin
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark border-light border-opacity-10" aria-labelledby="offcanvasAdminDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_project' %}"><i class="fas fa-cloud-upload-alt me-2 text-primary"></i> Upload Project</a></li>
+                        <li><a class="dropdown-item" href="{% url 'add_service' %}"><i class="fas fa-concierge-bell me-2 text-secondary"></i> Add Service</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <hr class="my-4 border-light border-opacity-10">
+
+                <li class="nav-item d-flex align-items-center justify-content-between">
+                    <span class="text-muted small text-uppercase fw-bold">Appearance</span>
+                    <button id="theme-toggle" class="btn btn-outline-light btn-sm rounded-circle p-2" title="Toggle Theme" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </li>
+                
+                <li class="nav-item mt-4">
+                    <a class="hero-btn-primary w-100 text-center d-block" href="{% url 'contact' %}">Hire Me</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <script>
         const themeToggle = document.getElementById('theme-toggle');
