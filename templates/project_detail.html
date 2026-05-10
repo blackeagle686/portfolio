@@ -174,9 +174,11 @@
         background: #000;
     }
     .gallery-fullscreen-img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+        height: auto;
+        width: auto;
+        max-height: 100vh;
+        max-width: 100%;
+        object-fit: contain;
         position: relative;
         z-index: 2;
     }
