@@ -1103,7 +1103,8 @@ footer .hero-social-link {
    ============================================ */
 .hero-cinematic {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 600px; /* Ensure content fits on very short screens */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1782,8 +1783,8 @@ footer .hero-social-link {
    ============================================ */
 @media (max-width: 991.98px) {
     .hero-cinematic {
-        min-height: auto;
-        padding: 6rem 0 4rem;
+        height: 100vh;
+        padding: 2rem 0;
     }
     .hero-profile-img {
         width: 160px;
@@ -1803,7 +1804,8 @@ footer .hero-social-link {
 
 @media (max-width: 767.98px) {
     .hero-cinematic {
-        padding: 5rem 0 3rem;
+        height: 100vh;
+        padding: 1.5rem 0;
     }
     .hero-profile-img {
         width: 140px;
