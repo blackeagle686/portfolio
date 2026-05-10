@@ -1120,6 +1120,11 @@ footer .hero-social-link {
     100% { background-position: 200% 0; }
 }
 
+@keyframes brightness-pulse {
+    0%, 100% { filter: brightness(0.1); }
+    50%      { filter: brightness(0.7); }
+}
+
 /* ── Cinematic Scanlines ── */
 .hero-scanlines {
     position: absolute;
@@ -1291,9 +1296,9 @@ footer .hero-social-link {
     inset: 0;
     background: url('../images/jpnbgprt.jpg') no-repeat center center;
     background-size: cover;
-    opacity: 0.6; /* Increased visibility */
-    z-index: 1; /* Above parent background */
-    filter: brightness(0.1); /* Removed brightness reduction */
+    opacity: 0.6;
+    z-index: 1;
+    animation: brightness-pulse 8s ease-in-out infinite;
 }
 
 /* ── Floating Orbs (GPU-accelerated, transform-only) ── */
