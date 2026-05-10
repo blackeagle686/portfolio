@@ -982,32 +982,6 @@ footer .hero-social-link {
 /* ============================================
    RESPONSIVE — MOBILE ADJUSTMENTS
    ============================================ */
-.navbar-collapse {
-    background: rgba(10, 10, 10, 0.9) !important; /* Slightly visible for readability since it's now always a menu */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 0.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.nav-link::after {
-    display: none !important;
-}
-
-.nav-link {
-    padding: 0.7rem 1rem !important;
-    border-radius: 8px;
-    width: 100%;
-    text-align: center;
-}
-
-.nav-link:hover {
-    background: rgba(207, 10, 10, 0.1);
-}
-
 @media (max-width: 991.98px) {
     /* Remaining mobile adjustments if any */
 }
