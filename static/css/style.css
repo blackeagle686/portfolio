@@ -1377,7 +1377,7 @@ footer .hero-social-link {
 .hero-cinematic .container {
     position: relative;
     z-index: 5;
-    background: rgba(15, 15, 15, 0.4);
+    /* background: rgba(15, 15, 15, 0.4); */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
