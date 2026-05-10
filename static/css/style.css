@@ -121,24 +121,79 @@ body {
 }
 
 /* ============================================
-   NAVBAR
+   FLOATING MENU TOGGLE
    ============================================ */
-.navbar,
-.navbar.scrolled {
-    --bs-navbar-bg: transparent !important;
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    padding: 0.7rem 0;
+.menu-toggle-btn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1060;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.navbar.scrolled {
-    padding: 0.5rem 0;
+.menu-toggle-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.1) rotate(90deg);
+    color: #fff;
+    box-shadow: 0 0 20px var(--border-glow);
+}
+
+.menu-toggle-icon {
+    font-size: 1.4rem;
+}
+
+/* ============================================
+   OFFCANVAS SIDEBAR
+   ============================================ */
+.offcanvas-custom {
+    background: rgba(8, 8, 8, 0.95) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-left: 1px solid var(--border-subtle) !important;
+    width: 320px !important;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.side-nav-link {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem !important;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    color: var(--text-light) !important;
+}
+
+.side-nav-link:hover {
+    background: rgba(207, 10, 10, 0.08);
+    border-color: rgba(207, 10, 10, 0.2);
+    color: var(--primary-color) !important;
+    transform: translateX(5px);
+}
+
+.side-nav-link i {
+    width: 24px;
+    text-align: center;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.side-nav-link:hover i {
+    transform: scale(1.2);
 }
 
 .navbar-brand {
