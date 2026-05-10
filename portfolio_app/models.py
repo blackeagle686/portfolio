@@ -9,8 +9,13 @@ class Service(models.Model):
     
     # Pricing tiers (simplified approach: could be a separate model, but keeping it simple as requested)
     basic_description = models.TextField(blank=True, null=True)
+    basic_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    
     standard_description = models.TextField(blank=True, null=True)
+    standard_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    
     premium_description = models.TextField(blank=True, null=True)
+    premium_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     
     @property
     def tech_list(self):
