@@ -47,52 +47,59 @@
                     </div>
                 </div>
 
-                <h3 class="fw-bold mb-4 reveal" style="color: var(--text-light);">Service Tiers</h3>
+                <h3 class="fw-bold mb-2 reveal" style="color: var(--text-light);">Choose Your Plan</h3>
+                <p class="text-muted mb-4 reveal">Select a tier that fits your project scope and budget.</p>
                 <div class="row g-4 mb-5">
                     <!-- Basic Tier -->
                     <div class="col-md-4 reveal reveal-delay-1">
-                        <div class="hero-about-card h-100 p-4" style="animation:none; opacity:1; border-top: 3px solid var(--text-muted);">
-                            <h4 class="h5 fw-bold mb-1 text-light">Basic</h4>
+                        <div class="svc-tier-card h-100">
+                            <div class="svc-tier-card__accent" style="background: linear-gradient(135deg, #64748b, #94a3b8);"></div>
+                            <div class="svc-tier-card__icon"><i class="fas fa-seedling"></i></div>
+                            <h4 class="svc-tier-card__name">Basic</h4>
                             {% if service.basic_price %}
-                            <div class="fs-4 fw-bold mb-3" style="color:var(--text-light);">${{ service.basic_price }}</div>
+                            <div class="svc-tier-card__price">${{ service.basic_price }}</div>
                             {% else %}
-                            <div class="mb-3"></div>
+                            <div class="svc-tier-card__price svc-tier-card__price--muted">—</div>
                             {% endif %}
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="svc-tier-card__desc">
                                 {{ service.basic_description|default:"Essential features for basic entry-level needs." }}
                             </p>
+                            <a href="#request-form" class="svc-tier-card__cta svc-tier-card__cta--basic">Get Started</a>
                         </div>
                     </div>
                     <!-- Standard Tier -->
                     <div class="col-md-4 reveal reveal-delay-2">
-                        <div class="hero-about-card h-100 p-4 position-relative" style="animation:none; opacity:1; border-top: 3px solid var(--purple-primary);">
-                            <div class="position-absolute top-0 end-0 p-2" style="margin-top:8px;">
-                                <span class="badge rounded-pill"
-                                    style="background: var(--gradient-purple-orange); color: #fff; font-size: 0.65rem; padding:0.35em 0.8em;">MOST POPULAR</span>
-                            </div>
-                            <h4 class="h5 fw-bold mb-1 text-light">Standard</h4>
+                        <div class="svc-tier-card svc-tier-card--featured h-100">
+                            <div class="svc-tier-card__badge">MOST POPULAR</div>
+                            <div class="svc-tier-card__accent" style="background: var(--gradient-purple-orange);"></div>
+                            <div class="svc-tier-card__icon" style="color: var(--purple-light);"><i class="fas fa-rocket"></i></div>
+                            <h4 class="svc-tier-card__name">Standard</h4>
                             {% if service.standard_price %}
-                            <div class="fs-4 fw-bold mb-3" style="color:var(--purple-light);">${{ service.standard_price }}</div>
+                            <div class="svc-tier-card__price" style="color: var(--purple-light);">${{ service.standard_price }}</div>
                             {% else %}
-                            <div class="mb-3"></div>
+                            <div class="svc-tier-card__price svc-tier-card__price--muted">—</div>
                             {% endif %}
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="svc-tier-card__desc">
                                 {{ service.standard_description|default:"Most popular, balanced features for growth." }}
                             </p>
+                            <a href="#request-form" class="svc-tier-card__cta svc-tier-card__cta--standard">Get Started</a>
                         </div>
                     </div>
                     <!-- Premium Tier -->
                     <div class="col-md-4 reveal reveal-delay-3">
-                        <div class="hero-about-card h-100 p-4" style="animation:none; opacity:1; border-top: 3px solid var(--secondary-color);">
-                            <h4 class="h5 fw-bold mb-1 text-light">Premium</h4>
+                        <div class="svc-tier-card h-100">
+                            <div class="svc-tier-card__accent" style="background: linear-gradient(135deg, var(--secondary-color), #f59e0b);"></div>
+                            <div class="svc-tier-card__icon" style="color: var(--secondary-color);"><i class="fas fa-crown"></i></div>
+                            <h4 class="svc-tier-card__name">Premium</h4>
                             {% if service.premium_price %}
-                            <div class="fs-4 fw-bold mb-3" style="color:var(--secondary-color);">${{ service.premium_price }}</div>
+                            <div class="svc-tier-card__price" style="color: var(--secondary-color);">${{ service.premium_price }}</div>
                             {% else %}
-                            <div class="mb-3"></div>
+                            <div class="svc-tier-card__price svc-tier-card__price--muted">—</div>
                             {% endif %}
-                            <p class="text-muted small lh-base mb-0">
+                            <p class="svc-tier-card__desc">
                                 {{ service.premium_description|default:"Full-scale enterprise solution for max performance." }}
                             </p>
+                            <a href="#request-form" class="svc-tier-card__cta svc-tier-card__cta--premium">Get Started</a>
                         </div>
                     </div>
                 </div>
