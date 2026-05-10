@@ -87,9 +87,8 @@
     }
 
     function draw() {
-        // Fast clear
-        ctx.fillStyle = '#0a0a0a'; // Match background
-        ctx.fillRect(0, 0, W, H);
+        // Transparent clear to show background image
+        ctx.clearRect(0, 0, W, H);
 
         // Build spatial grid
         const grid = new Array(gridCols * gridRows);
