@@ -1382,7 +1382,7 @@ footer .hero-social-link {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 40px; /* Large rounded padding effect */
-    padding: 3rem !important;
+    padding: 1rem !important;
 }
 
 /* ── Profile Ring ── */
