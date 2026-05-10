@@ -1939,12 +1939,19 @@ footer .hero-social-link {
    ============================================ */
 @media (max-width: 991.98px) {
     .hero-cinematic {
-        height: 100vh;
-        padding: 2rem 0;
+        height: auto;
+        min-height: 100vh;
+        padding: 3rem 0 2rem;
     }
     .hero-profile-img {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
+    }
+    .hero-about-card {
+        padding: 1.5rem;
+    }
+    .hero-greeting-line {
+        width: 20px;
     }
     .carousel-section {
         height: 70vh;
@@ -1960,15 +1967,48 @@ footer .hero-social-link {
 
 @media (max-width: 767.98px) {
     .hero-cinematic {
-        height: 100vh;
-        padding: 1.5rem 0;
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 0 1.5rem;
     }
     .hero-profile-img {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
+    }
+    .hero-profile-glow {
+        inset: -15px;
     }
     .hero-about-card {
-        padding: 1.5rem;
+        padding: 1.25rem;
+    }
+    .hero-name {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+    .hero-tagline {
+        font-size: 0.9rem;
+    }
+    .hero-about-headline {
+        font-size: 0.95rem;
+    }
+    .hero-about-desc {
+        font-size: 0.85rem;
+        line-height: 1.65;
+    }
+    .hero-info-tag {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.8rem;
+    }
+    .hero-stat-value {
+        font-size: 1.4rem;
+    }
+    .hero-stat-label {
+        font-size: 0.65rem;
+    }
+    .hero-greeting-line {
+        display: none;
+    }
+    .hero-light-streak {
+        display: none;
     }
     .carousel-section {
         height: 65vh;
@@ -1998,9 +2038,19 @@ footer .hero-social-link {
 
 @media (max-width: 575.98px) {
     .hero-name {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     .hero-title-line {
+        font-size: 1rem;
+    }
+    .hero-btn-primary,
+    .hero-btn-outline {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.85rem;
+    }
+    .hero-social-link {
+        width: 38px;
+        height: 38px;
         font-size: 1rem;
     }
     .carousel-dots {
