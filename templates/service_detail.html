@@ -4,28 +4,33 @@
 {% block title %}{{ service.title }} - AI Developer{% endblock %}
 
 {% block content %}
-<!-- Page Hero Banner -->
-<section class="position-relative py-5" style="background: var(--gradient-hero); overflow:hidden;">
-    <div style="position:absolute; inset:0;
-        background: radial-gradient(ellipse at 30% 60%, var(--purple-glow), transparent 55%),
-                    radial-gradient(ellipse at 70% 30%, rgba(220,95,0,0.12), transparent 50%);
-        pointer-events:none;"></div>
-    <div class="container position-relative py-3" style="z-index:2;">
+<!-- Cinematic Hero Banner -->
+<section class="svc-hero position-relative" style="background: var(--gradient-hero); overflow:hidden; padding: 6rem 0 5rem;">
+    <!-- Animated orbs -->
+    <div class="svc-hero__orb svc-hero__orb--1"></div>
+    <div class="svc-hero__orb svc-hero__orb--2"></div>
+    <div class="svc-hero__orb svc-hero__orb--3"></div>
+    <!-- Grid overlay -->
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;"></div>
+
+    <div class="container position-relative" style="z-index:2;">
         <nav aria-label="breadcrumb" class="mb-3">
-            <ol class="breadcrumb" style="font-size:0.85rem;">
+            <ol class="breadcrumb" style="font-size:0.8rem;">
                 <li class="breadcrumb-item"><a href="{% url 'home' %}" style="color:var(--purple-light);">Home</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'services_list' %}" style="color:var(--purple-light);">Services</a></li>
                 <li class="breadcrumb-item active text-muted" aria-current="page">{{ service.title }}</li>
             </ol>
         </nav>
-        <h1 class="hero-name mb-3" style="font-size: clamp(1.8rem,4vw,3rem);">{{ service.title }}</h1>
-        <div class="d-flex flex-wrap gap-2">
+        <h1 class="hero-name mb-3" style="font-size: clamp(2.2rem,5vw,3.8rem); text-shadow: 0 4px 30px rgba(0,0,0,0.4);">{{ service.title }}</h1>
+        <p class="text-muted mb-4" style="max-width:600px; font-size:1.1rem; line-height:1.7;">{{ service.description|truncatewords:30 }}</p>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
             {% for tech in service.tech_list %}
             <span class="carousel-slide__tech">{{ tech }}</span>
             {% endfor %}
+            <span class="ms-3 svc-hero__price">From <strong>${{ service.starting_price }}</strong></span>
         </div>
     </div>
-    <div style="position:absolute; bottom:0; left:0; right:0; height:80px;
+    <div style="position:absolute; bottom:0; left:0; right:0; height:120px;
         background:linear-gradient(to top, var(--bg-dark), transparent); pointer-events:none;"></div>
 </section>
 
