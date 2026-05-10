@@ -1675,10 +1675,11 @@ footer .hero-social-link {
 .carousel-section {
     position: relative;
     width: 100%;
-    height: 85vh;
-    min-height: 500px;
+    height: 100vh; /* Full screen */
+    min-height: 600px;
     overflow: hidden;
     background: #000;
+    contain: layout paint;
 }
 
 .carousel-track {
@@ -1691,15 +1692,17 @@ footer .hero-social-link {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transform: scale(1.02);
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Content on the left */
 }
 
 .carousel-slide.active {
     opacity: 1;
     z-index: 2;
+    transform: scale(1);
 }
 
 .carousel-slide__bg {
@@ -1707,13 +1710,14 @@ footer .hero-social-link {
     inset: 0;
     background-size: cover;
     background-position: center;
-    filter: blur(1px) brightness(0.8);
-    transform: scale(1.05);
-    transition: transform 8s ease-out;
+    filter: brightness(0.6);
+    transform: scale(1.15);
+    transition: transform 12s ease-out, filter 2s ease;
+    will-change: transform;
 }
 
 .carousel-slide.active .carousel-slide__bg {
-    transform: scale(1);
+    transform: scale(1); /* Ken Burns zoom-out effect */
 }
 
 .carousel-slide__overlay {
@@ -1729,8 +1733,15 @@ footer .hero-social-link {
     position: relative;
     z-index: 2;
     max-width: 650px;
-    padding: 3rem;
-    animation: fadeInUp 0.8s ease-out both;
+    padding: 4rem 5rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s 0.4s ease-out, transform 0.8s 0.4s ease-out;
+}
+
+.carousel-slide.active .carousel-slide__content {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .carousel-slide__badge {
@@ -1748,11 +1759,12 @@ footer .hero-social-link {
 }
 
 .carousel-slide__title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
     color: #fff;
     margin-bottom: 1rem;
-    line-height: 1.15;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
 }
 
 .carousel-slide__desc {
@@ -1783,19 +1795,22 @@ footer .hero-social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.8rem 2rem;
+    padding: 0.85rem 2.2rem;
     background: var(--gradient-purple-orange);
+    background-size: 200% 200%;
     color: #fff;
     font-weight: 700;
     border-radius: 999px;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: all 0.4s;
     border: none;
+    box-shadow: 0 6px 30px rgba(168, 85, 247, 0.3);
+    animation: gradient-shift 4s ease infinite;
 }
 
 .carousel-slide__cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.4);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 16px 50px rgba(168, 85, 247, 0.5);
     color: #fff;
 }
 
@@ -1897,8 +1912,8 @@ footer .hero-social-link {
 .carousel-empty {
     position: relative;
     width: 100%;
-    height: 50vh;
-    min-height: 350px;
+    height: 100vh; /* Full screen */
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
