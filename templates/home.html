@@ -10,24 +10,37 @@
     <div class="hero-bg-image"></div>
     <canvas id="network-canvas"></canvas>
 
+    <!-- Cinematic scanline overlay -->
+    <div class="hero-scanlines"></div>
+
     <!-- Floating orbs (pure CSS, GPU-accelerated) -->
     <div class="hero-orb hero-orb--purple" style="top:15%;left:8%;"></div>
     <div class="hero-orb hero-orb--orange" style="top:65%;right:5%;"></div>
     <div class="hero-orb hero-orb--red" style="bottom:20%;left:35%;"></div>
+    <div class="hero-orb hero-orb--blue" style="top:30%;right:20%;"></div>
 
-    <div class="container py-5">
-        <div class="row align-items-center g-5">
+    <!-- Cinematic light streaks -->
+    <div class="hero-light-streak hero-light-streak--1"></div>
+    <div class="hero-light-streak hero-light-streak--2"></div>
+
+    <div class="container py-3 py-lg-5">
+        <div class="row align-items-center g-3 g-lg-5">
 
             <!-- Left Column: Identity -->
-            <div class="col-lg-5 text-center text-lg-start">
+            <div class="col-lg-5 text-center text-lg-start hero-identity-col">
                 <!-- Profile with animated ring -->
-                <div class="hero-profile-wrap mb-4 d-inline-block">
+                <div class="hero-profile-wrap mb-3 mb-lg-4 d-inline-block">
                     <div class="hero-profile-ring"></div>
+                    <div class="hero-profile-glow"></div>
                     <img src="{% static 'images/blackglasses.png' %}"
                          alt="Mohamed Alaa" class="hero-profile-img" loading="eager" />
                 </div>
 
-                <p class="hero-greeting">Welcome to my AI EMPIRE</p>
+                <p class="hero-greeting">
+                    <span class="hero-greeting-line"></span>
+                    Welcome to my AI EMPIRE
+                    <span class="hero-greeting-line"></span>
+                </p>
                 <h1 class="hero-name">Mohamed Alaa</h1>
 
                 <!-- Typing effect line -->
@@ -36,19 +49,19 @@
                     <span class="hero-typing-cursor">|</span>
                 </div>
 
-                <p class="hero-tagline mx-auto mx-lg-0 mb-4">
+                <p class="hero-tagline mx-auto mx-lg-0 mb-3 mb-lg-4">
                     Building scalable systems and production-ready
                     <strong style="color: var(--purple-light);">AI solutions</strong>
                     that make a difference.
                 </p>
 
                 <!-- CTA Buttons -->
-                <div class="hero-actions justify-content-center justify-content-lg-start mb-4">
+                <div class="hero-actions justify-content-center justify-content-lg-start mb-3 mb-lg-4">
                     <a href="{% url 'contact' %}" class="hero-btn-primary">
-                        <i class="fas fa-paper-plane"></i> Hire Me
+                        <i class="fas fa-paper-plane"></i> <span>Hire Me</span>
                     </a>
                     <a href="{% url 'portfolio_list' %}" class="hero-btn-outline">
-                        <i class="fas fa-briefcase"></i> My Work
+                        <i class="fas fa-briefcase"></i> <span>My Work</span>
                     </a>
                 </div>
 
@@ -62,52 +75,54 @@
             </div>
 
             <!-- Right Column: About + Stats -->
-            <div class="col-lg-7">
+            <div class="col-lg-7 hero-about-col">
                 <div class="hero-about-card">
-                    <div class="position-absolute top-0 end-0 p-4" style="opacity:0.05; pointer-events:none;">
-                        <i class="fas fa-robot" style="font-size:6rem; color:var(--purple-primary); transform:rotate(15deg);"></i>
+                    <div class="hero-about-card__glow"></div>
+                    <div class="position-absolute top-0 end-0 p-3 p-lg-4" style="opacity:0.05; pointer-events:none;">
+                        <i class="fas fa-robot" style="font-size:5rem; color:var(--purple-primary); transform:rotate(15deg);"></i>
                     </div>
 
-                    <p class="fs-5 fw-bold mb-3" style="color:var(--purple-light);">
+                    <p class="hero-about-headline">
+                        <i class="fas fa-bolt me-2" style="color: var(--secondary-color);"></i>
                         Passionate about building intelligent systems that scale
                     </p>
-                    <p class="text-light mb-4" style="opacity:0.88; line-height:1.75; font-size:0.97rem;">
+                    <p class="hero-about-desc">
                         I am an <strong>AI Engineer and Backend Developer</strong> focused on bridging the gap between
                         <strong>cutting-edge AI research</strong> and <strong>production-grade systems</strong>.
                         I specialize in deploying intelligent applications at scale, designing robust APIs,
                         and building backend architectures capable of handling real-world challenges.
                     </p>
 
-                    <hr style="border-color:var(--border-subtle);">
+                    <hr style="border-color:var(--border-subtle); margin: 1rem 0;">
 
-                    <div class="d-flex flex-wrap gap-4 text-light justify-content-start mt-3 mb-4">
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="fas fa-map-marker-alt fs-5" style="color:var(--purple-primary);"></i>
-                            <span class="fw-600">Egypt</span>
+                    <div class="hero-info-tags">
+                        <div class="hero-info-tag">
+                            <i class="fas fa-map-marker-alt" style="color:var(--purple-primary);"></i>
+                            <span>Egypt</span>
                         </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <i class="fas fa-bullseye fs-5" style="color:var(--secondary-color);"></i>
-                            <span class="fw-600">Scalable Systems &amp; High-Performance APIs</span>
+                        <div class="hero-info-tag">
+                            <i class="fas fa-bullseye" style="color:var(--secondary-color);"></i>
+                            <span>Scalable Systems &amp; High-Performance APIs</span>
                         </div>
                     </div>
 
                     <!-- Animated Counter Stats -->
-                    <div class="row g-3">
+                    <div class="row g-2 g-md-3 mt-2">
                         <div class="col-4">
                             <div class="hero-stat">
-                                <span class="hero-stat-value" data-count="10">0</span><span class="hero-stat-value" style="font-size:1.2rem;">+</span>
+                                <span class="hero-stat-value" data-count="10">0</span><span class="hero-stat-plus">+</span>
                                 <span class="hero-stat-label">Projects</span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="hero-stat">
-                                <span class="hero-stat-value" data-count="5">0</span><span class="hero-stat-value" style="font-size:1.2rem;">+</span>
+                                <span class="hero-stat-value" data-count="5">0</span><span class="hero-stat-plus">+</span>
                                 <span class="hero-stat-label">AI Models</span>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="hero-stat">
-                                <span class="hero-stat-value" data-count="3">0</span><span class="hero-stat-value" style="font-size:1.2rem;">+</span>
+                                <span class="hero-stat-value" data-count="3">0</span><span class="hero-stat-plus">+</span>
                                 <span class="hero-stat-label">Years Exp</span>
                             </div>
                         </div>
