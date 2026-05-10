@@ -1291,9 +1291,9 @@ footer .hero-social-link {
     inset: 0;
     background: url('../images/jpnbgprt.jpg') no-repeat center center;
     background-size: cover;
-    opacity: 0.2; /* Slightly more visible but still subtle */
+    opacity: 0.45; /* Increased visibility */
     z-index: 1; /* Above parent background */
-    filter: brightness(0.7); 
+    filter: none; /* Removed brightness reduction */
 }
 
 /* ── Floating Orbs (GPU-accelerated, transform-only) ── */
