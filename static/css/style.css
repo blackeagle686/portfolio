@@ -1433,7 +1433,7 @@ footer .hero-social-link {
 
 /* ── Hero Text ── */
 .hero-greeting {
-    font-size: 1rem;
+    font-size: 0.85rem; /* Further decreased size */
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1465,7 +1465,7 @@ footer .hero-social-link {
 }
 
 .hero-tagline {
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    font-size: 0.9rem; /* Further decreased size */
     color: var(--text-muted);
     max-width: 520px;
     line-height: 1.7;
@@ -1484,7 +1484,7 @@ footer .hero-social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.65rem 1.6rem; /* Decreased size */
+    padding: 0.55rem 1.3rem; /* Further decreased size */
     background: var(--gradient-purple-orange);
     background-size: 200% 200%;
     color: #fff;
@@ -1507,7 +1507,7 @@ footer .hero-social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.65rem 1.6rem; /* Decreased size */
+    padding: 0.55rem 1.3rem; /* Further decreased size */
     background: transparent;
     color: var(--purple-light);
     font-weight: 700;
