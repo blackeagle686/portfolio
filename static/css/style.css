@@ -1380,8 +1380,6 @@ footer .hero-social-link {
     /* background: rgba(15, 15, 15, 0.4); */
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 40px; /* Large rounded padding effect */
     padding: 1rem !important;
 }
 
