@@ -371,7 +371,8 @@ body {
 .project-card__img-wrap {
     position: relative;
     overflow: hidden;
-    height: 210px;
+    aspect-ratio: 16 / 9; /* Standardized 16:9 aspect ratio */
+    width: 100%;
     flex-shrink: 0;
 }
 
