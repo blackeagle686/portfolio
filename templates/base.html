@@ -18,6 +18,11 @@
     <!-- Bootstrap CSS -->
     {% bootstrap_css %}
 
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGkyMZhrib2Bg-4.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'images/jpnbgprt.jpg' %}" as="image">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 

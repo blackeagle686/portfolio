@@ -308,7 +308,7 @@
             {% for project in projects|slice:":3" %}
             <div class="col-sm-6 col-lg-4 reveal reveal-delay-{{ forloop.counter }}">
                 <div class="project-card">
-                    {% if project.image %}<div class="project-card__img-wrap"><img src="{{ project.image.url }}" alt="{{ project.title }}"></div>
+                    {% if project.image %}<div class="project-card__img-wrap"><img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" decoding="async"></div>
                     {% else %}<div class="project-card__img-placeholder"><i class="fas fa-code" style="font-size:3rem; color:var(--primary-color); opacity:0.35;"></i></div>{% endif %}
                     <div class="project-card__body">
                         <span class="project-card__badge">{{ project.get_project_type_display }}</span>
