@@ -13,4 +13,5 @@ urlpatterns = [
     path('portfolio/<int:pk>/edit/', views.edit_project, name='edit_project'),
     path('portfolio/add/', views.add_project, name='add_project'),
     path('contact/', views.contact, name='contact'),
+    path('admin/settings/', views.admin_settings, name='admin_settings'),
 ]
