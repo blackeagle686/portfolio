@@ -1410,8 +1410,8 @@ footer .hero-social-link {
 .hero-profile-img {
     position: relative;
     z-index: 1;
-    width: 150px; /* Decreased size */
-    height: 150px; /* Decreased size */
+    width: 120px; /* Further decreased size */
+    height: 120px; /* Further decreased size */
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(0,0,0,0.5);
@@ -1443,7 +1443,7 @@ footer .hero-social-link {
 }
 
 .hero-name {
-    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Decreased size */
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Further decreased size */
     font-weight: 900;
     line-height: 1.1;
     background: var(--gradient-text);
@@ -1535,13 +1535,13 @@ footer .hero-social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px; /* Decreased size */
-    height: 38px; /* Decreased size */
+    width: 34px; /* Further decreased size */
+    height: 34px; /* Further decreased size */
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    font-size: 1rem; /* Decreased size */
+    font-size: 0.9rem; /* Further decreased size */
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -1561,7 +1561,7 @@ footer .hero-social-link {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-subtle);
     border-radius: var(--card-radius);
-    padding: 1.5rem; /* Decreased size */
+    padding: 1.25rem; /* Further decreased size */
     animation: slide-in-right 0.8s 0.6s ease-out both;
     position: relative;
     overflow: hidden;
@@ -1584,7 +1584,7 @@ footer .hero-social-link {
 }
 
 .hero-stat-value {
-    font-size: 1.5rem; /* Decreased size */
+    font-size: 1.3rem; /* Further decreased size */
     font-weight: 900;
     background: var(--gradient-text);
     -webkit-background-clip: text;
