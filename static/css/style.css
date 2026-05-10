@@ -1291,7 +1291,7 @@ footer .hero-social-link {
     inset: 0;
     background: url('../images/jpnbgprt.jpg') no-repeat center center;
     background-size: cover;
-    opacity: 0.45; /* Increased visibility */
+    opacity: 0.95; /* Increased visibility */
     z-index: 1; /* Above parent background */
     filter: none; /* Removed brightness reduction */
 }
