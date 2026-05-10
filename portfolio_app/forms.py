@@ -17,7 +17,8 @@ class ContactForm(forms.ModelForm):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ['title', 'description', 'technologies', 'starting_price', 'delivery_time', 'basic_description', 'standard_description', 'premium_description']
+        fields = ['title', 'description', 'technologies', 'starting_price', 'delivery_time', 
+                  'basic_description', 'basic_price', 'standard_description', 'standard_price', 'premium_description', 'premium_price']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Service Title (e.g. Full-Stack Dev)'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Main service description...'}),
@@ -25,8 +26,11 @@ class ServiceForm(forms.ModelForm):
             'starting_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '250.00'}),
             'delivery_time': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '1-2 Weeks'}),
             'basic_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Basic Tier details...'}),
+            'basic_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Optional price...'}),
             'standard_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Standard Tier details...'}),
+            'standard_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Optional price...'}),
             'premium_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Premium Tier details...'}),
+            'premium_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Optional price...'}),
         }
 
 class MultipleFileInput(forms.ClearableFileInput):
