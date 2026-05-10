@@ -1139,6 +1139,7 @@ footer .hero-social-link {
     pointer-events: none;
     z-index: 4;
     animation: scanline-scroll 20s linear infinite;
+    will-change: background-position;
 }
 
 /* ── Cinematic Light Streaks ── */
@@ -1150,6 +1151,7 @@ footer .hero-social-link {
     pointer-events: none;
     z-index: 3;
     opacity: 0;
+    will-change: transform, opacity;
 }
 
 .hero-light-streak--1 {
@@ -1178,6 +1180,7 @@ footer .hero-social-link {
     background: radial-gradient(circle, var(--purple-glow), transparent 70%);
     z-index: -1;
     animation: glow-pulse 4s ease-in-out infinite;
+    will-change: opacity;
 }
 
 /* ── Greeting Lines ── */
@@ -1276,7 +1279,8 @@ footer .hero-social-link {
     justify-content: center;
     overflow: hidden;
     background: var(--bg-dark);
-    padding: 1.5rem; /* Space for the rounded "frame" */
+    padding: 1.5rem;
+    contain: layout paint; /* Optimization: contain layout and paint to this section */
 }
 
 .hero-cinematic::before {
@@ -1299,6 +1303,7 @@ footer .hero-social-link {
     opacity: 0.6;
     z-index: 1;
     animation: brightness-pulse 8s ease-in-out infinite;
+    will-change: filter;
 }
 
 /* ── Floating Orbs (GPU-accelerated, transform-only) ── */
@@ -1400,6 +1405,7 @@ footer .hero-social-link {
     align-items: center;
     justify-content: center;
     animation: float 6s ease-in-out infinite; /* Floating effect */
+    will-change: transform;
 }
 
 .hero-profile-ring {
@@ -1411,6 +1417,7 @@ footer .hero-social-link {
     z-index: 0;
     mask: radial-gradient(circle, transparent 65%, black 66%);
     -webkit-mask: radial-gradient(circle, transparent 65%, black 66%);
+    will-change: transform;
 }
 
 .hero-profile-ring-inner {
@@ -1423,6 +1430,7 @@ footer .hero-social-link {
     opacity: 0.7;
     mask: radial-gradient(circle, transparent 65%, black 66%);
     -webkit-mask: radial-gradient(circle, transparent 65%, black 66%);
+    will-change: transform;
 }
 
 /* Removed redundant ::before as we use mask now */
