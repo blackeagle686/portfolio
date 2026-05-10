@@ -1083,6 +1083,11 @@ footer .hero-social-link {
     50%      { opacity: 0.8; }
 }
 
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
+
 @keyframes spin-slow {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
@@ -1386,39 +1391,55 @@ footer .hero-social-link {
 /* ── Profile Ring ── */
 .hero-profile-wrap {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: float 6s ease-in-out infinite; /* Floating effect */
 }
 
 .hero-profile-ring {
     position: absolute;
-    inset: -8px;
+    inset: -10px;
     border-radius: 50%;
-    background: var(--gradient-purple-orange);
-    padding: 4px;
-    animation: spin-slow 8s linear infinite;
+    background: conic-gradient(from 0deg, var(--purple-primary), var(--secondary-color), var(--purple-light), var(--purple-primary));
+    animation: spin-slow 4s linear infinite;
     z-index: 0;
+    mask: radial-gradient(circle, transparent 65%, black 66%);
+    -webkit-mask: radial-gradient(circle, transparent 65%, black 66%);
 }
 
-.hero-profile-ring::before {
-    content: '';
+.hero-profile-ring-inner {
     position: absolute;
-    inset: 4px;
+    inset: -5px;
     border-radius: 50%;
-    background: var(--bg-dark);
+    background: conic-gradient(from 0deg, var(--secondary-color), var(--purple-light), var(--purple-primary), var(--secondary-color));
+    animation: spin-slow 3s linear infinite reverse;
+    z-index: 0;
+    opacity: 0.7;
+    mask: radial-gradient(circle, transparent 65%, black 66%);
+    -webkit-mask: radial-gradient(circle, transparent 65%, black 66%);
 }
+
+/* Removed redundant ::before as we use mask now */
 
 .hero-profile-img {
     position: relative;
     z-index: 1;
-    width: 120px; /* Further decreased size */
-    height: 120px; /* Further decreased size */
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(0,0,0,0.5);
-    box-shadow:
-        0 0 40px var(--purple-glow),
-        0 0 80px rgba(168, 85, 247, 0.15);
-    animation: fadeInScale 0.8s ease-out both;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 0 30px var(--purple-glow),
+        0 0 60px rgba(168, 85, 247, 0.1);
+    animation: fadeInScale 0.8s ease-out both, pulse-soft 4s ease-in-out infinite; /* Added pulse-soft */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-profile-img:hover {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--purple-light);
 }
 
 .hero-profile-wrap::after {
