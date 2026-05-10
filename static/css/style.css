@@ -133,6 +133,7 @@ body {
     padding: 0.7rem 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    tr
 }
 
 .navbar.scrolled {
