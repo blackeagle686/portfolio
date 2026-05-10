@@ -1383,7 +1383,7 @@ footer .hero-social-link {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 40px; /* Large rounded padding effect */
     padding: 1rem !important;
-    
+    margin: 1rem !important;
 }
 
 /* ── Profile Ring ── */
