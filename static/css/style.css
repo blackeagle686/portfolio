@@ -1098,6 +1098,162 @@ footer .hero-social-link {
     to   { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes streak-move {
+    0%   { transform: translateX(-100%) rotate(-35deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateX(200vw) rotate(-35deg); opacity: 0; }
+}
+
+@keyframes scanline-scroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ── Cinematic Scanlines ── */
+.hero-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 4;
+    animation: scanline-scroll 20s linear infinite;
+}
+
+/* ── Cinematic Light Streaks ── */
+.hero-light-streak {
+    position: absolute;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple-light), transparent);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+}
+
+.hero-light-streak--1 {
+    top: 30%;
+    animation: streak-move 8s 2s ease-in-out infinite;
+}
+
+.hero-light-streak--2 {
+    top: 60%;
+    animation: streak-move 10s 5s ease-in-out infinite;
+}
+
+/* ── Extra Orb ── */
+.hero-orb--blue {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+    animation: float 9s ease-in-out infinite 1s, glow-pulse 8s ease-in-out infinite;
+}
+
+/* ── Profile Glow ── */
+.hero-profile-glow {
+    position: absolute;
+    inset: -30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--purple-glow), transparent 70%);
+    z-index: -1;
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* ── Greeting Lines ── */
+.hero-greeting-line {
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--purple-primary);
+    vertical-align: middle;
+    margin: 0 0.6rem;
+    opacity: 0.5;
+}
+
+/* ── About Card Enhancements ── */
+.hero-about-card__glow {
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-about-headline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    color: var(--purple-light);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.hero-about-desc {
+    color: var(--text-light);
+    opacity: 0.88;
+    line-height: 1.75;
+    font-size: clamp(0.85rem, 1.5vw, 0.97rem);
+    margin-bottom: 1rem;
+}
+
+/* ── Info Tags ── */
+.hero-info-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.hero-info-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.hero-info-tag i {
+    font-size: 0.9rem;
+}
+
+/* ── Stat Plus Sign ── */
+.hero-stat-plus {
+    font-size: 1.2rem;
+    font-weight: 900;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ── Identity & About Column Animations ── */
+.hero-identity-col {
+    animation: slide-in-left 0.9s 0.2s ease-out both;
+}
+
+.hero-about-col {
+    animation: slide-in-right 0.9s 0.4s ease-out both;
+}
+
 /* ============================================
    HERO SECTION — CINEMATIC FULL-VIEWPORT
    ============================================ */
