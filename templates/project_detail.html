@@ -419,4 +419,98 @@
         reveals.forEach(el => obs.observe(el));
     });
 </script>
+<script>
+/* ── Cinematic Gallery Carousel ── */
+(function() {
+    'use strict';
+    const slides = document.querySelectorAll('.gallery-slide');
+    if (!slides.length) return;
+
+    const track = document.getElementById('galleryTrack');
+    const bgBlur = document.getElementById('galleryBgBlur');
+    const currentEl = document.getElementById('galleryCurrentSlide');
+    const totalEl = document.getElementById('galleryTotalSlides');
+    const progressBar = document.getElementById('galleryProgressBar');
+    const dotsWrap = document.getElementById('galleryDots');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+
+    let current = 0;
+    const total = slides.length;
+    const AUTO_INTERVAL = 5000;
+    let autoTimer = null;
+
+    // Set total count
+    if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
+
+    // Build dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => { goTo(i); startAuto(); });
+        dotsWrap.appendChild(dot);
+    });
+    const dots = dotsWrap.querySelectorAll('.gallery-dot');
+
+    // Set initial background
+    const firstBg = slides[0].dataset.bg;
+    if (firstBg && bgBlur) bgBlur.style.backgroundImage = `url(${firstBg})`;
+
+    function goTo(index) {
+        slides[current].classList.remove('active');
+        if (dots[current]) dots[current].classList.remove('active');
+
+        current = ((index % total) + total) % total;
+
+        slides[current].classList.add('active');
+        if (dots[current]) dots[current].classList.add('active');
+        if (currentEl) currentEl.textContent = String(current + 1).padStart(2, '0');
+
+        // Update blurred background
+        const bg = slides[current].dataset.bg;
+        if (bg && bgBlur) bgBlur.style.backgroundImage = `url(${bg})`;
+
+        resetProgress();
+    }
+
+    function resetProgress() {
+        if (!progressBar) return;
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        void progressBar.offsetWidth; // Force reflow
+        progressBar.style.transition = `width ${AUTO_INTERVAL}ms linear`;
+        progressBar.style.width = '100%';
+    }
+
+    function startAuto() {
+        stopAuto();
+        if (total <= 1) return;
+        resetProgress();
+        autoTimer = setInterval(() => goTo(current + 1), AUTO_INTERVAL);
+    }
+    function stopAuto() { clearInterval(autoTimer); }
+
+    // Controls
+    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { goTo(current - 1); startAuto(); }
+        else if (e.key === 'ArrowRight') { goTo(current + 1); startAuto(); }
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    if (track) {
+        track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); startAuto(); }
+        }, { passive: true });
+    }
+
+    startAuto();
+})();
+</script>
 {% endblock %}
