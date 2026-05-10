@@ -37,6 +37,8 @@ class Project(models.Model):
     image = models.ImageField(upload_to='projects/')
     demo_link = models.URLField(blank=True, null=True)
     github_link = models.URLField(blank=True, null=True)
+    is_pinned = models.BooleanField(default=False)
+    pin_order = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
