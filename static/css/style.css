@@ -125,6 +125,7 @@ body {
    ============================================ */
 .navbar {
     background: transparent !important;
+    background-image: none !important;
     border-bottom: 2px solid transparent;
     border-image: none;
     backdrop-filter: none;
@@ -136,7 +137,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(10, 10, 10, 0.95) !important;
+    background: transparent !important;
     padding: 0.5rem 0;
 }
 
