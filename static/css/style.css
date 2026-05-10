@@ -125,14 +125,13 @@ body {
    ============================================ */
 .navbar {
     background: transparent !important;
-    background-size: cover !important;
     border-bottom: 2px solid transparent;
-    border-image: var(--gradient-purple-orange) 1;
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    border-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     padding: 0.7rem 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     
 }
 
