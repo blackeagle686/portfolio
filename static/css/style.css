@@ -1260,12 +1260,13 @@ footer .hero-social-link {
 .hero-cinematic {
     position: relative;
     height: 100vh;
-    min-height: 600px; /* Ensure content fits on very short screens */
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--bg-dark); /* Solid dark background */
+    background: var(--bg-dark);
+    padding: 1.5rem; /* Space for the rounded "frame" */
 }
 
 .hero-cinematic::before {
@@ -1376,6 +1377,12 @@ footer .hero-social-link {
 .hero-cinematic .container {
     position: relative;
     z-index: 5;
+    background: rgba(15, 15, 15, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px; /* Large rounded padding effect */
+    padding: 3rem !important;
 }
 
 /* ── Profile Ring ── */
@@ -1405,8 +1412,8 @@ footer .hero-social-link {
 .hero-profile-img {
     position: relative;
     z-index: 1;
-    width: 200px;
-    height: 200px;
+    width: 150px; /* Decreased size */
+    height: 150px; /* Decreased size */
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(0,0,0,0.5);
@@ -1438,7 +1445,7 @@ footer .hero-social-link {
 }
 
 .hero-name {
-    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Decreased size */
     font-weight: 900;
     line-height: 1.1;
     background: var(--gradient-text);
