@@ -108,34 +108,67 @@
                         </h4>
 
                         <div class="row mb-4">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <label for="{{ form.basic_description.id_for_label }}"
-                                    class="form-label fw-bold text-light">Basic Tier</label>
+                                    class="form-label fw-bold text-light">Basic Tier Description</label>
                                 {{ form.basic_description }}
                                 {% if form.basic_description.errors %}
                                 <div class="text-danger small mt-1">{{ form.basic_description.errors|join:", " }}</div>
                                 {% endif %}
                             </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <label for="{{ form.standard_description.id_for_label }}"
-                                    class="form-label fw-bold text-light">Standard Tier</label>
-                                {{ form.standard_description }}
-                                {% if form.standard_description.errors %}
-                                <div class="text-danger small mt-1">{{ form.standard_description.errors|join:", " }}</div>
+                            <div class="col-md-4 mt-4 mt-md-0">
+                                <label for="{{ form.basic_price.id_for_label }}"
+                                    class="form-label fw-bold text-light">Price ($)</label>
+                                <div class="input-group dark-input-group">
+                                    <span class="input-group-text border-end-0 ai-icon-span"><i class="fas fa-dollar-sign"></i></span>
+                                    {{ form.basic_price }}
+                                </div>
+                                {% if form.basic_price.errors %}
+                                <div class="text-danger small mt-1">{{ form.basic_price.errors|join:", " }}</div>
                                 {% endif %}
                             </div>
                         </div>
 
                         <div class="row mb-4">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
+                                <label for="{{ form.standard_description.id_for_label }}"
+                                    class="form-label fw-bold text-light">Standard Tier Description</label>
+                                {{ form.standard_description }}
+                                {% if form.standard_description.errors %}
+                                <div class="text-danger small mt-1">{{ form.standard_description.errors|join:", " }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 mt-4 mt-md-0">
+                                <label for="{{ form.standard_price.id_for_label }}"
+                                    class="form-label fw-bold text-light">Price ($)</label>
+                                <div class="input-group dark-input-group">
+                                    <span class="input-group-text border-end-0 ai-icon-span"><i class="fas fa-dollar-sign"></i></span>
+                                    {{ form.standard_price }}
+                                </div>
+                                {% if form.standard_price.errors %}
+                                <div class="text-danger small mt-1">{{ form.standard_price.errors|join:", " }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-8">
                                 <label for="{{ form.premium_description.id_for_label }}"
-                                    class="form-label fw-bold text-light">Premium Tier</label>
+                                    class="form-label fw-bold text-light">Premium Tier Description</label>
                                 {{ form.premium_description }}
                                 {% if form.premium_description.errors %}
                                 <div class="text-danger small mt-1">{{ form.premium_description.errors|join:", " }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 mt-4 mt-md-0">
+                                <label for="{{ form.premium_price.id_for_label }}"
+                                    class="form-label fw-bold text-light">Price ($)</label>
+                                <div class="input-group dark-input-group">
+                                    <span class="input-group-text border-end-0 ai-icon-span"><i class="fas fa-dollar-sign"></i></span>
+                                    {{ form.premium_price }}
+                                </div>
+                                {% if form.premium_price.errors %}
+                                <div class="text-danger small mt-1">{{ form.premium_price.errors|join:", " }}</div>
                                 {% endif %}
                             </div>
                         </div>
