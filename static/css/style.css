@@ -928,7 +928,7 @@ footer .hero-social-link {
    ============================================ */
 @media (max-width: 991.98px) {
     .navbar-collapse {
-        background: rgba(0, 0, 0, 0.97);
+        background: transparent !important;
         border: 1px solid var(--border-subtle);
         border-radius: 12px;
         padding: 1rem;
