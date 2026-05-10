@@ -1293,7 +1293,7 @@ footer .hero-social-link {
     background-size: cover;
     opacity: 0.6; /* Increased visibility */
     z-index: 1; /* Above parent background */
-    filter: brightness(0.9); /* Removed brightness reduction */
+    filter: brightness(0.1); /* Removed brightness reduction */
 }
 
 /* ── Floating Orbs (GPU-accelerated, transform-only) ── */
