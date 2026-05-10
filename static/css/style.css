@@ -125,6 +125,7 @@ body {
    ============================================ */
 .navbar,
 .navbar.scrolled {
+    --bs-navbar-bg: transparent !important;
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
