@@ -7,7 +7,13 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 def home(request):
     services = Service.objects.all().order_by('-pk')[:3]
-    projects = Project.objects.all().order_by('-created_at')[:3]
+    
+    pinned_projects = list(Project.objects.filter(is_pinned=True).order_by('pin_order'))
+    if pinned_projects:
+        projects = pinned_projects
+    else:
+        projects = Project.objects.all().order_by('-created_at')[:3]
+        
     return render(request, 'home.html', {'services': services, 'projects': projects})
 
 def services_list(request):
@@ -138,3 +144,29 @@ def delete_service(request, pk):
     # If someone accesses via GET, just show the detail page or handle properly. 
     # Usually a confirmation page, but we'll use a fast post form in detail template.
     return redirect('service_detail', pk=service.pk)
+
+@staff_member_required
+def admin_settings(request):
+    if request.method == 'POST':
+        # Reset all pinned states first
+        Project.objects.update(is_pinned=False, pin_order=0)
+        
+        # Get pinned project IDs from form
+        pinned_ids = request.POST.getlist('pinned_projects')
+        
+        # Update selected projects with their new pin order
+        for idx, project_id in enumerate(pinned_ids):
+            # Try to get the order from a specific input if provided, otherwise use list index
+            order_val = request.POST.get(f'pin_order_{project_id}', idx)
+            try:
+                order = int(order_val)
+            except ValueError:
+                order = idx
+                
+            Project.objects.filter(pk=project_id).update(is_pinned=True, pin_order=order)
+            
+        messages.success(request, "Settings updated successfully!")
+        return redirect('admin_settings')
+        
+    projects = Project.objects.all().order_by('-is_pinned', 'pin_order', '-created_at')
+    return render(request, 'admin_settings.html', {'projects': projects})
