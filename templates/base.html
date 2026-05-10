@@ -83,6 +83,8 @@
                     <ul class="dropdown-menu dropdown-menu-dark border-light border-opacity-10" aria-labelledby="offcanvasAdminDropdown">
                         <li><a class="dropdown-item" href="{% url 'add_project' %}"><i class="fas fa-cloud-upload-alt me-2 text-primary"></i> Upload Project</a></li>
                         <li><a class="dropdown-item" href="{% url 'add_service' %}"><i class="fas fa-concierge-bell me-2 text-secondary"></i> Add Service</a></li>
+                        <li><hr class="dropdown-divider border-light border-opacity-10"></li>
+                        <li><a class="dropdown-item" href="{% url 'admin_settings' %}"><i class="fas fa-cog me-2 text-warning"></i> Home Settings</a></li>
                     </ul>
                 </li>
                 {% endif %}

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Settings - Pin Projects{% endblock %}
+
+{% block content %}
+<!-- Page Hero Banner -->
+<section class="position-relative py-4" style="background: var(--gradient-hero); overflow:hidden;">
+    <div style="position:absolute; inset:0;
+        background: radial-gradient(ellipse at 50% 60%, var(--purple-glow), transparent 55%);
+        pointer-events:none;"></div>
+    <div class="container position-relative text-center py-3" style="z-index:2;">
+        <p class="hero-greeting mb-2" style="animation-delay:0s;">Admin Panel</p>
+        <h1 class="hero-name mb-0" style="font-size: clamp(1.6rem,4vw,2.5rem);">
+            Home Screen Settings
+        </h1>
+    </div>
+    <div style="position:absolute; bottom:0; left:0; right:0; height:60px;
+        background:linear-gradient(to top, var(--bg-dark), transparent); pointer-events:none;"></div>
+</section>
+
+<hr class="section-divider">
+
+<section class="py-5" style="background-color: var(--bg-dark);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 reveal">
+                <div class="hero-about-card p-4 p-md-5 position-relative" style="animation:none; opacity:1; border-radius:24px;">
+                    <div class="position-absolute top-0 end-0 p-4" style="opacity:0.05;">
+                        <i class="fas fa-thumbtack"
+                            style="font-size:6rem; color:var(--purple-primary); transform:rotate(10deg);"></i>
+                    </div>
+
+                    <h2 class="mb-2 text-light" style="position:relative; z-index:2;">Pinned Projects</h2>
+                    <p class="text-muted mb-5" style="position:relative; z-index:2;">
+                        Select which projects to pin to the home screen carousel and specify their display order. Lower numbers appear first.
+                    </p>
+
+                    <form method="post" class="position-relative" style="z-index:2;">
+                        {% csrf_token %}
+                        
+                        <div class="table-responsive mb-4">
+                            <table class="table table-dark table-hover align-middle custom-admin-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 80px;">Pin</th>
+                                        <th scope="col">Project Title</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col" style="width: 120px;">Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for project in projects %}
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-switch custom-switch">
+                                                <input class="form-check-input" type="checkbox" name="pinned_projects" value="{{ project.pk }}" id="pin_{{ project.pk }}" {% if project.is_pinned %}checked{% endif %}>
+                                                <label class="form-check-label visually-hidden" for="pin_{{ project.pk }}">Pin</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                {% if project.image %}
+                                                <img src="{{ project.image.url }}" alt="thumb" class="rounded me-3" style="width: 40px; height: 40px; object-fit: cover;">
+                                                {% else %}
+                                                <div class="rounded me-3 bg-secondary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                                    <i class="fas fa-image text-dark"></i>
+                                                </div>
+                                                {% endif %}
+                                                <span class="fw-bold">{{ project.title }}</span>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge" style="background: rgba(168, 85, 247, 0.2); color: var(--purple-light); border: 1px solid rgba(168, 85, 247, 0.4);">{{ project.get_project_type_display }}</span></td>
+                                        <td>
+                                            <input type="number" class="form-control form-control-sm text-center" name="pin_order_{{ project.pk }}" value="{{ project.pin_order|default:0 }}">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4 d-md-flex justify-content-md-end">
+                            <a href="{% url 'home' %}" class="btn hero-btn-outline" style="padding:0.6rem 1.5rem;">Cancel</a>
+                            <button type="submit" class="btn hero-btn-primary" style="padding:0.6rem 2rem;">
+                                <i class="fas fa-save me-2"></i> Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Custom Table Styles */
+    .custom-admin-table {
+        background: transparent;
+        --bs-table-bg: transparent;
+        --bs-table-color: var(--text-light);
+        --bs-table-border-color: rgba(255, 255, 255, 0.05);
+    }
+    .custom-admin-table th {
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 1rem;
+        border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+    }
+    .custom-admin-table td {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .custom-admin-table tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+    }
+    
+    /* Custom Switch */
+    .custom-switch .form-check-input {
+        width: 3rem;
+        height: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+    }
+    .custom-switch .form-check-input:checked {
+        background-color: var(--purple-primary);
+        border-color: var(--purple-primary);
+    }
+    .custom-switch .form-check-input:focus {
+        box-shadow: 0 0 0 0.25rem rgba(168, 85, 247, 0.25);
+    }
+    
+    /* Input */
+    .custom-admin-table input[type="number"] {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+    .custom-admin-table input[type="number"]:focus {
+        background-color: rgba(168, 85, 247, 0.05);
+        border-color: var(--purple-primary);
+        box-shadow: 0 0 0 0.2rem rgba(168, 85, 247, 0.25);
+    }
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+})();
+</script>
+{% endblock %}
