@@ -1486,7 +1486,7 @@ footer .hero-social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 2rem;
+    padding: 0.65rem 1.6rem; /* Decreased size */
     background: var(--gradient-purple-orange);
     background-size: 200% 200%;
     color: #fff;
@@ -1509,7 +1509,7 @@ footer .hero-social-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 2rem;
+    padding: 0.65rem 1.6rem; /* Decreased size */
     background: transparent;
     color: var(--purple-light);
     font-weight: 700;
@@ -1537,13 +1537,13 @@ footer .hero-social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 38px; /* Decreased size */
+    height: 38px; /* Decreased size */
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    font-size: 1.15rem;
+    font-size: 1rem; /* Decreased size */
     text-decoration: none;
     transition: all 0.3s;
 }
