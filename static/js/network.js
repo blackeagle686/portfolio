@@ -8,7 +8,7 @@
     const canvas = document.getElementById('network-canvas');
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: false }); // Optimization: no alpha channel for canvas background
+    const ctx = canvas.getContext('2d'); // Enabled alpha for transparency
     let W, H, particles = [], gridCols, gridRows;
     let mouse = { x: -9999, y: -9999, r: 180 };
     const CELL = 140;          // Grid cell size
