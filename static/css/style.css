@@ -2041,6 +2041,10 @@ footer .hero-social-link {
     .hero-scroll-indicator {
         display: none;
     }
+    .hero-cinematic .container {
+        border-radius: 24px;
+        padding: 1.5rem !important;
+    }
 }
 
 @media (max-width: 575.98px) {
