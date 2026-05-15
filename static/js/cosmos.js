@@ -21,8 +21,8 @@
         cyan: '#005a68ff',      // Cyber Blue
         magenta: '#4b0428ff',   // Soft Fuchsia
         orange: '#fb923c',    // Solar Amber
-        white: '#570000ff',
-        gold: '#ffffffff',      // Stellar Gold
+        white: '#ffffffff',
+        gold: '#695a05ff',      // Stellar Gold
     };
 
     /* ── PLANET CONFIG ── */
