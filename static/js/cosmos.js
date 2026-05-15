@@ -141,43 +141,62 @@
         initStars();
     }
 
-    /* ── SCENE GRAPH (Z-SORTED) ── */
+    /* ── SCENE GRAPH (TRUE 3D GALACTIC ORRERY) ── */
     function buildScene(t) {
         let elements = [];
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
         const scrollFactor = 1 + (scrollY / H) * 0.4;
         const sunPositions = {};
 
-        // 1. Calculate Suns
+        // Global Camera Parallax (System moves as a rigid 3D object)
+        const globalMx = (mouse.x - 0.5) * 60;
+        const globalMy = (mouse.y - 0.5) * 30;
+
+        // 1. Calculate Suns (Galactic Rotation)
         Object.values(SUNS).forEach(sun => {
-            const offScale = W > 768 ? 1 : 0.45; // Compress horizontal spread on mobile
-            const sx = cx + (sun.xOff * offScale * scale) + (mouse.x - 0.5) * 20;
-            const sy = cy + (sun.yOff * offScale * scale) + (mouse.y - 0.5) * 15 - scrollY * 0.1;
-            sunPositions[sun.id] = { x: sx, y: sy };
-            elements.push({ type: 'sun', data: sun, x: sx, y: sy, z: 0 }); // Suns at local depth 0
+            const offScale = W > 768 ? 1 : 0.45; 
+            const baseX = sun.xOff * offScale * scale;
+            const baseY = sun.yOff * offScale * scale;
+
+            // Convert static offsets to radial coordinates for galactic orbit
+            const R = Math.hypot(baseX, baseY);
+            const A0 = Math.atan2(baseY, baseX);
+            const galacticAngle = A0 + t * 0.04; // Majestic slow rotation
+
+            const GALAXY_TILT = 0.35;
+            const rotX = R * Math.cos(galacticAngle);
+            const rotY = R * Math.sin(galacticAngle) * GALAXY_TILT;
+            const sunZ = R * Math.sin(galacticAngle) * GALAXY_TILT;
+
+            const sx = cx + rotX + globalMx;
+            const sy = cy + rotY + globalMy - scrollY * 0.1;
+            
+            sunPositions[sun.id] = { x: sx, y: sy, z: sunZ };
+            elements.push({ type: 'sun', data: sun, x: sx, y: sy, z: sunZ });
         });
 
-        // 2. Calculate Planets
+        // 2. Calculate Planets (Solar System Rotation)
         PLANETS.forEach((p, i) => {
             const sunKey = (p.sun || 'AGENT').toLowerCase();
             const sunPos = sunPositions[sunKey];
             const angle = t * p.speed + p.phase;
-            const rx = p.orbit * scale * scrollFactor;
-            const ry = p.orbit * p.tilt * scale * scrollFactor;
             
-            // Parallax
-            const mx = (mouse.x - 0.5) * 50 * (1 - p.tilt);
-            const my = (mouse.y - 0.5) * 30 * (1 - p.tilt);
-            const syOffset = scrollY * (0.15 + p.tilt * 0.2);
+            // Enforce perfect ecliptic plane for all planets
+            const TILT = 0.35;
+            const rx = p.orbit * scale * scrollFactor;
+            const ry = p.orbit * TILT * scale * scrollFactor;
 
-            const px = sunPos.x + Math.cos(angle) * rx + mx;
-            const py = sunPos.y + Math.sin(angle) * ry + my - syOffset;
-            const pz = Math.sin(angle) * p.orbit * p.tilt; // Depth determines Z-index
+            const px = sunPos.x + Math.cos(angle) * rx;
+            const py = sunPos.y + Math.sin(angle) * ry;
+            
+            // Total Z-depth = Sun's galactic depth + Planet's local depth
+            const localZ = Math.sin(angle) * p.orbit * TILT;
+            const pz = sunPos.z + localZ; 
 
             elements.push({ type: 'planet', data: p, x: px, y: py, z: pz, sunPos, rx, ry, index: i });
         });
 
-        // 3. Sort back-to-front (Z-Sorting for true 3D occlusion)
+        // 3. Sort back-to-front (True 3D Galactic Occlusion)
         elements.sort((a, b) => a.z - b.z);
         return { elements, sunPositions };
     }
