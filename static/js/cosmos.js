@@ -188,12 +188,15 @@
 
     function drawOrbitPaths() {
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
+        const scrollFactor = 1 + (scrollY / H) * 0.5;
+        const sy = scrollY * 0.1; // subtle orbit parallax
+
         ctx.setLineDash([2, 6]);
         PLANETS.forEach(p => {
-            const rx = p.orbit * scale;
-            const ry = p.orbit * p.tilt * scale;
+            const rx = p.orbit * scale * scrollFactor;
+            const ry = p.orbit * p.tilt * scale * scrollFactor;
             ctx.beginPath();
-            ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+            ctx.ellipse(cx, cy - sy, rx, ry, 0, 0, Math.PI * 2);
             ctx.strokeStyle = `rgba(255,255,255,0.05)`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
