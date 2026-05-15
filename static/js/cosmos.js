@@ -14,24 +14,59 @@
     let scrollY = 0;
     let targetScrollY = 0;
 
-    /* ── COLOR PALETTE ── */
+    /* ── PRIME COLOR PALETTE ── */
     const NEON = {
-        blue: '#03424eff',      // Electric Cyan
-        purple: '#2e0555ff',    // Royal Purple
-        cyan: '#005a68ff',      // Cyber Blue
-        magenta: '#4b0428ff',   // Soft Fuchsia
-        orange: '#fb923c',    // Solar Amber
-        white: '#ffffffff',
-        gold: '#695a05ff',      // Stellar Gold
+        cyan:    '#00f2ff', // Electric Cyan
+        purple:  '#7000ff', // Deep Indigo
+        magenta: '#ff00d4', // Neon Fuchsia
+        emerald: '#00ffa2', // Emerald Tech
+        orange:  '#ff6b00', // Solar Flare
+        gold:    '#ffd700', // Stellar Gold
+        blue:    '#3b82f6', // Royal Blue
+        rose:    '#f43f5e', // Rose
+        white:   '#ffffff',
     };
 
-    /* ── PLANET CONFIG ── */
+    /* ── AI EMPIRE: 27 PROJECT PLANETS ── */
     const PLANETS = [
-        { label: 'Agents', icon: '⚡', color: NEON.blue, size: 26, orbit: 280, speed: 0.10, phase: 0, tilt: 0.35 },
-        { label: 'Quantum DeepLearning', icon: '🧠', color: NEON.purple, size: 30, orbit: 380, speed: 0.07, phase: 1.2, tilt: 0.40 },
-        { label: 'Photonics DeepLearning', icon: '🔬', color: NEON.cyan, size: 22, orbit: 470, speed: 0.05, phase: 2.5, tilt: 0.30 },
-        { label: 'AGI', icon: '🔮', color: NEON.magenta, size: 28, orbit: 550, speed: 0.035, phase: 3.8, tilt: 0.45 },
-        { label: 'Defence AI', icon: '🛡️', color: NEON.orange, size: 20, orbit: 200, speed: 0.15, phase: 5.0, tilt: 0.25 },
+        // LAYER 1: DEEP TECH (Outer Orbits)
+        { label: 'PHX-QUANTUM',  icon: '⚛️', color: NEON.cyan,    size: 32, orbit: 620, speed: 0.02,  phase: 0.0, tilt: 0.45 },
+        { label: 'PHX-PTC',      icon: '⚡', color: NEON.magenta, size: 28, orbit: 580, speed: 0.025, phase: 1.2, tilt: 0.40 },
+        { label: 'PHX-LLM',      icon: '🧠', color: NEON.purple,  size: 30, orbit: 540, speed: 0.03,  phase: 2.5, tilt: 0.35 },
+        { label: 'MYAGENT-AGI',  icon: '🔮', color: NEON.emerald, size: 26, orbit: 500, speed: 0.035, phase: 3.8, tilt: 0.30 },
+
+        // LAYER 2: HASHIRA AGENTS (Mid Orbits)
+        { label: 'ASHBORN',      icon: '💀', color: NEON.rose,    size: 24, orbit: 450, speed: 0.045, phase: 0.5, tilt: 0.25 },
+        { label: 'GIYU-SENTINEL', icon: '🌊', color: NEON.blue,    size: 22, orbit: 410, speed: 0.05,  phase: 1.8, tilt: 0.22 },
+        { label: 'RENGOKU-POWER', icon: '🔥', color: NEON.orange,  size: 22, orbit: 370, speed: 0.055, phase: 3.0, tilt: 0.20 },
+        { label: 'SHINOBU-BRIDGE',icon: '🦋', color: NEON.purple,  size: 20, orbit: 330, speed: 0.06,  phase: 4.2, tilt: 0.18 },
+
+        // LAYER 3: CORE SYSTEMS
+        { label: 'GYOMEI-CORE',   icon: '🪨', color: NEON.gold,    size: 18, orbit: 290, speed: 0.07,  phase: 0.2, tilt: 0.15 },
+        { label: 'OBANAI-RULES',  icon: '🐍', color: NEON.emerald, size: 16, orbit: 260, speed: 0.08,  phase: 1.5, tilt: 0.12 },
+        { label: 'MUICHIRO-MEM',  icon: '🌫️', color: NEON.cyan,    size: 16, orbit: 230, speed: 0.09,  phase: 2.8, tilt: 0.10 },
+        { label: 'TENGEN-IO',     icon: '💎', color: NEON.magenta, size: 14, orbit: 200, speed: 0.10,  phase: 4.0, tilt: 0.08 },
+        { label: 'SANEMI-NET',    icon: '🌪️', color: NEON.white,   size: 14, orbit: 175, speed: 0.11,  phase: 5.2, tilt: 0.06 },
+
+        // LAYER 4: FRAMEWORKS & APPS
+        { label: 'PHOENIX-AI',    icon: '🐦', color: NEON.orange,  size: 20, orbit: 480, speed: 0.04,  phase: 1.0, tilt: 0.28 },
+        { label: 'SKYGUARD',      icon: '🛡️', color: NEON.rose,    size: 18, orbit: 310, speed: 0.065, phase: 2.2, tilt: 0.18 },
+        { label: 'MAFQOOD-AI',    icon: '🔍', color: NEON.blue,    size: 16, orbit: 390, speed: 0.052, phase: 3.5, tilt: 0.24 },
+        { label: 'MITSURI-REC',   icon: '💖', color: NEON.magenta, size: 14, orbit: 245, speed: 0.085, phase: 4.8, tilt: 0.14 },
+
+        // LAYER 5: WEB & TOOLS (Inner & Far)
+        { label: 'PHX-DOCS',      icon: '📄', color: NEON.cyan,    size: 10, orbit: 150, speed: 0.13,  phase: 0.8, tilt: 0.05 },
+        { label: 'ASH-WEB',       icon: '🌐', color: NEON.purple,  size: 12, orbit: 130, speed: 0.15,  phase: 2.1, tilt: 0.04 },
+        { label: 'SMART-GIT',     icon: '🎋', color: NEON.emerald, size: 10, orbit: 110, speed: 0.18,  phase: 3.4, tilt: 0.03 },
+        { label: 'IRYM-WEB',      icon: '🏠', color: NEON.gold,    size: 10, orbit: 95,  speed: 0.20,  phase: 4.7, tilt: 0.02 },
+
+        // LAYER 6: SPECIALIZED BOTS
+        { label: 'EDU-CHAT',      icon: '🎓', color: NEON.blue,    size: 12, orbit: 350, speed: 0.058, phase: 0.3, tilt: 0.20 },
+        { label: 'REAL-STATE',    icon: '🏢', color: NEON.orange,  size: 12, orbit: 430, speed: 0.048, phase: 1.6, tilt: 0.26 },
+        { label: 'SVU-BOT',       icon: '🤖', color: NEON.rose,    size: 12, orbit: 515, speed: 0.032, phase: 2.9, tilt: 0.32 },
+        { label: 'MARKET-BOT',    icon: '🛒', color: NEON.emerald, size: 12, orbit: 560, speed: 0.028, phase: 4.1, tilt: 0.38 },
+        { label: 'AI-GRADER',     icon: '📝', color: NEON.gold,    size: 12, orbit: 600, speed: 0.022, phase: 5.4, tilt: 0.42 },
+        { label: 'CODER-V2',      icon: '💻', color: NEON.cyan,    size: 12, orbit: 640, speed: 0.018, phase: 0.7, tilt: 0.48 },
     ];
 
     /* ── STARS ── */
