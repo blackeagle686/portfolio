@@ -16,7 +16,7 @@
 
     /* ── COLOR PALETTE ── */
     const NEON = {
-        blue: '#00d4ff',      // Electric Cyan
+        blue: '#03424eff',      // Electric Cyan
         purple: '#a855f7',    // Royal Purple
         cyan: '#22d3ee',      // Cyber Blue
         magenta: '#f472b6',   // Soft Fuchsia
