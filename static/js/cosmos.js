@@ -147,24 +147,27 @@
 
     /* ── GET PLANET POSITION ── */
     function getPlanetPos(p, t) {
+        const sun = SUNS[p.sun || 'AGENT'];
         const angle = t * p.speed + p.phase;
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
         
-        // Scroll-based expansion: orbits grow as you scroll
+        // Scroll-based expansion
         const scrollFactor = 1 + (scrollY / H) * 0.5;
         const rx = p.orbit * scale * scrollFactor;
         const ry = p.orbit * p.tilt * scale * scrollFactor;
         
-        // Parallax offset from mouse
+        // Parallax
         const mx = (mouse.x - 0.5) * 40 * (1 - p.tilt);
         const my = (mouse.y - 0.5) * 25 * (1 - p.tilt);
-        
-        // Scroll vertical parallax: shift planets up as we scroll down
         const sy = scrollY * (0.15 + p.tilt * 0.2);
+
+        // Origin point (Sun's position)
+        const ox = cx + sun.xOff * scale + (mouse.x - 0.5) * 20;
+        const oy = cy + sun.yOff * scale + (mouse.y - 0.5) * 15 - scrollY * 0.1;
         
         return {
-            x: cx + Math.cos(angle) * rx + mx,
-            y: cy + Math.sin(angle) * ry + my - sy,
+            x: ox + Math.cos(angle) * rx + mx,
+            y: oy + Math.sin(angle) * ry + my - sy,
         };
     }
 
@@ -230,116 +233,87 @@
     function drawOrbitPaths() {
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
         const scrollFactor = 1 + (scrollY / H) * 0.5;
-        const sy = scrollY * 0.1; // subtle orbit parallax
 
         ctx.setLineDash([2, 6]);
         PLANETS.forEach(p => {
+            const sun = SUNS[p.sun || 'AGENT'];
+            const ox = cx + sun.xOff * scale + (mouse.x - 0.5) * 20;
+            const oy = cy + sun.yOff * scale + (mouse.y - 0.5) * 15 - scrollY * 0.1;
+            
             const rx = p.orbit * scale * scrollFactor;
             const ry = p.orbit * p.tilt * scale * scrollFactor;
+            
             ctx.beginPath();
-            ctx.ellipse(cx, cy - sy, rx, ry, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(255,255,255,0.05)`;
+            ctx.ellipse(ox, oy, rx, ry, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(255,255,255,0.03)`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
         });
         ctx.setLineDash([]);
     }
 
-    function drawCore() {
-        const mx = (mouse.x - 0.5) * 10;
-        const my = (mouse.y - 0.5) * 8;
-        const coreX = cx + mx;
-        const coreY = cy + my - scrollY * 0.15; // Subtle core parallax
-        const pulse = 1 + Math.sin(time * 0.3) * 0.15;
+    function drawSuns() {
+        const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
+        const sunPositions = {};
 
-        // Outer halo
-        const halo = ctx.createRadialGradient(coreX, coreY, 0, coreX, coreY, 80 * pulse);
-        halo.addColorStop(0, 'rgba(168,85,247,0.25)');
-        halo.addColorStop(0.3, 'rgba(168,85,247,0.08)');
-        halo.addColorStop(1, 'transparent');
-        ctx.fillStyle = halo;
-        ctx.beginPath();
-        ctx.arc(coreX, coreY, 80 * pulse, 0, Math.PI * 2);
-        ctx.fill();
+        Object.values(SUNS).forEach(sun => {
+            const sx = cx + sun.xOff * scale + (mouse.x - 0.5) * 20;
+            const sy = cy + sun.yOff * scale + (mouse.y - 0.5) * 15 - scrollY * 0.1;
+            sunPositions[sun.id] = { x: sx, y: sy };
 
-        // Rotating rings
-        for (let r = 0; r < 2; r++) {
-            ctx.save();
-            ctx.translate(coreX, coreY);
-            ctx.rotate(time * (r === 0 ? 0.2 : -0.15) + r * 1.5);
+            const pulse = 1 + Math.sin(time * 0.3) * 0.15;
+            const glowR = sun.size * 3 * pulse;
+
+            // Halo
+            const halo = ctx.createRadialGradient(sx, sy, 0, sx, sy, glowR);
+            halo.addColorStop(0, hexToRGBA(sun.color, 0.25));
+            halo.addColorStop(0.5, hexToRGBA(sun.color, 0.05));
+            halo.addColorStop(1, 'transparent');
+            ctx.fillStyle = halo;
             ctx.beginPath();
-            ctx.ellipse(0, 0, 40 + r * 12, 12 + r * 4, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(168,85,247,${0.15 - r * 0.05})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.restore();
-        }
+            ctx.arc(sx, sy, glowR, 0, Math.PI * 2);
+            ctx.fill();
 
-        // Core orb
-        const coreGrad = ctx.createRadialGradient(coreX, coreY, 0, coreX, coreY, 18 * pulse);
-        coreGrad.addColorStop(0, 'rgba(255,255,255,0.95)');
-        coreGrad.addColorStop(0.3, 'rgba(192,132,252,0.7)');
-        coreGrad.addColorStop(0.7, 'rgba(168,85,247,0.3)');
-        coreGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = coreGrad;
-        ctx.beginPath();
-        ctx.arc(coreX, coreY, 18 * pulse, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Inner bright spot
-        ctx.beginPath();
-        ctx.arc(coreX, coreY, 5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.9)';
-        ctx.fill();
-
-        return { x: coreX, y: coreY };
-    }
-
-    function drawConnections(planetPositions, corePos) {
-        // Core to planets
-        planetPositions.forEach((pos, i) => {
-            const p = PLANETS[i];
-            const pulse = 0.12 + Math.sin(time * 0.3 + i * 1.2) * 0.06;
-
-            // Draw as a slightly curved glowing line
+            // Radiant Core
+            const coreGrad = ctx.createRadialGradient(sx, sy, 0, sx, sy, sun.size * 0.8 * pulse);
+            coreGrad.addColorStop(0, 'rgba(255,255,255,1)');
+            coreGrad.addColorStop(0.3, 'rgba(255,255,255,0.8)');
+            coreGrad.addColorStop(0.7, hexToRGBA(sun.color, 0.4));
+            coreGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = coreGrad;
             ctx.beginPath();
-            ctx.moveTo(corePos.x, corePos.y);
-            const cpx = (corePos.x + pos.x) / 2 + Math.sin(time * 0.2 + i) * 30;
-            const cpy = (corePos.y + pos.y) / 2 + Math.cos(time * 0.2 + i) * 20;
-            ctx.quadraticCurveTo(cpx, cpy, pos.x, pos.y);
-            ctx.strokeStyle = hexToRGBA(p.color, pulse + 0.06);
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
+            ctx.arc(sx, sy, sun.size * 0.8 * pulse, 0, Math.PI * 2);
+            ctx.fill();
 
-            // Glow layer for the connection line
-            ctx.beginPath();
-            ctx.moveTo(corePos.x, corePos.y);
-            ctx.quadraticCurveTo(cpx, cpy, pos.x, pos.y);
-            ctx.strokeStyle = hexToRGBA(p.color, pulse * 0.3);
-            ctx.lineWidth = 4;
-            ctx.stroke();
-
-            // Spawn energy pulse occasionally
-            if (Math.random() < 0.008) {
-                spawnPulse(corePos, pos, p.color);
-            }
+            // Label
+            ctx.font = '900 12px "Fira Code", monospace';
+            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            ctx.textAlign = 'center';
+            ctx.fillText(sun.label, sx, sy - sun.size - 10);
         });
 
-        // Planet to planet connections (nearest neighbors)
-        for (let i = 0; i < planetPositions.length; i++) {
-            const next = (i + 1) % planetPositions.length;
-            const a = planetPositions[i], b = planetPositions[next];
-            const dist = Math.hypot(a.x - b.x, a.y - b.y);
-            if (dist < 400) {
-                const op = (1 - dist / 400) * 0.06;
-                ctx.beginPath();
-                ctx.moveTo(a.x, a.y);
-                ctx.lineTo(b.x, b.y);
-                ctx.strokeStyle = `rgba(100,200,255,${op})`;
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
+        return sunPositions;
+    }
+
+    function drawConnections(planetPositions, sunPositions) {
+        planetPositions.forEach((pos, i) => {
+            const p = PLANETS[i];
+            const sunPos = sunPositions[SUNS[p.sun || 'AGENT'].id];
+            const pulse = 0.12 + Math.sin(time * 0.3 + i * 1.2) * 0.06;
+
+            ctx.beginPath();
+            ctx.moveTo(sunPos.x, sunPos.y);
+            const cpx = (sunPos.x + pos.x) / 2 + Math.sin(time * 0.2 + i) * 30;
+            const cpy = (sunPos.y + pos.y) / 2 + Math.cos(time * 0.2 + i) * 20;
+            ctx.quadraticCurveTo(cpx, cpy, pos.x, pos.y);
+            ctx.strokeStyle = hexToRGBA(p.color, pulse + 0.04);
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            if (Math.random() < 0.005) {
+                spawnPulse(sunPos, pos, p.color);
             }
-        }
+        });
     }
 
     function drawPulses() {
@@ -501,10 +475,10 @@
         drawStars();
         drawOrbitPaths();
 
-        const corePos = drawCore();
+        const sunPositions = drawSuns();
         const planetPositions = drawPlanets(time);
 
-        drawConnections(planetPositions, corePos);
+        drawConnections(planetPositions, sunPositions);
         drawPulses();
         drawParticles();
         drawShootingStars();
