@@ -30,49 +30,56 @@
     /* ── AI EMPIRE: 27 PROJECT PLANETS ── */
     /* ── SOLAR CLUSTERS (SUNS) ── */
     const SUNS = {
-        TECH:  { id: 'tech',  label: 'HIGH-TECH HUB', color: NEON.cyan,    xOff: -550, yOff: -100, size: 40 },
-        AGENT: { id: 'agent', label: 'AGENT NEXUS',  color: NEON.purple,  xOff: 0,    yOff: 0,    size: 50 },
-        BOT:   { id: 'bot',   label: 'SYSTEM BOTS',  color: NEON.orange,  xOff: 550,  yOff: 150,  size: 35 }
+        TECH:  { id: 'tech',  label: 'HIGH-TECH',    color: NEON.cyan,   xOff: -320, yOff: -80,  size: 28 },
+        AGENT: { id: 'agent', label: 'AGENT NEXUS',  color: NEON.purple, xOff: 0,    yOff: 20,   size: 35 },
+        BOT:   { id: 'bot',   label: 'APPS & BOTS',  color: NEON.orange, xOff: 320,  yOff: 100,  size: 25 },
     };
 
-    /* ── AI EMPIRE: CLUSTERED PLANETS ── */
+    /* ── AI EMPIRE — 27 PLANETS · 3 CLUSTERS · 3 RINGS EACH ── */
+    /* Phase spacing: 2π/3 ≈ 2.094 per planet within each ring */
     const PLANETS = [
-        // --- HIGH-TECH CLUSTER (Singularity) ---
-        { label: 'PHX-QUANTUM',  icon: '⚛️', color: NEON.cyan,    size: 32, orbit: 300, speed: 0.02,  phase: 0.0, tilt: 0.45, sun: 'TECH' },
-        { label: 'PHX-PTC',      icon: '⚡', color: NEON.magenta, size: 28, orbit: 420, speed: 0.025, phase: 1.2, tilt: 0.40, sun: 'TECH' },
-        { label: 'PHX-LLM',      icon: '🧠', color: NEON.purple,  size: 30, orbit: 540, speed: 0.03,  phase: 2.5, tilt: 0.35, sun: 'TECH' },
-        { label: 'MYAGENT-AGI',  icon: '🔮', color: NEON.emerald, size: 26, orbit: 660, speed: 0.035, phase: 3.8, tilt: 0.30, sun: 'TECH' },
-        { label: 'GYOMEI-CORE',   icon: '🪨', color: NEON.gold,    size: 18, orbit: 220, speed: 0.07,  phase: 0.2, tilt: 0.15, sun: 'TECH' },
 
-        // --- AGENT CLUSTER (Nexus) ---
-        { label: 'ASHBORN',      icon: '💀', color: NEON.rose,    size: 24, orbit: 320, speed: 0.045, phase: 0.5, tilt: 0.25, sun: 'AGENT' },
-        { label: 'GIYU-SENTINEL', icon: '🌊', color: NEON.blue,    size: 22, orbit: 440, speed: 0.05,  phase: 1.8, tilt: 0.22, sun: 'AGENT' },
-        { label: 'RENGOKU-POWER', icon: '🔥', color: NEON.orange,  size: 22, orbit: 560, speed: 0.055, phase: 3.0, tilt: 0.20, sun: 'AGENT' },
-        { label: 'SHINOBU-BRIDGE',icon: '🦋', color: NEON.purple,  size: 20, orbit: 680, speed: 0.06,  phase: 4.2, tilt: 0.18, sun: 'AGENT' },
-        { label: 'PHOENIX-AI',    icon: '🐦', color: NEON.orange,  size: 20, orbit: 200, speed: 0.04,  phase: 1.0, tilt: 0.28, sun: 'AGENT' },
-        { label: 'SKYGUARD',      icon: '🛡️', color: NEON.rose,    size: 18, orbit: 800, speed: 0.065, phase: 2.2, tilt: 0.18, sun: 'AGENT' },
+        // ══════ HIGH-TECH CLUSTER ══════
+        // Ring 1 (inner, orbit 90)
+        { label: 'PHX-QUANTUM',   icon: '⚛️', color: NEON.cyan,    size: 20, orbit: 90,  speed: 0.08, phase: 0.00,  tilt: 0.35, sun: 'TECH' },
+        { label: 'PHX-PTC',       icon: '⚡', color: NEON.magenta, size: 18, orbit: 90,  speed: 0.08, phase: 2.09,  tilt: 0.35, sun: 'TECH' },
+        { label: 'PHX-LLM',       icon: '🧠', color: NEON.purple,  size: 20, orbit: 90,  speed: 0.08, phase: 4.19,  tilt: 0.35, sun: 'TECH' },
+        // Ring 2 (mid, orbit 160)
+        { label: 'MYAGENT-AGI',   icon: '🔮', color: NEON.emerald, size: 16, orbit: 160, speed: 0.05, phase: 0.50,  tilt: 0.30, sun: 'TECH' },
+        { label: 'GYOMEI-CORE',   icon: '🪨', color: NEON.gold,    size: 14, orbit: 160, speed: 0.05, phase: 2.60,  tilt: 0.30, sun: 'TECH' },
+        { label: 'PHOENIX-AI',    icon: '🐦', color: NEON.orange,  size: 16, orbit: 160, speed: 0.05, phase: 4.70,  tilt: 0.30, sun: 'TECH' },
+        // Ring 3 (outer, orbit 230)
+        { label: 'OBANAI-RULES',  icon: '🐍', color: NEON.emerald, size: 12, orbit: 230, speed: 0.03, phase: 1.00,  tilt: 0.25, sun: 'TECH' },
+        { label: 'MUICHIRO-MEM',  icon: '🌫️', color: NEON.cyan,    size: 12, orbit: 230, speed: 0.03, phase: 3.10,  tilt: 0.25, sun: 'TECH' },
+        { label: 'TENGEN-IO',     icon: '💎', color: NEON.magenta, size: 12, orbit: 230, speed: 0.03, phase: 5.20,  tilt: 0.25, sun: 'TECH' },
 
-        // --- BOTS CLUSTER (Automaton) ---
-        { label: 'MAFQOOD-AI',    icon: '🔍', color: NEON.blue,    size: 18, orbit: 280, speed: 0.052, phase: 3.5, tilt: 0.24, sun: 'BOT' },
-        { label: 'EDU-CHAT',      icon: '🎓', color: NEON.blue,    size: 14, orbit: 380, speed: 0.058, phase: 0.3, tilt: 0.20, sun: 'BOT' },
-        { label: 'REAL-STATE',    icon: '🏢', color: NEON.orange,  size: 14, orbit: 480, speed: 0.048, phase: 1.6, tilt: 0.26, sun: 'BOT' },
-        { label: 'SVU-BOT',       icon: '🤖', color: NEON.rose,    size: 14, orbit: 580, speed: 0.032, phase: 2.9, tilt: 0.32, sun: 'BOT' },
-        { label: 'MARKET-BOT',    icon: '🛒', color: NEON.emerald, size: 14, orbit: 680, speed: 0.028, phase: 4.1, tilt: 0.38, sun: 'BOT' },
-        { label: 'AI-GRADER',     icon: '📝', color: NEON.gold,    size: 14, orbit: 780, speed: 0.022, phase: 5.4, tilt: 0.42, sun: 'BOT' },
-        
-        // --- SHARED INFRASTRUCTURE (Nexus Orbits) ---
-        { label: 'OBANAI-RULES',  icon: '🐍', color: NEON.emerald, size: 16, orbit: 900, speed: 0.08,  phase: 1.5, tilt: 0.12, sun: 'AGENT' },
-        { label: 'MUICHIRO-MEM',  icon: '🌫️', color: NEON.cyan,    size: 16, orbit: 1000, speed: 0.09,  phase: 2.8, tilt: 0.10, sun: 'AGENT' },
-        { label: 'TENGEN-IO',     icon: '💎', color: NEON.magenta, size: 14, orbit: 1100, speed: 0.10,  phase: 4.0, tilt: 0.08, sun: 'AGENT' },
-        { label: 'SANEMI-NET',    icon: '🌪️', color: NEON.white,   size: 14, orbit: 1200, speed: 0.11,  phase: 5.2, tilt: 0.06, sun: 'AGENT' },
-        { label: 'MITSURI-REC',   icon: '💖', color: NEON.magenta, size: 14, orbit: 1300, speed: 0.085, phase: 4.8, tilt: 0.14, sun: 'AGENT' },
+        // ══════ AGENT CLUSTER ══════
+        // Ring 1 (inner, orbit 100)
+        { label: 'ASHBORN',       icon: '💀', color: NEON.rose,    size: 22, orbit: 100, speed: 0.07, phase: 0.00,  tilt: 0.35, sun: 'AGENT' },
+        { label: 'GIYU',          icon: '🌊', color: NEON.blue,    size: 20, orbit: 100, speed: 0.07, phase: 2.09,  tilt: 0.35, sun: 'AGENT' },
+        { label: 'RENGOKU',       icon: '🔥', color: NEON.orange,  size: 20, orbit: 100, speed: 0.07, phase: 4.19,  tilt: 0.35, sun: 'AGENT' },
+        // Ring 2 (mid, orbit 175)
+        { label: 'SHINOBU',       icon: '🦋', color: NEON.purple,  size: 16, orbit: 175, speed: 0.045,phase: 0.50,  tilt: 0.30, sun: 'AGENT' },
+        { label: 'SKYGUARD',      icon: '🛡️', color: NEON.rose,    size: 16, orbit: 175, speed: 0.045,phase: 2.60,  tilt: 0.30, sun: 'AGENT' },
+        { label: 'SANEMI-NET',    icon: '🌪️', color: NEON.white,   size: 14, orbit: 175, speed: 0.045,phase: 4.70,  tilt: 0.30, sun: 'AGENT' },
+        // Ring 3 (outer, orbit 250)
+        { label: 'MITSURI-REC',   icon: '💖', color: NEON.magenta, size: 12, orbit: 250, speed: 0.025,phase: 1.00,  tilt: 0.25, sun: 'AGENT' },
+        { label: 'CODER-V2',      icon: '💻', color: NEON.cyan,    size: 12, orbit: 250, speed: 0.025,phase: 3.10,  tilt: 0.25, sun: 'AGENT' },
+        { label: 'SMART-GIT',     icon: '🎋', color: NEON.emerald, size: 12, orbit: 250, speed: 0.025,phase: 5.20,  tilt: 0.25, sun: 'AGENT' },
 
-        // --- TOOLS (Nexus Inner) ---
-        { label: 'PHX-DOCS',      icon: '📄', color: NEON.cyan,    size: 10, orbit: 140, speed: 0.13,  phase: 0.8, tilt: 0.05, sun: 'AGENT' },
-        { label: 'ASH-WEB',       icon: '🌐', color: NEON.purple,  size: 12, orbit: 120, speed: 0.15,  phase: 2.1, tilt: 0.04, sun: 'AGENT' },
-        { label: 'SMART-GIT',     icon: '🎋', color: NEON.emerald, size: 10, orbit: 100, speed: 0.18,  phase: 3.4, tilt: 0.03, sun: 'AGENT' },
-        { label: 'IRYM-WEB',      icon: '🏠', color: NEON.gold,    size: 10, orbit: 80,  speed: 0.20,  phase: 4.7, tilt: 0.02, sun: 'AGENT' },
-        { label: 'CODER-V2',      icon: '💻', color: NEON.cyan,    size: 12, orbit: 1400, speed: 0.018, phase: 0.7, tilt: 0.48, sun: 'AGENT' },
+        // ══════ APPS & BOTS CLUSTER ══════
+        // Ring 1 (inner, orbit 85)
+        { label: 'MAFQOOD-AI',    icon: '🔍', color: NEON.blue,    size: 18, orbit: 85,  speed: 0.08, phase: 0.00,  tilt: 0.35, sun: 'BOT' },
+        { label: 'EDU-CHAT',      icon: '🎓', color: NEON.cyan,    size: 14, orbit: 85,  speed: 0.08, phase: 2.09,  tilt: 0.35, sun: 'BOT' },
+        { label: 'SVU-BOT',       icon: '🤖', color: NEON.rose,    size: 14, orbit: 85,  speed: 0.08, phase: 4.19,  tilt: 0.35, sun: 'BOT' },
+        // Ring 2 (mid, orbit 150)
+        { label: 'REAL-STATE',    icon: '🏢', color: NEON.orange,  size: 12, orbit: 150, speed: 0.05, phase: 0.50,  tilt: 0.30, sun: 'BOT' },
+        { label: 'MARKET-BOT',    icon: '🛒', color: NEON.emerald, size: 12, orbit: 150, speed: 0.05, phase: 2.60,  tilt: 0.30, sun: 'BOT' },
+        { label: 'AI-GRADER',     icon: '📝', color: NEON.gold,    size: 12, orbit: 150, speed: 0.05, phase: 4.70,  tilt: 0.30, sun: 'BOT' },
+        // Ring 3 (outer, orbit 220)
+        { label: 'PHX-DOCS',      icon: '📄', color: NEON.cyan,    size: 10, orbit: 220, speed: 0.03, phase: 1.00,  tilt: 0.25, sun: 'BOT' },
+        { label: 'ASH-WEB',       icon: '🌐', color: NEON.purple,  size: 10, orbit: 220, speed: 0.03, phase: 3.10,  tilt: 0.25, sun: 'BOT' },
+        { label: 'IRYM-WEB',      icon: '🏠', color: NEON.gold,    size: 10, orbit: 220, speed: 0.03, phase: 5.20,  tilt: 0.25, sun: 'BOT' },
     ];
 
     /* ── STARS ── */
