@@ -14,13 +14,13 @@
 
     /* ── COLOR PALETTE ── */
     const NEON = {
-        blue: '#00d4ff',
-        purple: '#a855f7',
-        cyan: '#00ffd5',
-        magenta: '#e040fb',
-        orange: '#ff6b00',
+        blue: '#00d4ff',      // Electric Cyan
+        purple: '#a855f7',    // Royal Purple
+        cyan: '#22d3ee',      // Cyber Blue
+        magenta: '#f472b6',   // Soft Fuchsia
+        orange: '#fb923c',    // Solar Amber
         white: '#ffffff',
-        gold: '#ffd700',
+        gold: '#fbbf24',      // Stellar Gold
     };
 
     /* ── PLANET CONFIG ── */
