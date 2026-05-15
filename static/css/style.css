@@ -2305,7 +2305,7 @@ footer .hero-social-link {
 }
 
 .hero-cosmos {
-    background: #000 !important;
+    background-color: #000;
 }
 
 /* Override: push the ::before below the canvas */
