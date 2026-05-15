@@ -6,7 +6,8 @@
 <!-- ═══════════════════════════════════════════
      HERO — COSMIC 3D SOLAR SYSTEM
      ═══════════════════════════════════════════ -->
-<section class="hero-cinematic hero-cosmos" id="hero">
+<section class="hero-cinematic hero-cosmos" id="hero" style="background-image: url('{% static 'images/jpnbgprt.jpg' %}'); background-size: cover; background-position: center; background-attachment: fixed; background-blend-mode: overlay;">
+    <!-- Particle container for stars/nodes -->
     <canvas id="cosmos-canvas"></canvas>
 
     <!-- Cinematic scanline overlay -->
@@ -33,14 +34,7 @@
 
             <!-- Left Column: Identity -->
             <div class="col-lg-5 text-center text-lg-start hero-identity-col">
-                <!-- Profile with animated ring -->
-                <div class="hero-profile-wrap mb-3 mb-lg-4 d-inline-block">
-                    <!-- <div class="hero-profile-ring"></div>
-                    <div class="hero-profile-ring-inner"></div> -->
-                    <!-- <div class="hero-profile-glow"></div> -->
-                    <img src="{% static 'images/blackglasses.png' %}" alt="Mohamed Alaa" class="hero-profile-img"
-                        loading="eager" />
-                </div>
+                <!-- Removed profile image -->
 
                 <p class="hero-greeting">
                     <span class="hero-greeting-line"></span>
