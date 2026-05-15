@@ -108,14 +108,22 @@
     function getPlanetPos(p, t) {
         const angle = t * p.speed + p.phase;
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
-        const rx = p.orbit * scale;
-        const ry = p.orbit * p.tilt * scale;
+        
+        // Scroll-based expansion: orbits grow as you scroll
+        const scrollFactor = 1 + (scrollY / H) * 0.5;
+        const rx = p.orbit * scale * scrollFactor;
+        const ry = p.orbit * p.tilt * scale * scrollFactor;
+        
         // Parallax offset from mouse
         const mx = (mouse.x - 0.5) * 40 * (1 - p.tilt);
         const my = (mouse.y - 0.5) * 25 * (1 - p.tilt);
+        
+        // Scroll vertical parallax: shift planets up as we scroll down
+        const sy = scrollY * (0.15 + p.tilt * 0.2);
+        
         return {
             x: cx + Math.cos(angle) * rx + mx,
-            y: cy + Math.sin(angle) * ry + my,
+            y: cy + Math.sin(angle) * ry + my - sy,
         };
     }
 
