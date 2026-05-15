@@ -1721,8 +1721,8 @@ footer .hero-social-link {
 /* ── Hero About Card ── */
 .hero-about-card {
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     border: 1px solid var(--border-subtle);
     border-radius: var(--card-radius);
     padding: 1.25rem;
