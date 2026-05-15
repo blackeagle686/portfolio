@@ -159,7 +159,8 @@
 
         // 2. Calculate Planets
         PLANETS.forEach((p, i) => {
-            const sunPos = sunPositions[p.sun || 'AGENT'];
+            const sunKey = (p.sun || 'AGENT').toLowerCase();
+            const sunPos = sunPositions[sunKey];
             const angle = t * p.speed + p.phase;
             const rx = p.orbit * scale * scrollFactor;
             const ry = p.orbit * p.tilt * scale * scrollFactor;
