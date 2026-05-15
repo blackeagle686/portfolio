@@ -191,12 +191,16 @@
     }
 
     function drawNebula() {
+        const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
         const nebulaConfigs = [
-            { x: cx - W * 0.25, y: cy - H * 0.2, r: W * 0.5, color: [168, 85, 247], a: 0.10 },
-            { x: cx + W * 0.3, y: cy + H * 0.15, r: W * 0.45, color: [0, 212, 255], a: 0.07 },
-            { x: cx, y: cy - H * 0.35, r: W * 0.4, color: [224, 64, 251], a: 0.06 },
-            { x: cx - W * 0.2, y: cy + H * 0.3, r: W * 0.35, color: [0, 255, 213], a: 0.05 },
-            { x: cx + W * 0.15, y: cy, r: W * 0.3, color: [255, 107, 0], a: 0.04 },
+            // TECH CLUSTER (Cyan/Purple)
+            { x: cx + SUNS.TECH.xOff * scale, y: cy + SUNS.TECH.yOff * scale, r: W * 0.4, color: [0, 212, 255], a: 0.08 },
+            // AGENT NEXUS (Purple/Magenta)
+            { x: cx + SUNS.AGENT.xOff * scale, y: cy + SUNS.AGENT.yOff * scale, r: W * 0.5, color: [112, 0, 255], a: 0.10 },
+            // BOT CLUSTER (Orange/Gold)
+            { x: cx + SUNS.BOT.xOff * scale, y: cy + SUNS.BOT.yOff * scale, r: W * 0.4, color: [255, 107, 0], a: 0.07 },
+            // Random space gas
+            { x: cx, y: cy - H * 0.3, r: W * 0.6, color: [43, 4, 113], a: 0.05 },
         ];
         nebulaConfigs.forEach((n, i) => {
             const drift = Math.sin(time * 0.08 + i * 1.5) * 30;
