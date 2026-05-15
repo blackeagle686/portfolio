@@ -11,6 +11,8 @@
     const ctx = canvas.getContext('2d');
     let W, H, cx, cy, time = 0;
     let mouse = { x: 0.5, y: 0.5 }; // normalized 0-1
+    let scrollY = 0;
+    let targetScrollY = 0;
 
     /* ── COLOR PALETTE ── */
     const NEON = {
@@ -195,7 +197,7 @@
         const mx = (mouse.x - 0.5) * 10;
         const my = (mouse.y - 0.5) * 8;
         const coreX = cx + mx;
-        const coreY = cy + my;
+        const coreY = cy + my - scrollY * 0.15; // Subtle core parallax
         const pulse = 1 + Math.sin(time * 0.3) * 0.15;
 
         // Outer halo
@@ -434,6 +436,7 @@
     function lerpMouse() {
         mouse.x += (targetMouse.x - mouse.x) * LERP;
         mouse.y += (targetMouse.y - mouse.y) * LERP;
+        scrollY += (targetScrollY - scrollY) * LERP;
     }
 
     /* ── MAIN LOOP ── */
@@ -473,6 +476,10 @@
         const r = canvas.getBoundingClientRect();
         targetMouse.x = (e.touches[0].clientX - r.left) / W;
         targetMouse.y = (e.touches[0].clientY - r.top) / H;
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+        targetScrollY = window.scrollY;
     }, { passive: true });
 
     let resizeTimer;
