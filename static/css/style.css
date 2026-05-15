@@ -2494,7 +2494,6 @@ footer .hero-social-link {
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
-    overflow-y: clip;
     background-color: var(--bg-dark);
 }
 
