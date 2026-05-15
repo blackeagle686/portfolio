@@ -2488,8 +2488,9 @@ footer .hero-social-link {
 .new-projects-hero {
     position: relative;
     width: 100%;
-    min-height: 85vh;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -2518,6 +2519,28 @@ footer .hero-social-link {
     width: 100%;
     max-width: 1400px;
     padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+/* ── HIGH-TECH TITLE ── */
+.hightech-title-wrapper {
+    z-index: 20;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.hightech-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2587,12 +2610,31 @@ footer .hero-social-link {
     50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px var(--purple-light); }
 }
 
+/* ── 3D SPHERICAL LIGHTING ── */
+.ball-3d {
+    background: radial-gradient(circle at 30% 30%, #ffffff, currentColor 60%, #000000 100%) !important;
+    box-shadow: inset -2px -2px 6px rgba(0,0,0,0.5), 0 0 20px currentColor !important;
+    border: none !important;
+}
+
+.ball-3d-nucleus {
+    background: radial-gradient(circle at 30% 30%, #ffffff, var(--purple-primary) 60%, #1a0800 100%) !important;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.6), 0 0 40px var(--purple-glow) !important;
+    border: none !important;
+}
+
 /* ── TACTICAL GLASS CARDS ── */
 .tactical-grid {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     pointer-events: none;
+}
+
+.card-center {
+    align-self: flex-end;
+    margin-top: 350px; /* Push it below the atom */
 }
 
 .tactical-card {
@@ -2700,6 +2742,8 @@ footer .hero-social-link {
 
 @media (max-width: 992px) {
     .tactical-grid { flex-direction: column; gap: 2rem; align-items: center; }
+    .card-center { margin-top: 0; align-self: center; }
     .css-atom { position: relative; margin-bottom: 3rem; transform: none; left: auto; top: auto; width: 300px; height: 300px; }
     .universe-container { flex-direction: column; padding-top: 4rem; }
+    .hightech-title { font-size: 2rem; }
 }
