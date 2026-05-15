@@ -35,40 +35,40 @@
         BOT:   { id: 'bot',   label: 'APPS & BOTS',  color: NEON.orange, xOff: 450,  yOff: 160,  size: 25 },
     };
 
-    /* ── AI EMPIRE — ORGANIC Z-SORTED LAYOUT ── */
+    /* ── AI EMPIRE — ATOMIC RINGS LAYOUT ── */
     const PLANETS = [
-        // ══════ HIGH-TECH CLUSTER ══════
-        { label: 'PHX-QUANTUM',   icon: '⚛️', color: NEON.cyan,    size: 22, orbit: 80,  speed: 0.08,  phase: 0.5, tilt: 0.35, sun: 'TECH' },
-        { label: 'PHX-PTC',       icon: '⚡', color: NEON.magenta, size: 20, orbit: 125, speed: 0.065, phase: 2.1, tilt: 0.38, sun: 'TECH' },
-        { label: 'PHX-LLM',       icon: '🧠', color: NEON.purple,  size: 24, orbit: 175, speed: 0.05,  phase: 4.2, tilt: 0.32, sun: 'TECH' },
-        { label: 'MYAGENT-AGI',   icon: '🔮', color: NEON.emerald, size: 18, orbit: 220, speed: 0.04,  phase: 1.1, tilt: 0.40, sun: 'TECH' },
-        { label: 'GYOMEI-CORE',   icon: '🪨', color: NEON.gold,    size: 16, orbit: 270, speed: 0.035, phase: 3.5, tilt: 0.34, sun: 'TECH' },
-        { label: 'PHOENIX-AI',    icon: '🐦', color: NEON.orange,  size: 18, orbit: 320, speed: 0.03,  phase: 5.8, tilt: 0.37, sun: 'TECH' },
-        { label: 'OBANAI-RULES',  icon: '🐍', color: NEON.emerald, size: 14, orbit: 370, speed: 0.025, phase: 1.9, tilt: 0.31, sun: 'TECH' },
-        { label: 'MUICHIRO-MEM',  icon: '🌫️', color: NEON.cyan,    size: 14, orbit: 420, speed: 0.02,  phase: 4.0, tilt: 0.36, sun: 'TECH' },
-        { label: 'TENGEN-IO',     icon: '💎', color: NEON.magenta, size: 14, orbit: 480, speed: 0.015, phase: 6.1, tilt: 0.33, sun: 'TECH' },
+        // ══════ HIGH-TECH CLUSTER (Orbits: 120, 240, 360) ══════
+        { label: 'PHX-QUANTUM',   icon: '⚛️', color: NEON.cyan,    size: 22, orbit: 120, speed: 0.08, phase: 0.0, sun: 'TECH' },
+        { label: 'PHX-PTC',       icon: '⚡', color: NEON.magenta, size: 20, orbit: 120, speed: 0.08, phase: 2.1, sun: 'TECH' },
+        { label: 'PHX-LLM',       icon: '🧠', color: NEON.purple,  size: 24, orbit: 120, speed: 0.08, phase: 4.2, sun: 'TECH' },
+        { label: 'MYAGENT-AGI',   icon: '🔮', color: NEON.emerald, size: 18, orbit: 240, speed: 0.05, phase: 1.0, sun: 'TECH' },
+        { label: 'GYOMEI-CORE',   icon: '🪨', color: NEON.gold,    size: 16, orbit: 240, speed: 0.05, phase: 3.1, sun: 'TECH' },
+        { label: 'PHOENIX-AI',    icon: '🐦', color: NEON.orange,  size: 18, orbit: 240, speed: 0.05, phase: 5.2, sun: 'TECH' },
+        { label: 'OBANAI-RULES',  icon: '🐍', color: NEON.emerald, size: 14, orbit: 360, speed: 0.03, phase: 0.5, sun: 'TECH' },
+        { label: 'MUICHIRO-MEM',  icon: '🌫️', color: NEON.cyan,    size: 14, orbit: 360, speed: 0.03, phase: 2.6, sun: 'TECH' },
+        { label: 'TENGEN-IO',     icon: '💎', color: NEON.magenta, size: 14, orbit: 360, speed: 0.03, phase: 4.7, sun: 'TECH' },
 
-        // ══════ AGENT CLUSTER ══════
-        { label: 'ASHBORN',       icon: '💀', color: NEON.rose,    size: 26, orbit: 95,  speed: 0.075, phase: 1.0, tilt: 0.35, sun: 'AGENT' },
-        { label: 'GIYU',          icon: '🌊', color: NEON.blue,    size: 24, orbit: 145, speed: 0.06,  phase: 3.1, tilt: 0.38, sun: 'AGENT' },
-        { label: 'RENGOKU',       icon: '🔥', color: NEON.orange,  size: 24, orbit: 195, speed: 0.05,  phase: 5.2, tilt: 0.32, sun: 'AGENT' },
-        { label: 'SHINOBU',       icon: '🦋', color: NEON.purple,  size: 20, orbit: 250, speed: 0.04,  phase: 0.7, tilt: 0.40, sun: 'AGENT' },
-        { label: 'SKYGUARD',      icon: '🛡️', color: NEON.rose,    size: 18, orbit: 305, speed: 0.035, phase: 2.8, tilt: 0.34, sun: 'AGENT' },
-        { label: 'SANEMI-NET',    icon: '🌪️', color: NEON.white,   size: 16, orbit: 365, speed: 0.03,  phase: 4.9, tilt: 0.37, sun: 'AGENT' },
-        { label: 'MITSURI-REC',   icon: '💖', color: NEON.magenta, size: 16, orbit: 425, speed: 0.025, phase: 1.5, tilt: 0.31, sun: 'AGENT' },
-        { label: 'CODER-V2',      icon: '💻', color: NEON.cyan,    size: 14, orbit: 490, speed: 0.02,  phase: 3.6, tilt: 0.36, sun: 'AGENT' },
-        { label: 'SMART-GIT',     icon: '🎋', color: NEON.emerald, size: 14, orbit: 560, speed: 0.015, phase: 5.7, tilt: 0.33, sun: 'AGENT' },
+        // ══════ AGENT CLUSTER (Orbits: 130, 260, 390) ══════
+        { label: 'ASHBORN',       icon: '💀', color: NEON.rose,    size: 26, orbit: 130, speed: 0.07, phase: 1.0, sun: 'AGENT' },
+        { label: 'GIYU',          icon: '🌊', color: NEON.blue,    size: 24, orbit: 130, speed: 0.07, phase: 3.1, sun: 'AGENT' },
+        { label: 'RENGOKU',       icon: '🔥', color: NEON.orange,  size: 24, orbit: 130, speed: 0.07, phase: 5.2, sun: 'AGENT' },
+        { label: 'SHINOBU',       icon: '🦋', color: NEON.purple,  size: 20, orbit: 260, speed: 0.045, phase: 0.7, sun: 'AGENT' },
+        { label: 'SKYGUARD',      icon: '🛡️', color: NEON.rose,    size: 18, orbit: 260, speed: 0.045, phase: 2.8, sun: 'AGENT' },
+        { label: 'SANEMI-NET',    icon: '🌪️', color: NEON.white,   size: 16, orbit: 260, speed: 0.045, phase: 4.9, sun: 'AGENT' },
+        { label: 'MITSURI-REC',   icon: '💖', color: NEON.magenta, size: 16, orbit: 390, speed: 0.025, phase: 1.5, sun: 'AGENT' },
+        { label: 'CODER-V2',      icon: '💻', color: NEON.cyan,    size: 14, orbit: 390, speed: 0.025, phase: 3.6, sun: 'AGENT' },
+        { label: 'SMART-GIT',     icon: '🎋', color: NEON.emerald, size: 14, orbit: 390, speed: 0.025, phase: 5.7, sun: 'AGENT' },
 
-        // ══════ APPS & BOTS CLUSTER ══════
-        { label: 'MAFQOOD-AI',    icon: '🔍', color: NEON.blue,    size: 20, orbit: 75,  speed: 0.09,  phase: 0.0, tilt: 0.35, sun: 'BOT' },
-        { label: 'EDU-CHAT',      icon: '🎓', color: NEON.cyan,    size: 16, orbit: 115, speed: 0.07,  phase: 2.2, tilt: 0.38, sun: 'BOT' },
-        { label: 'SVU-BOT',       icon: '🤖', color: NEON.rose,    size: 16, orbit: 160, speed: 0.055, phase: 4.4, tilt: 0.32, sun: 'BOT' },
-        { label: 'REAL-STATE',    icon: '🏢', color: NEON.orange,  size: 14, orbit: 210, speed: 0.045, phase: 0.5, tilt: 0.40, sun: 'BOT' },
-        { label: 'MARKET-BOT',    icon: '🛒', color: NEON.emerald, size: 14, orbit: 265, speed: 0.035, phase: 2.7, tilt: 0.34, sun: 'BOT' },
-        { label: 'AI-GRADER',     icon: '📝', color: NEON.gold,    size: 14, orbit: 325, speed: 0.03,  phase: 4.9, tilt: 0.37, sun: 'BOT' },
-        { label: 'PHX-DOCS',      icon: '📄', color: NEON.cyan,    size: 12, orbit: 390, speed: 0.025, phase: 1.0, tilt: 0.31, sun: 'BOT' },
-        { label: 'ASH-WEB',       icon: '🌐', color: NEON.purple,  size: 12, orbit: 460, speed: 0.02,  phase: 3.2, tilt: 0.36, sun: 'BOT' },
-        { label: 'IRYM-WEB',      icon: '🏠', color: NEON.gold,    size: 12, orbit: 540, speed: 0.015, phase: 5.4, tilt: 0.33, sun: 'BOT' },
+        // ══════ APPS & BOTS CLUSTER (Orbits: 110, 220, 330) ══════
+        { label: 'MAFQOOD-AI',    icon: '🔍', color: NEON.blue,    size: 20, orbit: 110, speed: 0.09, phase: 0.0, sun: 'BOT' },
+        { label: 'EDU-CHAT',      icon: '🎓', color: NEON.cyan,    size: 16, orbit: 110, speed: 0.09, phase: 2.2, sun: 'BOT' },
+        { label: 'SVU-BOT',       icon: '🤖', color: NEON.rose,    size: 16, orbit: 110, speed: 0.09, phase: 4.4, sun: 'BOT' },
+        { label: 'REAL-STATE',    icon: '🏢', color: NEON.orange,  size: 14, orbit: 220, speed: 0.06, phase: 0.5, sun: 'BOT' },
+        { label: 'MARKET-BOT',    icon: '🛒', color: NEON.emerald, size: 14, orbit: 220, speed: 0.06, phase: 2.7, sun: 'BOT' },
+        { label: 'AI-GRADER',     icon: '📝', color: NEON.gold,    size: 14, orbit: 220, speed: 0.06, phase: 4.9, sun: 'BOT' },
+        { label: 'PHX-DOCS',      icon: '📄', color: NEON.cyan,    size: 12, orbit: 330, speed: 0.04, phase: 1.0, sun: 'BOT' },
+        { label: 'ASH-WEB',       icon: '🌐', color: NEON.purple,  size: 12, orbit: 330, speed: 0.04, phase: 3.2, sun: 'BOT' },
+        { label: 'IRYM-WEB',      icon: '🏠', color: NEON.gold,    size: 12, orbit: 330, speed: 0.04, phase: 5.4, sun: 'BOT' },
     ];
 
     /* ── STARS ── */
@@ -141,7 +141,7 @@
         initStars();
     }
 
-    /* ── SCENE GRAPH (TRUE 3D GALACTIC ORRERY) ── */
+    /* ── SCENE GRAPH (TRUE 3D ATOMIC ORRERY) ── */
     function buildScene(t) {
         let elements = [];
         const scale = W > 768 ? Math.min(W / 1400, 1.2) : 0.45;
@@ -152,48 +152,53 @@
         const globalMx = (mouse.x - 0.5) * 60;
         const globalMy = (mouse.y - 0.5) * 30;
 
-        // 1. Calculate Suns (Galactic Rotation)
+        // 1. Calculate Suns (Static hubs, atomic centers)
         Object.values(SUNS).forEach(sun => {
             const offScale = W > 768 ? 1 : 0.45; 
-            const baseX = sun.xOff * offScale * scale;
-            const baseY = sun.yOff * offScale * scale;
+            // Gentle floating breath
+            const floatX = Math.sin(t * 0.2 + sun.size) * 15;
+            const floatY = Math.cos(t * 0.15 + sun.size) * 15;
 
-            // Convert static offsets to radial coordinates for galactic orbit
-            const R = Math.hypot(baseX, baseY);
-            const A0 = Math.atan2(baseY, baseX);
-            const galacticAngle = A0 + t * 0.04; // Majestic slow rotation
-
-            const GALAXY_TILT = 0.35;
-            const rotX = R * Math.cos(galacticAngle);
-            const rotY = R * Math.sin(galacticAngle) * GALAXY_TILT;
-            const sunZ = R * Math.sin(galacticAngle) * GALAXY_TILT;
-
-            const sx = cx + rotX + globalMx;
-            const sy = cy + rotY + globalMy - scrollY * 0.1;
+            const sx = cx + (sun.xOff * offScale * scale) + globalMx + floatX;
+            const sy = cy + (sun.yOff * offScale * scale) + globalMy + floatY - scrollY * 0.1;
             
-            sunPositions[sun.id] = { x: sx, y: sy, z: sunZ };
-            elements.push({ type: 'sun', data: sun, x: sx, y: sy, z: sunZ });
+            sunPositions[sun.id] = { x: sx, y: sy, z: 0 };
+            elements.push({ type: 'sun', data: sun, x: sx, y: sy, z: 0 });
         });
 
-        // 2. Calculate Planets (Solar System Rotation)
+        // 2. Calculate Planets (Atom Intersecting Rings)
         PLANETS.forEach((p, i) => {
             const sunKey = (p.sun || 'AGENT').toLowerCase();
             const sunPos = sunPositions[sunKey];
             const angle = t * p.speed + p.phase;
             
-            // Enforce perfect ecliptic plane for all planets
-            const TILT = 0.35;
-            const rx = p.orbit * scale * scrollFactor;
-            const ry = p.orbit * TILT * scale * scrollFactor;
+            // Atom orbital tilt (very flat ellipse to look like an atom ring)
+            const TILT = 0.25; 
+            const r = p.orbit * scale * scrollFactor;
 
-            const px = sunPos.x + Math.cos(angle) * rx;
-            const py = sunPos.y + Math.sin(angle) * ry;
+            // Local unrotated ellipse coordinates
+            const lx = Math.cos(angle) * r;
+            const ly = Math.sin(angle) * r * TILT;
             
-            // Total Z-depth = Sun's galactic depth + Planet's local depth
-            const localZ = Math.sin(angle) * p.orbit * TILT;
-            const pz = sunPos.z + localZ; 
+            // The 3 atomic planes (0°, 60°, 120°) -> ⚛️ shape
+            const orbitRotation = (i % 3) * (Math.PI / 3); 
+            const cosR = Math.cos(orbitRotation);
+            const sinR = Math.sin(orbitRotation);
 
-            elements.push({ type: 'planet', data: p, x: px, y: py, z: pz, sunPos, rx, ry, index: i });
+            // Rotate coordinates to form the atom rings
+            const rotX = lx * cosR - ly * sinR;
+            const rotY = lx * sinR + ly * cosR;
+
+            const px = sunPos.x + rotX;
+            const py = sunPos.y + rotY;
+            
+            // Z-depth remains mathematically independent of Z-axis rotation
+            const pz = sunPos.z + Math.sin(angle) * r * TILT; 
+
+            elements.push({ 
+                type: 'planet', data: p, x: px, y: py, z: pz, 
+                sunPos, orbitRotation, r, tilt: TILT, index: i 
+            });
         });
 
         // 3. Sort back-to-front (True 3D Galactic Occlusion)
@@ -257,7 +262,7 @@
         elements.forEach(el => {
             if (el.type !== 'planet') return;
             ctx.beginPath();
-            ctx.ellipse(el.sunPos.x, el.sunPos.y, el.rx, el.ry, 0, 0, Math.PI * 2);
+            ctx.ellipse(el.sunPos.x, el.sunPos.y, el.r, el.r * el.tilt, el.orbitRotation, 0, Math.PI * 2);
             ctx.strokeStyle = `rgba(255,255,255,0.02)`; // Very faint
             ctx.lineWidth = 0.5;
             ctx.stroke();
