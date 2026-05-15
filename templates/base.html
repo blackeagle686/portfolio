@@ -20,7 +20,9 @@
 
     <!-- Preload Critical Assets -->
     <link rel="preload" href="{% static 'css/style.css' %}" as="style">
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGkyMZhrib2Bg-4.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGkyMZhrib2Bg-4.woff2"
+        as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'images/jpnbgprt.jpg' %}" as="image">
 
     <!-- Custom CSS -->
@@ -35,21 +37,24 @@
 <body data-bs-theme="dark">
 
     <!-- Floating Toggle Button -->
-    <button class="menu-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <button class="menu-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar">
         <span class="menu-toggle-icon">
             <i class="fas fa-bars"></i>
         </span>
     </button>
 
     <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header border-bottom border-light border-opacity-10">
             <a class="navbar-brand fw-bold fs-4 logo-ai" href="{% url 'home' %}">
                 <span class="logo-first">Mohamed</span>
                 <span class="logo-last">Alaa</span>
                 <span class="logo-ext">.AI</span>
             </a>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
@@ -80,11 +85,17 @@
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-shield-alt me-1"></i> Admin
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark border-light border-opacity-10" aria-labelledby="offcanvasAdminDropdown">
-                        <li><a class="dropdown-item" href="{% url 'add_project' %}"><i class="fas fa-cloud-upload-alt me-2 text-primary"></i> Upload Project</a></li>
-                        <li><a class="dropdown-item" href="{% url 'add_service' %}"><i class="fas fa-concierge-bell me-2 text-secondary"></i> Add Service</a></li>
-                        <li><hr class="dropdown-divider border-light border-opacity-10"></li>
-                        <li><a class="dropdown-item" href="{% url 'admin_settings' %}"><i class="fas fa-cog me-2 text-warning"></i> Home Settings</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark border-light border-opacity-10"
+                        aria-labelledby="offcanvasAdminDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_project' %}"><i
+                                    class="fas fa-cloud-upload-alt me-2 text-primary"></i> Upload Project</a></li>
+                        <li><a class="dropdown-item" href="{% url 'add_service' %}"><i
+                                    class="fas fa-concierge-bell me-2 text-secondary"></i> Add Service</a></li>
+                        <li>
+                            <hr class="dropdown-divider border-light border-opacity-10">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'admin_settings' %}"><i
+                                    class="fas fa-cog me-2 text-warning"></i> Home Settings</a></li>
                     </ul>
                 </li>
                 {% endif %}
@@ -93,11 +104,13 @@
 
                 <li class="nav-item d-flex align-items-center justify-content-between">
                     <span class="text-muted small text-uppercase fw-bold">Appearance</span>
-                    <button id="theme-toggle" class="btn btn-outline-light btn-sm rounded-circle p-2" title="Toggle Theme" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+                    <button id="theme-toggle" class="btn btn-outline-light btn-sm rounded-circle p-2"
+                        title="Toggle Theme"
+                        style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-moon" id="theme-icon"></i>
                     </button>
                 </li>
-                
+
                 <li class="nav-item mt-4">
                     <a class="hero-btn-primary w-100 text-center d-block" href="{% url 'contact' %}">Hire Me</a>
                 </li>

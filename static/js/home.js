@@ -153,4 +153,28 @@
         reveals.forEach((el) => revealObs.observe(el));
     }
 
+    /* ═══════════════════════════════════════
+       5. HUD STATUS TEXT CYCLING
+       ═══════════════════════════════════════ */
+    const hudText = document.getElementById('hud-status-text');
+    if (hudText) {
+        const statuses = [
+            'SYSTEM ONLINE',
+            'NEURAL SYNC: 98.7%',
+            'AI CORE: ACTIVE',
+            'QUANTUM LINK: STABLE',
+            'THREAT LEVEL: ZERO',
+            'ALL SYSTEMS NOMINAL',
+        ];
+        let statusIdx = 0;
+        setInterval(() => {
+            statusIdx = (statusIdx + 1) % statuses.length;
+            hudText.style.opacity = '0';
+            setTimeout(() => {
+                hudText.textContent = statuses[statusIdx];
+                hudText.style.opacity = '0.8';
+            }, 300);
+        }, 4000);
+    }
+
 })();
