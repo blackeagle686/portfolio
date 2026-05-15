@@ -2493,7 +2493,8 @@ footer .hero-social-link {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: clip;
     background-color: var(--bg-dark);
 }
 
